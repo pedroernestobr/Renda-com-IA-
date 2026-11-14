@@ -3,415 +3,410 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Renda com IA — Aprenda a criar serviços digitais com inteligência artificial</title>
-<meta name="description" content="Treinamento prático em 6 aulas (aprox. 60 minutos) para aprender a criar serviços digitais com ChatGPT, Claude e Claude Code e descobrir como oferecê-los para empresas. R$ 47,90, pagamento único.">
-<meta name="theme-color" content="#04060d">
+<title>Renda com IA — Crie serviços com IA que empresas pagam para ter</title>
+<meta name="description" content="Em 6 aulas (cerca de 60 minutos), aprenda a usar ChatGPT, Claude e Claude Code para criar serviços digitais, encontrar seus primeiros clientes e apresentar seu trabalho. R$ 47,90, pagamento único.">
+<meta name="theme-color" content="#060806">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Renda com IA — Crie serviços digitais com inteligência artificial">
-<meta property="og:description" content="6 aulas diretas ao ponto para dar os primeiros passos com IA e transformar esse conhecimento em uma nova habilidade profissional.">
+<meta property="og:title" content="Renda com IA — Crie serviços com IA que empresas pagam para ter">
+<meta property="og:description" content="6 aulas práticas para criar serviços digitais com inteligência artificial, mesmo sem saber programar.">
 <meta property="og:image" content="assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#04060d;
-  --bg-2:#070b16;
-  --card:#0b111f;
-  --card-2:#0e1627;
+  --bg:#060806;
+  --bg-2:#0a0d09;
+  --glass:rgba(255,255,255,.035);
+  --glass-2:rgba(255,255,255,.06);
   --line:rgba(255,255,255,.08);
   --line-2:rgba(255,255,255,.14);
-  --text:#f3f6fb;
-  --muted:#9ca8bb;
-  --green:#2dff3c;
-  --green-2:#8dff2a;
-  --green-ink:#031a06;
-  --blue:#1f6dff;
-  --orange:#ff8a3c;
-  --radius:18px;
-  --wrap:1120px;
-  --head:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --text:#eef2ea;
+  --muted:#8e998b;
+  --soft:#c3cbbf;
+  --lime:#b6f23e;
+  --lime-2:#dcff7d;
+  --lime-ink:#101800;
+  --wrap:1160px;
+  --r:22px;
+  --sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Instrument Serif",Georgia,serif;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:var(--body);font-size:16px;line-height:1.6;
+  margin:0;color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background:var(--bg);
+}
+/* atmosfera musgo */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 6% 18%,rgba(120,170,40,.22),transparent 70%),
+    radial-gradient(34% 28% at 96% 40%,rgba(120,170,40,.16),transparent 70%),
+    radial-gradient(50% 40% at 50% 110%,rgba(150,210,50,.14),transparent 70%),
+    var(--bg);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 img,svg{display:block;max-width:100%}
-a{color:inherit}
+a{color:inherit;text-decoration:none}
 h1,h2,h3,p{margin:0}
-h1,h2,h3{font-family:var(--head);line-height:1.12;letter-spacing:-.02em;text-wrap:balance}
-.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 20px}
-.green{color:var(--green)}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3{font-weight:500;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--lime)}
+.lime{color:var(--lime)}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 18px}
 
-/* ---------- Faixa superior ---------- */
-.topbar{
-  background:linear-gradient(90deg,#0b2a10,#0e3a14 50%,#0b2a10);
-  border-bottom:1px solid rgba(45,255,60,.25);
-  font:600 12.5px/1.3 var(--body);letter-spacing:.04em;text-transform:uppercase;
-  text-align:center;padding:9px 16px;color:#d9ffe0;
+/* ---------- glass ---------- */
+.glass{
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.015));
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
 }
-.topbar b{color:var(--green);font-weight:600}
 
-/* ---------- Header ---------- */
-.header{
-  position:sticky;top:0;z-index:40;
-  background:rgba(4,6,13,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
-.header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.brand svg{width:34px;height:auto}
-.brand span{font:900 17px/1 var(--head);letter-spacing:-.01em}
-.header .btn{display:none}
-
-/* ---------- Botões ---------- */
+/* ---------- botões ---------- */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  font:800 16px/1.15 var(--head);letter-spacing:.01em;text-transform:uppercase;text-decoration:none;text-align:center;
-  color:var(--green-ink);
-  background:linear-gradient(180deg,var(--green-2),var(--green) 55%,#12d92a);
-  padding:19px 26px;border-radius:14px;border:0;cursor:pointer;
-  box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 10px 34px -6px rgba(45,255,60,.55),0 2px 0 #0a8f1a;
-  transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;
+  font:600 16px/1.1 var(--sans);letter-spacing:-.01em;cursor:pointer;
+  color:var(--lime-ink);background:linear-gradient(180deg,var(--lime-2),var(--lime));
+  padding:17px 26px;border-radius:999px;border:0;
+  box-shadow:0 0 0 1px rgba(255,255,255,.35) inset,0 10px 40px -8px rgba(182,242,62,.65);
+  transition:transform .18s ease,box-shadow .18s ease;
 }
-.btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 0 0 1px rgba(255,255,255,.3) inset,0 16px 44px -6px rgba(45,255,60,.7),0 2px 0 #0a8f1a}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 16px 50px -8px rgba(182,242,62,.85)}
 .btn:active{transform:translateY(1px)}
-.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.btn svg{width:20px;height:20px;flex:none}
-.btn--lg{width:100%;font-size:17px;padding:22px 24px}
-.btn--sm{font-size:13px;padding:12px 18px;border-radius:10px;box-shadow:0 6px 20px -6px rgba(45,255,60,.6)}
-.btn--pulse{animation:pulse 2.4s ease-in-out infinite}
-@keyframes pulse{
-  0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 10px 34px -6px rgba(45,255,60,.55),0 2px 0 #0a8f1a,0 0 0 0 rgba(45,255,60,.45)}
-  50%{box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 10px 34px -6px rgba(45,255,60,.55),0 2px 0 #0a8f1a,0 0 0 14px rgba(45,255,60,0)}
+.btn:focus-visible,.ghost:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.btn .ar{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--lime-ink);color:var(--lime);margin-right:-10px}
+.btn .ar svg{width:14px;height:14px}
+.btn--xl{font-size:17px;padding:20px 30px}
+.btn--full{width:100%}
+.ghost{
+  display:inline-flex;align-items:center;gap:8px;font:500 14px/1 var(--sans);
+  padding:11px 18px;border-radius:999px;border:1px solid var(--line-2);color:var(--text);background:rgba(255,255,255,.03);
 }
-.micro{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;
-  margin-top:14px;font-size:13px;color:var(--muted);
-}
-.micro span{display:inline-flex;align-items:center;gap:6px}
-.micro svg{width:15px;height:15px;color:var(--green)}
+.checks{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-top:18px;font-size:13.5px;color:var(--muted)}
+.checks span{display:inline-flex;align-items:center;gap:7px}
+.checks svg{width:15px;height:15px;color:var(--lime)}
 
-/* ---------- Hero ---------- */
-.hero{position:relative;padding:36px 0 56px;text-align:center;isolation:isolate}
-.hero::before{
-  content:"";position:absolute;inset:-120px 0 0;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(60% 46% at 50% 0%,rgba(45,255,60,.20),transparent 70%),
-    radial-gradient(40% 40% at 0% 30%,rgba(31,109,255,.22),transparent 70%),
-    radial-gradient(40% 40% at 100% 55%,rgba(31,109,255,.16),transparent 70%);
+/* ---------- nav ---------- */
+.nav{position:sticky;top:12px;z-index:40;margin-top:12px}
+.nav__bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 18px;border-radius:999px}
+.logo{display:flex;align-items:center;gap:9px;font:700 14.5px/1 var(--sans);letter-spacing:.06em}
+.logo svg{width:24px;height:auto}
+.nav__links{display:none;gap:30px;font-size:14px;color:var(--soft)}
+.nav__links a:hover{color:#fff}
+.nav .btn{padding:11px 16px;font-size:14px}
+.nav .btn .ar{width:22px;height:22px;margin-right:-6px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;text-align:center;padding:56px 0 0;overflow-x:clip}
+.pill{
+  display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;font-size:13px;color:var(--soft);
+  border:1px solid var(--line-2);background:rgba(255,255,255,.04);
 }
-.hero::after{
-  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:56px 56px;
-  -webkit-mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent 75%);
-          mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent 75%);
-}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font:600 12.5px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:#d9ffe0;
-  padding:9px 14px;border-radius:999px;
-  background:rgba(45,255,60,.08);border:1px solid rgba(45,255,60,.3);
-}
-.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
-.hero h1{font-weight:900;font-size:clamp(30px,8.4vw,60px);margin:20px auto 0;max-width:17ch}
-.hero h1 .green{text-shadow:0 0 34px rgba(45,255,60,.45)}
-.hero .sub{margin:18px auto 0;max-width:620px;font-size:clamp(16px,4.3vw,19px);color:#c5cedb}
-.hero .sub b{color:#fff;font-weight:600}
+.pill b{font-weight:600;font-size:11.5px;letter-spacing:.04em;color:var(--lime-ink);background:var(--lime);padding:4px 9px;border-radius:999px}
+.hero h1{font-size:clamp(40px,11vw,88px);margin:24px auto 0;max-width:14ch}
+.hero h1 em.s{font-size:1.1em;line-height:.9;text-shadow:0 0 40px rgba(182,242,62,.35)}
+.hero .lead{margin:22px auto 0;max-width:600px;font-size:clamp(16.5px,4.3vw,19px);color:var(--soft);line-height:1.55}
+.hero .lead b{color:#fff;font-weight:600}
+.hero__cta{margin-top:30px}
 
 /* VSL */
-.vsl{margin:30px auto 0;max-width:880px;position:relative}
-.vsl__hint{
-  display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;
-  font:600 13px/1 var(--body);color:#d9ffe0;letter-spacing:.02em;
+.vsl{position:relative;margin:48px auto 0;max-width:920px}
+.vsl::before{ /* arco de luz */
+  content:"";position:absolute;left:50%;top:38%;width:190%;aspect-ratio:1;transform:translateX(-50%);z-index:-1;border-radius:50%;
+  border-top:2px solid rgba(214,255,120,.85);
+  box-shadow:0 -24px 90px -10px rgba(182,242,62,.55),inset 0 30px 80px -30px rgba(182,242,62,.35);
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 12%,transparent 30%);mask-image:linear-gradient(180deg,#000 0,#000 12%,transparent 30%);
 }
-.vsl__hint svg{width:16px;height:16px;color:var(--green)}
-.vsl__frame{
-  position:relative;border-radius:20px;padding:2px;
-  background:linear-gradient(135deg,var(--green),rgba(31,109,255,.9) 50%,var(--green));
-  box-shadow:0 0 70px -14px rgba(45,255,60,.55),0 30px 80px -30px rgba(31,109,255,.6);
-}
-.vsl__player{
-  position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#02040a;
-}
-.vsl[data-ratio="9:16"]{max-width:400px}
+.vsl__label{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;font-size:13.5px;color:var(--soft)}
+.vsl__label i{width:8px;height:8px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 10px #ff4d4d;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.vsl__frame{padding:8px;border-radius:28px}
+.vsl__player{position:relative;aspect-ratio:16/9;border-radius:21px;overflow:hidden;background:#030503}
+.vsl[data-ratio="9:16"]{max-width:420px}
 .vsl[data-ratio="9:16"] .vsl__player{aspect-ratio:9/16}
 .vsl__player iframe,.vsl__player video{position:absolute;inset:0;width:100%;height:100%;border:0}
-.vsl__poster{
-  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
-  background:
-    radial-gradient(50% 60% at 50% 50%,rgba(45,255,60,.16),transparent 70%),
-    radial-gradient(40% 50% at 12% 90%,rgba(31,109,255,.3),transparent 70%),
-    #03060d;
-  padding:20px;
+.poster{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:18px;
+  background:radial-gradient(60% 70% at 50% 55%,rgba(182,242,62,.16),transparent 70%),radial-gradient(40% 50% at 0% 100%,rgba(120,170,40,.25),transparent 70%),#050805;
 }
-.vsl__play{
-  width:clamp(64px,16vw,92px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(180deg,var(--green-2),var(--green));color:var(--green-ink);
-  box-shadow:0 0 0 10px rgba(45,255,60,.14),0 0 60px rgba(45,255,60,.6);
+.poster__play{
+  width:clamp(64px,15vw,90px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(180deg,var(--lime-2),var(--lime));color:var(--lime-ink);
   animation:ring 2.2s ease-out infinite;
 }
-.vsl__play svg{width:38%;margin-left:8%}
-@keyframes ring{0%{box-shadow:0 0 0 0 rgba(45,255,60,.5),0 0 60px rgba(45,255,60,.6)}100%{box-shadow:0 0 0 26px rgba(45,255,60,0),0 0 60px rgba(45,255,60,.6)}}
-.vsl__poster p{font:700 clamp(14px,3.8vw,18px)/1.3 var(--head);max-width:26ch}
-.hero__cta{margin:28px auto 0;max-width:520px}
+.poster__play svg{width:36%;margin-left:8%}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(182,242,62,.55),0 0 60px rgba(182,242,62,.5)}100%{box-shadow:0 0 0 28px rgba(182,242,62,0),0 0 60px rgba(182,242,62,.5)}}
+.poster p{font-weight:500;font-size:clamp(14px,3.6vw,17px);color:var(--soft)}
 
-/* ---------- Números ---------- */
-.stats{border-block:1px solid var(--line);background:var(--bg-2)}
-.stats .wrap{display:grid;grid-template-columns:repeat(2,1fr)}
-.stat{padding:22px 10px;text-align:center;border-bottom:1px solid var(--line)}
-.stat:nth-child(odd){border-right:1px solid var(--line)}
-.stat:nth-last-child(-n+2){border-bottom:0}
-.stat b{display:block;font:900 28px/1 var(--head);color:var(--green);letter-spacing:-.02em}
-.stat span{display:block;margin-top:7px;font-size:13px;color:var(--muted)}
-
-/* ---------- Seções ---------- */
-section{position:relative}
-.sec{padding:64px 0}
-.sec--alt{background:var(--bg-2);border-block:1px solid var(--line)}
-.sec__head{text-align:center;max-width:720px;margin:0 auto 36px}
-.kicker{font:700 12.5px/1 var(--head);letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
-.sec__head h2{font-weight:800;font-size:clamp(26px,6.6vw,42px);margin-top:14px}
-.sec__head p{margin-top:14px;color:#b9c3d2;font-size:clamp(16px,4vw,18px)}
-
-/* Pilares */
-.pillars{display:grid;gap:14px}
-.pillar{
-  background:linear-gradient(180deg,var(--card-2),var(--card));
-  border:1px solid var(--line);border-radius:var(--radius);padding:24px;
+/* ---------- feature cards ---------- */
+.features{display:grid;gap:14px;margin-top:56px;text-align:left}
+.fcard{padding:22px;display:flex;flex-direction:column;min-height:330px;overflow:hidden;position:relative}
+.fcard__h{display:flex;align-items:center;gap:12px}
+.ico{
+  width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;color:var(--lime);
+  background:rgba(182,242,62,.06);border:1px solid rgba(182,242,62,.35);box-shadow:0 0 18px -6px rgba(182,242,62,.6);
 }
-.pillar__ico{
-  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;
-  background:rgba(45,255,60,.1);border:1px solid rgba(45,255,60,.3);color:var(--green);
+.ico svg{width:19px;height:19px}
+.fcard h3{font-size:18px;letter-spacing:-.02em;line-height:1.2}
+.fcard p{margin-top:14px;color:var(--muted);font-size:15px;line-height:1.55}
+.fcard__viz{margin-top:auto;padding-top:18px}
+.chipcol{display:grid;gap:9px}
+.tchip{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:11px;font-size:12.5px;font-weight:500;background:rgba(255,255,255,.05);border:1px solid var(--line);width:max-content}
+.tchip i{width:8px;height:8px;border-radius:3px;background:var(--lime)}
+.viz-tools{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+.viz-tools svg.lines{width:100%;height:120px}
+.hub{
+  width:64px;height:64px;border-radius:18px;display:grid;place-items:center;
+  background:linear-gradient(180deg,rgba(182,242,62,.25),rgba(182,242,62,.06));border:1px solid rgba(214,255,120,.6);
+  box-shadow:0 0 40px -4px rgba(182,242,62,.6);
 }
-.pillar__ico svg{width:22px;height:22px}
-.pillar h3{font-weight:700;font-size:19px}
-.pillar p{margin-top:8px;color:var(--muted);font-size:15.5px}
+.hub svg{width:30px}
+.mock{border-radius:14px;border:1px solid var(--line-2);background:rgba(0,0,0,.35);overflow:hidden}
+.mock__top{display:flex;gap:6px;padding:9px 11px;border-bottom:1px solid var(--line)}
+.mock__top i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18)}
+.mock__body{padding:13px;display:grid;gap:8px}
+.bar{height:8px;border-radius:5px;background:rgba(255,255,255,.1)}
+.bar.l{background:linear-gradient(90deg,var(--lime),rgba(182,242,62,.2))}
+.mock__badge{display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:11.5px;font-weight:600;color:var(--lime-ink);background:var(--lime);border-radius:999px;padding:4px 10px;width:max-content}
+.radar{position:relative;width:100%;max-width:220px;aspect-ratio:1;margin:0 auto -60px}
+.radar span{position:absolute;inset:0;margin:auto;border-radius:50%;border:1px solid rgba(182,242,62,.22)}
+.radar span:nth-child(2){inset:16%}
+.radar span:nth-child(3){inset:32%;border-color:rgba(182,242,62,.4)}
+.radar b{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.radar .c{position:absolute;inset:40%;border-radius:12px;display:grid;place-items:center;background:rgba(182,242,62,.12);border:1px solid rgba(214,255,120,.6);color:var(--lime)}
+.radar .c svg{width:50%}
 
-/* Aulas */
-.lessons{display:grid;gap:12px;counter-reset:l}
-.lesson{
-  display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
-  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
-  transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;
-}
-.lesson:hover{border-color:rgba(45,255,60,.45);transform:translateY(-2px);box-shadow:0 18px 40px -24px rgba(45,255,60,.5)}
-.lesson__n{
-  font:900 30px/1 var(--head);letter-spacing:-.04em;min-width:48px;
-  background:linear-gradient(180deg,var(--green-2),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.lesson small{display:block;font:600 11.5px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.lesson h3{font-weight:700;font-size:18px;margin-top:7px}
-.lesson p{margin-top:7px;color:var(--muted);font-size:15px}
+/* ---------- stats ---------- */
+.stats{margin-top:72px;display:grid;grid-template-columns:repeat(2,1fr);padding:8px}
+.stat{text-align:center;padding:20px 8px}
+.stat b{display:block;font-weight:600;font-size:clamp(28px,7vw,42px);letter-spacing:-.04em;line-height:1}
+.stat span{display:block;margin-top:8px;font-size:13px;color:var(--lime)}
 
-/* Ferramentas */
-.tools{display:grid;gap:12px;margin-top:28px}
-.tool{
-  display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:var(--radius);
-  background:var(--card);border:1px solid var(--line);
-}
-.tool__dot{width:12px;height:12px;border-radius:4px;flex:none;background:var(--green);box-shadow:0 0 16px var(--green)}
-.tool--b .tool__dot{background:var(--orange);box-shadow:0 0 16px var(--orange)}
-.tool--c .tool__dot{background:var(--blue);box-shadow:0 0 16px var(--blue)}
-.tool b{font:800 17px/1.2 var(--head)}
-.tool span{display:block;color:var(--muted);font-size:14.5px;margin-top:3px}
+/* ---------- seções ---------- */
+.sec{padding:96px 0 0}
+.head{text-align:center;max-width:760px;margin:0 auto 40px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--soft);padding:6px 12px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,.04)}
+.tag svg{width:13px;height:13px;color:var(--lime)}
+.head h2,.split h2{font-size:clamp(32px,8vw,56px);margin-top:18px}
+.head p{margin-top:16px;color:var(--soft);font-size:clamp(16px,4vw,18px)}
 
-/* Para quem */
+/* split */
+.split{display:grid;gap:30px;align-items:center}
+.split h2{margin-top:16px}
+.split h2 .lime{color:var(--lime)}
+.split__p{margin-top:16px;color:var(--soft);font-size:17px;max-width:520px}
+.split .btn{margin-top:26px}
+.panel{padding:18px;display:grid;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;padding:8px 13px;border-radius:999px;border:1px solid var(--line-2);color:var(--soft);background:rgba(255,255,255,.02)}
+.chip.on{color:var(--lime-ink);background:var(--lime);border-color:var(--lime);font-weight:600}
+.panel__box{padding:18px;border-radius:16px;border:1px solid var(--line);background:rgba(0,0,0,.25)}
+.panel__box small{font-size:12px;color:var(--muted)}
+.prompt{margin-top:10px;font-size:15px;color:#fff}
+.prompt::after{content:"";display:inline-block;width:2px;height:1em;margin-left:3px;vertical-align:-2px;background:var(--lime);animation:blink 1s steps(1) infinite}
+.panel__row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mini{padding:14px;border-radius:16px;border:1px solid var(--line);background:rgba(0,0,0,.25)}
+.mini b{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.02em}
+.mini b i{width:18px;height:18px;border-radius:6px;background:var(--lime);display:grid;place-items:center;color:var(--lime-ink)}
+.mini b i svg{width:11px}
+.mini span{display:block;margin-top:6px;font-size:12.5px;color:var(--muted);line-height:1.4}
+
+/* bento */
+.bento{display:grid;gap:14px}
+.bcard{padding:26px;min-height:300px;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.bcard h3{font-size:26px;letter-spacing:-.03em;line-height:1.08}
+.bcard p{margin-top:12px;color:var(--muted);font-size:15px}
+.bcard--lime{background:linear-gradient(170deg,var(--lime-2),var(--lime) 60%,#9fdc2a);color:var(--lime-ink);border-color:transparent;box-shadow:0 30px 80px -30px rgba(182,242,62,.6)}
+.bcard--lime p{color:rgba(16,24,0,.72)}
+.bcard__viz{margin-top:auto;padding-top:20px}
+.bars{display:flex;align-items:flex-end;gap:9px;height:110px}
+.bars i{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#fff 0 30%,rgba(16,24,0,.85) 30%)}
+.bars i:nth-child(2){height:60%;background:linear-gradient(180deg,rgba(255,255,255,.9) 0 45%,rgba(16,24,0,.85) 45%)}
+.bars i:nth-child(1){height:42%}.bars i:nth-child(3){height:30%}.bars i:nth-child(4){height:72%}.bars i:nth-child(5){height:100%}.bars i:nth-child(6){height:82%}
+.donut{width:120px;height:120px;margin:0 auto}
+.legend{display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:8px;height:8px;border-radius:50%;background:var(--lime)}
+.legend i.o{background:rgba(255,255,255,.2)}
+
+/* aulas — linhas numeradas */
+.steps-head{display:grid;gap:18px;margin-bottom:28px}
+.steps-head h2{font-size:clamp(32px,8vw,56px)}
+.steps-head p{color:var(--soft);max-width:460px}
+.steps{border-top:1px solid var(--line)}
+.step{
+  display:grid;grid-template-columns:44px 1fr;gap:6px 14px;padding:24px 4px;border-bottom:1px solid var(--line);
+  position:relative;transition:background .25s ease;
+}
+.step::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s ease;pointer-events:none;
+  background:radial-gradient(40% 120% at 50% 50%,rgba(182,242,62,.10),transparent 70%)}
+.step:hover::before{opacity:1}
+.step__n{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:6px}
+.step h3{font-size:clamp(24px,6vw,34px);letter-spacing:-.03em}
+.step p{grid-column:2;color:var(--muted);font-size:15px}
+.step:hover h3{color:var(--lime)}
+
+/* para quem */
 .who{display:grid;gap:12px}
-.who__item{
-  display:flex;gap:14px;align-items:flex-start;padding:20px;border-radius:var(--radius);
-  background:var(--card);border:1px solid var(--line);
-}
-.check{
-  flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;margin-top:1px;
-  background:var(--green);color:var(--green-ink);
-}
-.check svg{width:14px;height:14px}
-.who__item b{font:700 17px/1.25 var(--head);display:block}
-.who__item span{display:block;color:var(--muted);font-size:15px;margin-top:5px}
-.quote{
-  margin:32px auto 0;max-width:820px;text-align:center;padding:30px 22px;border-radius:22px;
-  background:radial-gradient(80% 120% at 50% 0%,rgba(45,255,60,.14),transparent 70%),var(--card);
-  border:1px solid rgba(45,255,60,.3);
-}
-.quote p{font:800 clamp(20px,5.4vw,30px)/1.25 var(--head);letter-spacing:-.02em;text-wrap:balance}
+.wcard{padding:22px;display:flex;gap:14px;align-items:flex-start}
+.wcard b{display:block;font-size:18px;font-weight:600;letter-spacing:-.02em}
+.wcard span{display:block;color:var(--muted);font-size:15px;margin-top:4px}
+.ok{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--lime-ink)}
+.ok svg{width:14px;height:14px}
+.statement{margin-top:40px;text-align:center;font-size:clamp(26px,6.4vw,44px);line-height:1.12;letter-spacing:-.035em;font-weight:500;max-width:22ch;margin-inline:auto;text-wrap:balance}
 
-/* Oferta */
-.offer{padding:72px 0;isolation:isolate}
-.offer::before{
-  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(55% 50% at 50% 45%,rgba(45,255,60,.16),transparent 70%),radial-gradient(40% 40% at 100% 0%,rgba(31,109,255,.18),transparent 70%);
-}
-.offer__grid{display:grid;gap:26px;align-items:center}
-.offer__cover{position:relative;max-width:440px;margin:0 auto;width:100%}
-.offer__cover img{border-radius:22px;border:1px solid var(--line-2);box-shadow:0 40px 90px -40px rgba(45,255,60,.55),0 20px 60px -30px #000;aspect-ratio:1;object-fit:cover;width:100%;height:auto}
-.price-card{
-  position:relative;border-radius:24px;padding:2px;
-  background:linear-gradient(160deg,var(--green),rgba(45,255,60,.15) 40%,rgba(31,109,255,.5));
-  box-shadow:0 0 80px -20px rgba(45,255,60,.5);
-}
-.price-card__in{background:linear-gradient(180deg,#0c1424,#070b15);border-radius:22px;padding:28px 22px}
-.price-card h2{font-weight:800;font-size:clamp(22px,5.6vw,28px)}
-.incl{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:11px}
-.incl li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:#d5dce7}
-.incl .check{width:22px;height:22px}
-.incl .check svg{width:12px;height:12px}
-.price{margin:24px 0 22px;padding-top:22px;border-top:1px dashed var(--line-2);text-align:center}
-.price small{display:block;font:600 12.5px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.price__v{display:flex;align-items:flex-start;justify-content:center;gap:6px;margin-top:10px;font-family:var(--head);font-weight:900;color:var(--green);line-height:1;text-shadow:0 0 40px rgba(45,255,60,.45)}
-.price__v i{font-style:normal;font-size:24px;margin-top:10px}
-.price__v b{font-size:clamp(68px,20vw,92px);letter-spacing:-.04em}
-.price__v u{text-decoration:none;font-size:30px;margin-top:10px}
-.price em{display:block;font-style:normal;margin-top:8px;color:#d5dce7;font-size:15px}
-.guarantee{
-  display:flex;gap:14px;align-items:center;margin-top:20px;padding:16px;border-radius:14px;
-  background:rgba(255,255,255,.03);border:1px solid var(--line);
-}
-.guarantee svg{width:38px;height:38px;flex:none;color:var(--green)}
-.guarantee b{font:700 15px/1.25 var(--head);display:block}
-.guarantee span{font-size:13.5px;color:var(--muted);display:block;margin-top:3px}
+/* oferta */
+.offer{display:grid;gap:22px;align-items:stretch}
+.offer__img{padding:8px;border-radius:28px}
+.offer__img img{width:100%;height:auto;border-radius:21px;aspect-ratio:1;object-fit:cover}
+.price-card{padding:28px 22px;border-radius:28px;position:relative;overflow:hidden;
+  border:1px solid rgba(214,255,120,.4);box-shadow:0 0 0 1px rgba(182,242,62,.1),0 40px 100px -40px rgba(182,242,62,.55)}
+.price-card::before{content:"";position:absolute;inset:-40% -20% auto;height:70%;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(182,242,62,.22),transparent 70%)}
+.price-card h2{font-size:clamp(26px,6.4vw,34px)}
+.incl{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.incl li{display:flex;gap:12px;align-items:flex-start;color:var(--soft);font-size:15.5px}
+.incl .ok{width:22px;height:22px}
+.incl .ok svg{width:11px;height:11px}
+.price{margin:26px 0 22px;padding-top:24px;border-top:1px dashed var(--line-2)}
+.price small{font-size:13px;color:var(--muted)}
+.price__v{display:flex;align-items:flex-start;gap:6px;margin-top:6px;line-height:1;font-weight:600;letter-spacing:-.05em}
+.price__v i{font-style:normal;font-size:24px;margin-top:12px;color:var(--soft)}
+.price__v b{font-size:clamp(76px,20vw,104px);color:var(--lime);text-shadow:0 0 50px rgba(182,242,62,.4)}
+.price__v u{text-decoration:none;font-size:32px;margin-top:12px;color:var(--lime)}
+.price p{margin-top:6px;color:var(--soft);font-size:15px}
+.safe{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;font-size:13px;color:var(--muted)}
+.safe svg{width:14px;height:14px}
+.guar{display:flex;gap:14px;align-items:center;margin-top:18px;padding:16px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.guar svg{width:36px;height:36px;flex:none;color:var(--lime)}
+.guar b{display:block;font-size:15px;font-weight:600}
+.guar span{display:block;font-size:13.5px;color:var(--muted);margin-top:2px}
 
-/* FAQ */
-.faq{max-width:780px;margin:0 auto;display:grid;gap:10px}
-.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.faq details[open]{border-color:rgba(45,255,60,.4)}
-.faq summary{
-  list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;
-  padding:19px 20px;font:700 16.5px/1.3 var(--head);
-}
+/* faq */
+.faq{max-width:800px;margin:0 auto;display:grid;gap:10px}
+.faq details{border-radius:18px;overflow:hidden}
+.faq details[open]{border-color:rgba(214,255,120,.35)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;font-size:17px;font-weight:500;letter-spacing:-.01em}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{
-  content:"";flex:none;width:11px;height:11px;border-right:2.5px solid var(--green);border-bottom:2.5px solid var(--green);
-  transform:rotate(45deg);transition:transform .2s ease;margin-top:-5px;
-}
-.faq details[open] summary::after{transform:rotate(-135deg);margin-top:5px}
-.faq summary:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
-.faq p{padding:0 20px 20px;color:#b9c3d2;font-size:15.5px}
+.faq summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:20px;font-weight:400;border:1px solid var(--line-2);color:var(--lime);transition:transform .25s ease}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:focus-visible{outline:2px solid var(--lime);outline-offset:-2px}
+.faq p{padding:0 22px 22px;color:var(--soft);font-size:15.5px}
 
-/* CTA final */
-.final{text-align:center;padding:72px 0 80px;isolation:isolate}
-.final::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 50% 100%,rgba(45,255,60,.2),transparent 70%)}
-.final h2{font-weight:900;font-size:clamp(28px,7.4vw,48px);max-width:18ch;margin:0 auto}
-.final p{margin:16px auto 0;max-width:560px;color:#c5cedb;font-size:17px}
-.final .hero__cta{margin-top:30px}
+/* cta final */
+.final{margin-top:96px;padding:56px 22px;border-radius:32px;text-align:center;position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 80% at 50% 120%,rgba(182,242,62,.3),transparent 70%),radial-gradient(30% 50% at 0% 0%,rgba(120,170,40,.18),transparent 70%)}
+.final h2{position:relative;font-size:clamp(34px,8.6vw,64px);max-width:16ch;margin:0 auto}
+.final p{position:relative;margin:18px auto 0;max-width:560px;color:var(--soft);font-size:17px}
+.final .hero__cta{position:relative}
 
-/* Footer */
-.footer{border-top:1px solid var(--line);background:#02040a;padding:36px 0 120px;text-align:center}
-.footer .brand{justify-content:center;margin-bottom:18px}
-.footer p{max-width:780px;margin:0 auto 12px;font-size:12.5px;line-height:1.6;color:#77839a}
-.footer p b{color:#a9b4c6;font-weight:600}
+/* footer */
+.footer{margin-top:80px;border-top:1px solid var(--line);padding:40px 0 120px}
+.footer__top{display:flex;flex-direction:column;gap:18px;align-items:flex-start;margin-bottom:26px}
+.footer nav{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:14px;color:var(--soft)}
+.footer p{font-size:12.5px;line-height:1.6;color:#6f7a6c;margin-bottom:10px;max-width:880px}
+.footer p b{color:#a3ad9f;font-weight:500}
 
-/* Barra fixa mobile */
+/* barra fixa mobile */
 .sticky{
-  position:fixed;left:0;right:0;bottom:0;z-index:50;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
-  background:rgba(4,6,13,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-top:1px solid rgba(45,255,60,.3);
-  transform:translateY(110%);transition:transform .3s ease;
+  position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 20px;border-radius:999px;
+  background:rgba(10,14,9,.82);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  border:1px solid rgba(214,255,120,.3);box-shadow:0 20px 50px -10px rgba(0,0,0,.8);
+  transform:translateY(160%);transition:transform .35s ease;
 }
 .sticky.on{transform:none}
-.sticky__p small{display:block;font-size:11.5px;color:var(--muted);line-height:1.2}
-.sticky__p b{font:900 21px/1.15 var(--head);color:var(--green)}
-.sticky .btn{padding:14px 20px;font-size:14px;border-radius:12px;flex:1;max-width:230px}
+.sticky small{display:block;font-size:11px;color:var(--muted);line-height:1.2}
+.sticky b{font-size:20px;font-weight:600;letter-spacing:-.03em;color:var(--lime);line-height:1.2}
+.sticky .btn{padding:13px 18px;font-size:14.5px}
 
-/* Animação de entrada */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
-  .btn--pulse,.vsl__play{animation:none}
+  .poster__play,.vsl__label i,.prompt::after{animation:none}
 }
 
-/* ---------- Tablet ---------- */
-@media (min-width:700px){
-  .stats .wrap{grid-template-columns:repeat(4,1fr)}
-  .stat{border-bottom:0;border-right:1px solid var(--line)}
-  .stat:last-child{border-right:0}
-  .pillars{grid-template-columns:repeat(3,1fr)}
-  .lessons{grid-template-columns:repeat(2,1fr)}
-  .tools{grid-template-columns:repeat(3,1fr)}
+/* ---------- ≥ 720 ---------- */
+@media (min-width:720px){
+  .wrap{padding:0 28px}
+  .features{grid-template-columns:repeat(3,1fr)}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .bento{grid-template-columns:repeat(3,1fr)}
   .who{grid-template-columns:repeat(2,1fr)}
+  .step{grid-template-columns:70px 1fr 1fr;align-items:center;padding:30px 8px}
+  .step p{grid-column:3}
+  .footer__top{flex-direction:row;justify-content:space-between;align-items:center}
 }
-
-/* ---------- Desktop ---------- */
+/* ---------- desktop ---------- */
 @media (min-width:1000px){
-  .wrap{padding:0 32px}
-  .header .wrap{height:72px}
-  .header .btn{display:inline-flex}
-  .brand svg{width:38px}
-  .brand span{font-size:19px}
-  .hero{padding:56px 0 80px}
-  .hero h1{max-width:21ch}
-  .vsl{margin-top:40px}
-  .sec{padding:96px 0}
-  .sec__head{margin-bottom:52px}
-  .stat{padding:30px 10px}
-  .stat b{font-size:36px}
-  .pillar{padding:30px}
-  .lessons{grid-template-columns:repeat(3,1fr);gap:16px}
-  .lesson{grid-template-columns:1fr;padding:26px}
-  .lesson__n{font-size:44px}
-  .offer{padding:110px 0}
-  .offer__grid{grid-template-columns:1fr 1fr;gap:56px}
-  .offer__cover{max-width:none}
-  .price-card__in{padding:40px}
-  .final{padding:110px 0 120px}
-  .footer{padding-bottom:44px}
+  .nav__links{display:flex}
+  .hero{padding-top:80px}
+  .sec{padding-top:140px}
+  .fcard{padding:26px;min-height:360px}
+  .split{grid-template-columns:1.05fr 1fr;gap:56px}
+  .steps-head{grid-template-columns:1fr auto;align-items:end}
+  .step{grid-template-columns:110px 1.1fr 1fr;padding:34px 12px}
+  .offer{grid-template-columns:1fr 1fr;gap:28px}
+  .price-card{padding:40px}
+  .final{padding:96px 40px;margin-top:140px}
+  .footer{padding-bottom:48px}
   .sticky{display:none}
 }
 </style>
 </head>
 <body>
 
-<div class="topbar">Treinamento prático · <b>6 aulas</b> · aprox. <b>60 minutos</b></div>
-
-<header class="header">
-  <div class="wrap">
-    <a class="brand" href="#topo" aria-label="Renda com IA — início">
-      <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#2dff3c" stroke="#2dff3c" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
-      <span>RENDA COM <span class="green">IA</span></span>
+<!-- ================= NAV ================= -->
+<div class="nav wrap">
+  <div class="nav__bar glass">
+    <a class="logo" href="#topo" aria-label="Renda com IA — início">
+      <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#b6f23e" stroke="#b6f23e" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
+      RENDA COM IA
     </a>
-    <a class="btn btn--sm" data-checkout href="#oferta">Quero começar</a>
+    <nav class="nav__links" aria-label="Seções">
+      <a href="#aulas">Aulas</a><a href="#para-quem">Para quem é</a><a href="#oferta">Investimento</a><a href="#faq">Dúvidas</a>
+    </nav>
+    <a class="btn" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero começar <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   </div>
-</header>
+</div>
 
 <main id="topo">
 
-  <!-- ================= HERO + VSL ================= -->
+  <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow"><i></i>Para quem está começando do zero</span>
-      <h1>Aprenda a criar serviços digitais com IA e <span class="green">comece a <span style="white-space:nowrap">oferecê-los</span> para empresas.</span></h1>
-      <p class="sub">Um treinamento <b>prático e direto ao ponto</b> para dar os primeiros passos com inteligência artificial e transformar esse conhecimento em uma nova habilidade profissional.</p>
+      <span class="pill"><b>NOVO</b>Treinamento prático em 6 aulas</span>
+
+      <h1>Crie serviços com IA que <em class="s">empresas pagam</em> para ter.</h1>
+
+      <p class="lead">Em <b>6 aulas e cerca de 60 minutos</b>, aprenda a usar ChatGPT, Claude e Claude Code para criar projetos digitais, encontrar seus primeiros clientes e apresentar seu serviço — <b>mesmo sem saber programar.</b></p>
 
       <!--
-        VSL — para trocar o formato do vídeo use data-ratio="16:9" (horizontal) ou data-ratio="9:16" (vertical).
-        O vídeo é configurado no bloco CONFIG no final deste arquivo (VSL_EMBED_URL).
-        Se a sua plataforma (Vturb, Panda etc.) entrega um código de embed pronto,
-        cole-o dentro de <div class="vsl__player" id="vsl-player"> no lugar do .vsl__poster.
+        VSL: troque data-ratio para "9:16" se o vídeo for vertical.
+        Cole a URL de embed em CONFIG.VSL_EMBED_URL (final do arquivo) ou
+        substitua o .poster pelo código de embed do seu player (Vturb, Panda etc.).
       -->
       <div class="vsl" data-ratio="16:9">
-        <div class="vsl__hint">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>
-          Assista ao vídeo com o som ligado
-        </div>
-        <div class="vsl__frame">
+        <div class="vsl__label"><i></i>Assista ao vídeo · ative o som</div>
+        <div class="vsl__frame glass">
           <div class="vsl__player" id="vsl-player">
-            <div class="vsl__poster">
-              <div class="vsl__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 6 3.5z"/></svg></div>
+            <div class="poster">
+              <div class="poster__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 6 3.5z"/></svg></div>
               <p>Veja como funciona o Renda com IA</p>
             </div>
           </div>
@@ -419,135 +414,205 @@ section{position:relative}
       </div>
 
       <div class="hero__cta">
-        <a class="btn btn--lg btn--pulse" data-checkout href="#oferta">
-          Quero começar agora
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <div class="micro">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>R$ 47,90 · pagamento único</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sem precisar saber programar</span>
+        <a class="btn btn--xl" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero começar por R$ 47,90 <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <div class="checks">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Pagamento único</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Sem precisar programar</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>7 dias de garantia</span>
+        </div>
+      </div>
+
+      <!-- cards de benefício -->
+      <div class="features">
+        <article class="fcard glass rv">
+          <div class="fcard__h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Domine as ferramentas</h3></div>
+          <p>ChatGPT, Claude e Claude Code trabalhando juntos como sua equipe de criação.</p>
+          <div class="fcard__viz viz-tools">
+            <div class="chipcol">
+              <span class="tchip"><i></i>ChatGPT</span>
+              <span class="tchip"><i style="background:#ff9a52"></i>Claude</span>
+              <span class="tchip"><i style="background:#8fd0ff"></i>Claude Code</span>
+            </div>
+            <svg class="lines" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true">
+              <g fill="none" stroke="rgba(182,242,62,.6)" stroke-width="1.2" stroke-dasharray="3 4" vector-effect="non-scaling-stroke">
+                <path d="M0 20 C50 20 50 60 100 60"/><path d="M0 60 L100 60"/><path d="M0 100 C50 100 50 60 100 60"/>
+              </g>
+            </svg>
+            <div class="hub"><svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#b6f23e" d="M106 133h74L88 321H16z"/></svg></div>
+          </div>
+        </article>
+
+        <article class="fcard glass rv">
+          <div class="fcard__h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg></span><h3>Crie seu primeiro projeto</h3></div>
+          <p>Mão na massa: tire um projeto digital do papel em uma aula, passo a passo.</p>
+          <div class="fcard__viz">
+            <div class="mock">
+              <div class="mock__top"><i></i><i></i><i></i></div>
+              <div class="mock__body">
+                <div class="bar l" style="width:62%"></div>
+                <div class="bar" style="width:90%"></div>
+                <div class="bar" style="width:76%"></div>
+                <div class="bar" style="width:84%"></div>
+                <span class="mock__badge">✓ Projeto criado com IA</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="fcard glass rv">
+          <div class="fcard__h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><h3>Conquiste clientes</h3></div>
+          <p>Saiba onde encontrar empresas, como se apresentar e como conduzir a venda.</p>
+          <div class="fcard__viz">
+            <div class="radar" aria-hidden="true">
+              <span></span><span></span><span></span>
+              <b style="left:10%;top:38%"></b><b style="right:14%;top:22%"></b><b style="right:6%;top:60%"></b><b style="left:28%;top:12%"></b>
+              <div class="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="stats glass rv">
+        <div class="stat"><b>6</b><span>aulas objetivas</span></div>
+        <div class="stat"><b>60 min</b><span>de conteúdo direto</span></div>
+        <div class="stat"><b>3</b><span>ferramentas de IA</span></div>
+        <div class="stat"><b>0</b><span>código exigido</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SPLIT ================= -->
+  <section class="sec">
+    <div class="wrap split">
+      <div class="rv">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>A oportunidade</span>
+        <h2>Empresas querem IA. <span class="lime">Poucos sabem entregar.</span> Você pode ser um deles.</h2>
+        <p class="split__p">O Renda com IA é um treinamento prático e direto ao ponto para você dar os primeiros passos com inteligência artificial e transformar esse conhecimento em uma nova habilidade profissional.</p>
+        <a class="btn" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero aprender <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="panel glass rv" aria-hidden="true">
+        <div class="chips">
+          <span class="chip">Sites</span><span class="chip on">Landing pages</span><span class="chip">Automações</span>
+          <span class="chip">Conteúdo</span><span class="chip">Atendimento</span><span class="chip">Apresentações</span>
+        </div>
+        <div class="panel__box">
+          <small>Claude Code</small>
+          <div class="prompt">Crie uma landing page para uma clínica odontológica…</div>
+        </div>
+        <div class="panel__row">
+          <div class="mini"><b><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>CRIAR</b><span>Projeto pronto com ajuda da IA.</span></div>
+          <div class="mini"><b><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>OFERECER</b><span>Apresentado para empresas.</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= NÚMEROS ================= -->
-  <div class="stats">
-    <div class="wrap">
-      <div class="stat"><b>6</b><span>aulas objetivas</span></div>
-      <div class="stat"><b>~60 min</b><span>de conteúdo no total</span></div>
-      <div class="stat"><b>3</b><span>ferramentas de IA na prática</span></div>
-      <div class="stat"><b>R$ 47,90</b><span>pagamento único</span></div>
-    </div>
-  </div>
-
-  <!-- ================= O QUE É ================= -->
+  <!-- ================= BENTO ================= -->
   <section class="sec">
     <div class="wrap">
-      <div class="sec__head rv">
-        <div class="kicker">O treinamento</div>
-        <h2>Do primeiro contato com a IA ao seu <span class="green">primeiro serviço pronto para oferecer</span></h2>
-        <p>Em aproximadamente 60 minutos, você aprende a usar ChatGPT, Claude e Claude Code para desenvolver projetos digitais, enxergar oportunidades de mercado e entender como encontrar seus primeiros clientes.</p>
+      <div class="head rv">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>O que muda para você</span>
+        <h2>Uma habilidade nova, <em class="s">pronta para usar</em></h2>
       </div>
-      <div class="pillars">
-        <div class="pillar rv">
-          <div class="pillar__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg></div>
-          <h3>Desenvolver projetos digitais</h3>
-          <p>Use a IA como parceira de trabalho para tirar projetos do papel, mesmo sem experiência em programação.</p>
-        </div>
-        <div class="pillar rv">
-          <div class="pillar__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
-          <h3>Identificar oportunidades</h3>
-          <p>Entenda o mercado de serviços com IA e quais tipos de serviço você pode começar a oferecer.</p>
-        </div>
-        <div class="pillar rv">
-          <div class="pillar__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3>Encontrar seus primeiros clientes</h3>
-          <p>Aprenda como chegar até empresas, apresentar o que você faz e conduzir a venda com clareza.</p>
-        </div>
+      <div class="bento">
+        <article class="bcard glass bcard--lime rv">
+          <h3>Do zero ao<br>primeiro projeto</h3>
+          <p>Você sai do treinamento sabendo usar a IA para criar algo concreto, não só teoria.</p>
+          <div class="bcard__viz"><div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </article>
+        <article class="bcard glass rv">
+          <h3>Serviços que<br>você pode vender</h3>
+          <p>Entenda quais serviços digitais podem ser criados com IA e qual faz sentido para você.</p>
+          <div class="bcard__viz">
+            <svg viewBox="0 0 300 110" aria-hidden="true" style="width:100%">
+              <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b6f23e" stop-opacity=".35"/><stop offset="1" stop-color="#b6f23e" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0 95 L30 80 L50 88 L80 60 L100 72 L130 40 L150 55 L180 30 L200 46 L230 18 L255 34 L300 8 L300 110 L0 110Z" fill="url(#ga)"/>
+              <path d="M0 95 L30 80 L50 88 L80 60 L100 72 L130 40 L150 55 L180 30 L200 46 L230 18 L255 34 L300 8" fill="none" stroke="#b6f23e" stroke-width="2"/>
+            </svg>
+          </div>
+        </article>
+        <article class="bcard glass rv">
+          <h3>Clareza para<br>apresentar e vender</h3>
+          <p>Como encontrar empresas, estruturar sua apresentação e oferecer seu serviço com segurança.</p>
+          <div class="bcard__viz">
+            <svg class="donut" viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="15.9" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#b6f23e" stroke-width="6" stroke-dasharray="75 25" stroke-dashoffset="25" stroke-linecap="round"/></svg>
+            <div class="legend"><span><i></i>Encontrar</span><span><i class="o"></i>Apresentar</span></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- ================= AULAS ================= -->
-  <section class="sec sec--alt" id="aulas">
+  <section class="sec" id="aulas">
     <div class="wrap">
-      <div class="sec__head rv">
-        <div class="kicker">Conteúdo</div>
-        <h2>O que você vai aprender em <span class="green">6 aulas</span></h2>
-        <p>Um passo a passo enxuto, sem enrolação: do entendimento do mercado até a apresentação do seu serviço.</p>
+      <div class="steps-head rv">
+        <div>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>O que você vai aprender</span>
+          <h2 style="margin-top:16px">6 aulas. <em class="s">Zero enrolação.</em></h2>
+        </div>
+        <p>Um passo a passo enxuto, do entendimento do mercado até a apresentação do seu serviço para empresas.</p>
       </div>
-      <div class="lessons">
-        <article class="lesson rv"><div class="lesson__n">01</div><div><small>Aula 01</small><h3>O mercado de serviços com IA</h3><p>O cenário atual e onde estão as oportunidades para quem está começando.</p></div></article>
-        <article class="lesson rv"><div class="lesson__n">02</div><div><small>Aula 02</small><h3>Serviços que você pode vender</h3><p>Os tipos de serviços digitais que podem ser criados com IA e como escolher por onde começar.</p></div></article>
-        <article class="lesson rv"><div class="lesson__n">03</div><div><small>Aula 03</small><h3>Suas ferramentas de IA</h3><p>ChatGPT, Claude e Claude Code: para que serve cada uma e como usá-las a seu favor.</p></div></article>
-        <article class="lesson rv"><div class="lesson__n">04</div><div><small>Aula 04</small><h3>Criando seu primeiro projeto</h3><p>Mão na massa: desenvolva um projeto digital na prática, passo a passo.</p></div></article>
-        <article class="lesson rv"><div class="lesson__n">05</div><div><small>Aula 05</small><h3>Como encontrar clientes</h3><p>Como identificar empresas que podem se interessar pelo seu serviço e chegar até elas.</p></div></article>
-        <article class="lesson rv"><div class="lesson__n">06</div><div><small>Aula 06</small><h3>Como apresentar e vender</h3><p>Como estruturar sua apresentação e oferecer seu serviço com profissionalismo.</p></div></article>
-      </div>
-
-      <div class="tools">
-        <div class="tool rv"><i class="tool__dot"></i><div><b>ChatGPT</b><span>Ideias, textos e planejamento</span></div></div>
-        <div class="tool tool--b rv"><i class="tool__dot"></i><div><b>Claude</b><span>Análise, escrita e raciocínio</span></div></div>
-        <div class="tool tool--c rv"><i class="tool__dot"></i><div><b>Claude Code</b><span>Criação de projetos digitais</span></div></div>
+      <div class="steps">
+        <div class="step rv"><span class="step__n">01</span><h3>O mercado de serviços com IA</h3><p>O cenário atual e onde estão as oportunidades para quem está começando.</p></div>
+        <div class="step rv"><span class="step__n">02</span><h3>Serviços que você pode vender</h3><p>Os tipos de serviços digitais criados com IA e como escolher por onde começar.</p></div>
+        <div class="step rv"><span class="step__n">03</span><h3>Suas ferramentas de IA</h3><p>ChatGPT, Claude e Claude Code: para que serve cada uma e como usá-las a seu favor.</p></div>
+        <div class="step rv"><span class="step__n">04</span><h3>Criando seu primeiro projeto</h3><p>Mão na massa: desenvolva um projeto digital na prática, passo a passo.</p></div>
+        <div class="step rv"><span class="step__n">05</span><h3>Como encontrar clientes</h3><p>Como identificar empresas que podem se interessar pelo seu serviço e chegar até elas.</p></div>
+        <div class="step rv"><span class="step__n">06</span><h3>Como apresentar e vender</h3><p>Como estruturar sua apresentação e oferecer seu serviço com profissionalismo.</p></div>
       </div>
     </div>
   </section>
 
   <!-- ================= PARA QUEM ================= -->
-  <section class="sec">
+  <section class="sec" id="para-quem">
     <div class="wrap">
-      <div class="sec__head rv">
-        <div class="kicker">Para quem é</div>
-        <h2>Feito para quem quer <span class="green">usar a IA na prática</span></h2>
+      <div class="head rv">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>Para quem é</span>
+        <h2>Feito para quem quer <em class="s">usar a IA na prática</em></h2>
       </div>
       <div class="who">
-        <div class="who__item rv"><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Iniciantes</b><span>Que querem dar os primeiros passos no universo da inteligência artificial.</span></div></div>
-        <div class="who__item rv"><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Profissionais</b><span>Que desejam aprender uma nova habilidade digital e se atualizar.</span></div></div>
-        <div class="who__item rv"><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Empreendedores</b><span>Que querem entender como aplicar IA em projetos e serviços.</span></div></div>
-        <div class="who__item rv"><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Quem busca renda extra</b><span>E quer explorar oportunidades oferecendo serviços digitais para empresas.</span></div></div>
+        <div class="wcard glass rv"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Iniciantes</b><span>Que querem dar os primeiros passos no universo da inteligência artificial.</span></div></div>
+        <div class="wcard glass rv"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Profissionais</b><span>Que desejam aprender uma nova habilidade digital e se atualizar.</span></div></div>
+        <div class="wcard glass rv"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Empreendedores</b><span>Que querem aplicar IA em projetos e serviços.</span></div></div>
+        <div class="wcard glass rv"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Quem busca renda extra</b><span>E quer explorar oportunidades oferecendo serviços digitais para empresas.</span></div></div>
       </div>
-      <div class="quote rv">
-        <p>Você não precisa dominar tecnologia para começar. <span class="green">Precisa aprender a utilizá-la a seu favor.</span></p>
-      </div>
+      <p class="statement rv">Você não precisa dominar tecnologia. <em class="s">Precisa aprender a usá-la a seu favor.</em></p>
     </div>
   </section>
 
   <!-- ================= OFERTA ================= -->
-  <section class="offer sec--alt" id="oferta">
+  <section class="sec" id="oferta">
     <div class="wrap">
-      <div class="offer__grid">
-        <div class="offer__cover rv">
-          <img src="assets/capa.webp" width="1254" height="1254" loading="lazy" alt="Renda com IA — aprenda a criar serviços digitais com inteligência artificial e comece a faturar">
+      <div class="head rv">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>Investimento</span>
+        <h2>Menos que um lanche. <em class="s">Uma habilidade para a vida.</em></h2>
+      </div>
+      <div class="offer">
+        <div class="offer__img glass rv">
+          <img src="assets/capa.webp" width="900" height="900" loading="lazy" alt="Renda com IA — aprenda a criar serviços digitais com inteligência artificial">
         </div>
-        <div class="price-card rv">
-          <div class="price-card__in">
-            <div class="kicker">Inscrição</div>
-            <h2 style="margin-top:12px">Treinamento Renda com IA</h2>
-            <ul class="incl">
-              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>6 aulas práticas e diretas ao ponto</li>
-              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Aproximadamente 60 minutos de conteúdo</li>
-              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>ChatGPT, Claude e Claude Code na prática</li>
-              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Criação do seu primeiro projeto digital</li>
-              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Como encontrar clientes, apresentar e vender</li>
-              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Para iniciantes: não exige experiência em programação</li>
-            </ul>
-            <div class="price">
-              <small>Investimento</small>
-              <div class="price__v" aria-label="R$ 47,90"><i>R$</i><b>47</b><u>,90</u></div>
-              <em>Pagamento único. Sem mensalidade.</em>
-            </div>
-            <a class="btn btn--lg btn--pulse" data-checkout href="#oferta">
-              Quero garantir meu acesso
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-            <div class="micro">
-              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Compra segura</span>
-            </div>
-            <div class="guarantee">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.600 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
-              <div><b>7 dias de garantia</b><span>Se não fizer sentido para você, peça o reembolso em até 7 dias após a compra.</span></div>
-            </div>
+        <div class="price-card glass rv">
+          <span class="tag" style="position:relative">Acesso ao treinamento completo</span>
+          <h2 style="margin-top:16px;position:relative">Renda com IA</h2>
+          <ul class="incl" style="position:relative">
+            <li><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>6 aulas práticas e diretas ao ponto</li>
+            <li><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Cerca de 60 minutos de conteúdo</li>
+            <li><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>ChatGPT, Claude e Claude Code na prática</li>
+            <li><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Criação do seu primeiro projeto digital</li>
+            <li><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Como encontrar clientes, apresentar e vender</li>
+            <li><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Não exige experiência em programação</li>
+          </ul>
+          <div class="price" style="position:relative">
+            <small>Pagamento único</small>
+            <div class="price__v" aria-label="R$ 47,90"><i>R$</i><b>47</b><u>,90</u></div>
+            <p>Sem mensalidade. Pague uma vez.</p>
+          </div>
+          <a class="btn btn--xl btn--full" data-checkout href="https://pay.kiwify.com.br/7J8GaNI" style="position:relative">Quero garantir meu acesso <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <div class="safe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Pagamento seguro via Kiwify</div>
+          <div class="guar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
+            <div><b>Garantia de 7 dias</b><span>Se não fizer sentido para você, peça o reembolso em até 7 dias após a compra.</span></div>
           </div>
         </div>
       </div>
@@ -555,45 +620,45 @@ section{position:relative}
   </section>
 
   <!-- ================= FAQ ================= -->
-  <section class="sec">
+  <section class="sec" id="faq">
     <div class="wrap">
-      <div class="sec__head rv">
-        <div class="kicker">Dúvidas</div>
+      <div class="head rv">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>Dúvidas</span>
         <h2>Perguntas frequentes</h2>
       </div>
       <div class="faq">
-        <details class="rv"><summary>Preciso saber programar?</summary><p>Não. O treinamento foi pensado para iniciantes e não exige experiência prévia em programação. Você aprende a usar as ferramentas de IA a seu favor.</p></details>
-        <details class="rv"><summary>Quanto tempo dura o treinamento?</summary><p>São aproximadamente 60 minutos de conteúdo, divididos em 6 aulas objetivas. Dá para assistir tudo em uma única tarde.</p></details>
-        <details class="rv"><summary>Quais ferramentas vou aprender a usar?</summary><p>ChatGPT, Claude e Claude Code, aplicados ao desenvolvimento de projetos digitais e à criação de serviços.</p></details>
-        <details class="rv"><summary>O pagamento é único?</summary><p>Sim. O investimento é de R$ 47,90 em pagamento único, sem mensalidade.</p></details>
-        <details class="rv"><summary>O treinamento garante que vou ganhar dinheiro?</summary><p>Não. O Renda com IA é um treinamento educacional e não garante resultados financeiros. Seus resultados dependem da aplicação do conhecimento, da sua dedicação e das oportunidades de mercado.</p></details>
-        <details class="rv"><summary>E se eu não gostar?</summary><p>Você tem 7 dias após a compra para solicitar o reembolso.</p></details>
+        <details class="glass rv"><summary>Preciso saber programar?</summary><p>Não. O treinamento foi pensado para iniciantes e não exige experiência prévia em programação. Você aprende a usar as ferramentas de IA a seu favor.</p></details>
+        <details class="glass rv"><summary>Quanto tempo dura o treinamento?</summary><p>São cerca de 60 minutos de conteúdo, divididos em 6 aulas objetivas. Dá para assistir tudo em uma única tarde.</p></details>
+        <details class="glass rv"><summary>Quais ferramentas vou aprender a usar?</summary><p>ChatGPT, Claude e Claude Code, aplicados à criação de projetos digitais e de serviços.</p></details>
+        <details class="glass rv"><summary>O pagamento é único?</summary><p>Sim. O investimento é de R$ 47,90 em pagamento único, sem mensalidade.</p></details>
+        <details class="glass rv"><summary>O treinamento garante que vou ganhar dinheiro?</summary><p>Não. O Renda com IA é um treinamento educacional e não garante resultados financeiros. Seus resultados dependem da aplicação do conhecimento, da sua dedicação e das oportunidades de mercado.</p></details>
+        <details class="glass rv"><summary>E se eu não gostar?</summary><p>Você tem 7 dias após a compra para solicitar o reembolso.</p></details>
       </div>
     </div>
   </section>
 
   <!-- ================= CTA FINAL ================= -->
-  <section class="final sec--alt">
-    <div class="wrap rv">
-      <h2>Comece hoje a usar a IA <span class="green">a seu favor.</span></h2>
+  <div class="wrap">
+    <section class="final glass rv">
+      <h2>Comece hoje a usar a IA <em class="s">a seu favor.</em></h2>
       <p>6 aulas, cerca de 60 minutos e um caminho claro para criar e oferecer seus primeiros serviços digitais com inteligência artificial.</p>
       <div class="hero__cta">
-        <a class="btn btn--lg btn--pulse" data-checkout href="#oferta">
-          Quero começar agora por R$ 47,90
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <div class="micro"><span>Pagamento único · 7 dias de garantia</span></div>
+        <a class="btn btn--xl" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero começar agora <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <div class="checks"><span>R$ 47,90 · pagamento único · 7 dias de garantia</span></div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </main>
 
 <footer class="footer">
   <div class="wrap">
-    <a class="brand" href="#topo" aria-label="Renda com IA">
-      <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#2dff3c" stroke="#2dff3c" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
-      <span>RENDA COM <span class="green">IA</span></span>
-    </a>
+    <div class="footer__top">
+      <a class="logo" href="#topo" aria-label="Renda com IA">
+        <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#b6f23e" stroke="#b6f23e" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
+        RENDA COM IA
+      </a>
+      <nav aria-label="Rodapé"><a href="#aulas">Aulas</a><a href="#para-quem">Para quem é</a><a href="#oferta">Investimento</a><a href="#faq">Dúvidas</a></nav>
+    </div>
     <p><b>Aviso:</b> o Renda com IA é um treinamento educacional e não garante resultados financeiros. Seus resultados dependem da aplicação do conhecimento, da dedicação e das oportunidades de mercado.</p>
     <p>ChatGPT é marca da OpenAI. Claude e Claude Code são marcas da Anthropic. Este treinamento é independente e não possui vínculo, patrocínio ou endosso dessas empresas.</p>
     <p>Este site não faz parte do Facebook, Instagram ou da Meta Platforms, Inc., nem é endossado por elas.</p>
@@ -601,45 +666,34 @@ section{position:relative}
   </div>
 </footer>
 
-<!-- Barra fixa de compra (mobile) -->
+<!-- barra fixa de compra (mobile) -->
 <div class="sticky" id="sticky" aria-hidden="true">
-  <div class="sticky__p"><small>Pagamento único</small><b>R$ 47,90</b></div>
-  <a class="btn" data-checkout href="#oferta" tabindex="-1">Quero começar</a>
+  <div><small>Pagamento único</small><b>R$ 47,90</b></div>
+  <a class="btn" data-checkout href="https://pay.kiwify.com.br/7J8GaNI" tabindex="-1">Quero começar <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
 </div>
 
 <script>
-/* ======================= CONFIG =======================
-   Preencha estes dois campos antes de publicar.          */
+/* ======================= CONFIG ======================= */
 var CONFIG = {
-  // Link do checkout (Hotmart, Kiwify, Kirvano, etc.)
-  CHECKOUT_URL: "",
-  // URL de EMBED da VSL. Exemplos:
-  //   YouTube: https://www.youtube.com/embed/ID_DO_VIDEO?rel=0
-  //   Vimeo:   https://player.vimeo.com/video/ID_DO_VIDEO
-  //   Panda:   https://player-vz-xxxx.tv.pandavideo.com.br/embed/?v=ID
+  // Link do checkout (já aplicado em todos os botões)
+  CHECKOUT_URL: "https://pay.kiwify.com.br/7J8GaNI",
+  // URL de EMBED da VSL (YouTube: https://www.youtube.com/embed/ID?rel=0 · Vimeo · Panda etc.)
   VSL_EMBED_URL: ""
 };
 /* ====================================================== */
-
 (function () {
-  // Checkout: aplica o link em todos os botões e repassa UTMs/parâmetros da URL
-  if (CONFIG.CHECKOUT_URL) {
-    var url = CONFIG.CHECKOUT_URL;
-    var qs = location.search.replace(/^\?/, "");
-    if (qs) url += (url.indexOf("?") > -1 ? "&" : "?") + qs;
-    document.querySelectorAll("[data-checkout]").forEach(function (a) { a.href = url; });
-  }
+  // Aplica o checkout e repassa UTMs / parâmetros da URL (src, sck, utm_*)
+  var url = CONFIG.CHECKOUT_URL, qs = location.search.replace(/^\?/, "");
+  if (qs) url += (url.indexOf("?") > -1 ? "&" : "?") + qs;
+  document.querySelectorAll("[data-checkout]").forEach(function (a) { a.href = url; });
 
-  // VSL
   if (CONFIG.VSL_EMBED_URL) {
     var f = document.createElement("iframe");
     f.src = CONFIG.VSL_EMBED_URL;
     f.title = "Vídeo de apresentação — Renda com IA";
     f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
     f.allowFullscreen = true;
-    var p = document.getElementById("vsl-player");
-    p.innerHTML = "";
-    p.appendChild(f);
+    var p = document.getElementById("vsl-player"); p.innerHTML = ""; p.appendChild(f);
   }
 
   document.getElementById("ano").textContent = new Date().getFullYear();
@@ -648,25 +702,21 @@ var CONFIG = {
     document.querySelectorAll(".rv").forEach(function (e) { e.classList.add("in"); });
     return;
   }
-
-  // Animação de entrada
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
   }, { rootMargin: "0px 0px -8% 0px" });
   document.querySelectorAll(".rv").forEach(function (e) { io.observe(e); });
 
-  // Barra fixa: aparece depois do botão do topo e some na seção de oferta
-  var sticky = document.getElementById("sticky"), pastHero = false, inOffer = false;
+  // barra fixa: aparece após o CTA do hero e some na oferta
+  var s = document.getElementById("sticky"), past = false, inOffer = false;
   function upd() {
-    var on = pastHero && !inOffer;
-    sticky.classList.toggle("on", on);
-    sticky.setAttribute("aria-hidden", on ? "false" : "true");
-    sticky.querySelector("a").tabIndex = on ? 0 : -1;
+    var on = past && !inOffer;
+    s.classList.toggle("on", on); s.setAttribute("aria-hidden", on ? "false" : "true");
+    s.querySelector("a").tabIndex = on ? 0 : -1;
   }
-  new IntersectionObserver(function (es) {
-    pastHero = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; upd();
-  }).observe(document.querySelector(".hero .btn"));
-  new IntersectionObserver(function (es) { inOffer = es[0].isIntersecting; upd(); }, { threshold: 0.15 })
+  new IntersectionObserver(function (es) { past = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; upd(); })
+    .observe(document.querySelector(".hero__cta .btn"));
+  new IntersectionObserver(function (es) { inOffer = es[0].isIntersecting; upd(); }, { threshold: .15 })
     .observe(document.getElementById("oferta"));
 })();
 </script>
