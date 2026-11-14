@@ -7,6 +7,7 @@ import os, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DUR = 103.5
+MUSIC = False  # trilha desligada a pedido; True para voltar
 VOICE = os.path.join(HERE, "voz", "take1.mp3")
 SFX = os.path.join(HERE, "sfx")
 OUT = os.path.join(HERE, "..", "renda-com-ia-vsl.mp4" if os.path.exists(VOICE) else "renda-com-ia-vsl-sem-voz.mp4")
@@ -39,8 +40,11 @@ def run(cmd):
 
 def main():
     inputs, filters, labels = [], [], []
-    # trilha em loop
-    inputs += ["-stream_loop", "-1", "-i", os.path.join(SFX, "music.wav")]
+    # trilha em loop (ou silêncio, quando MUSIC = False)
+    if MUSIC:
+        inputs += ["-stream_loop", "-1", "-i", os.path.join(SFX, "music.wav")]
+    else:
+        inputs += ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
     have_voice = os.path.exists(VOICE)
     idx = 1
     if have_voice:
@@ -55,14 +59,14 @@ def main():
         filters.append(f"[{vidx}:a]aresample=48000,pan=stereo|c0=c0|c1=c0,highpass=f=70,acompressor=threshold=-18dB:ratio=3:attack=5:release=120,volume=1.35,asplit=2[vo][vosc]")
         filters.append("[mus][vosc]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=350[musd]")
         filters.append(f"{''.join(labels)}amix=inputs={len(labels)}:normalize=0[fx]")
-        filters.append("[vo][musd][fx]amix=inputs=3:normalize=0,alimiter=limit=0.89[aout]")
+        filters.append("[vo][musd][fx]amix=inputs=3:normalize=0,alimiter=limit=0.89,apad[aout]")
     else:
-        filters.append(f"[mus]{''.join(labels)}amix=inputs={len(labels)+1}:normalize=0,alimiter=limit=0.89[aout]")
+        filters.append(f"[mus]{''.join(labels)}amix=inputs={len(labels)+1}:normalize=0,alimiter=limit=0.89,apad[aout]")
     wav = os.path.join(HERE, "mix.wav")
     run(["ffmpeg", "-y", "-loglevel", "error", *inputs, "-filter_complex", ";".join(filters), "-map", "[aout]", "-t", str(DUR), "-ar", "48000", wav])
     run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", "30", "-i", os.path.join(HERE, "frames", "%05d.jpg"), "-i", wav,
          "-c:v", "libx264", "-preset", "slow", "-crf", "19", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
-         "-movflags", "+faststart", "-shortest", OUT])
+         "-movflags", "+faststart", "-t", str(DUR), OUT])
     print("ok:", os.path.abspath(OUT), "voz:", have_voice)
 
 
