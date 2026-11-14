@@ -8,7 +8,7 @@ import os, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 DUR = 103.5
 MUSIC = False  # trilha desligada a pedido; True para voltar
-VOICE = os.path.join(HERE, "voz", "take1.mp3")
+VOICE = os.path.join(HERE, "voz", "take1_fix.wav")
 SFX = os.path.join(HERE, "sfx")
 OUT = os.path.join(HERE, "..", "renda-com-ia-vsl.mp4" if os.path.exists(VOICE) else "renda-com-ia-vsl-sem-voz.mp4")
 
@@ -52,7 +52,7 @@ def main():
     for i, (t, name, vol) in enumerate(CUES):
         inputs += ["-i", os.path.join(SFX, name + ".wav")]
         ms = int(t * 1000)
-        filters.append(f"[{idx}:a]volume={vol*0.55:.3f},adelay={ms}|{ms}[s{i}]")
+        filters.append(f"[{idx}:a]volume={vol*0.30:.3f},adelay={ms}|{ms}[s{i}]")
         labels.append(f"[s{i}]"); idx += 1
     filters.append(f"[0:a]atrim=0:{DUR},volume=0.30,afade=t=in:d=0.6,afade=t=out:st={DUR-2.5}:d=2.5[mus]")
     if have_voice:
