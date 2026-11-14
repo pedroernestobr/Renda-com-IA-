@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Renda com IA — Aprenda a criar serviços digitais com inteligência artificial</title>
+<meta name="description" content="Treinamento prático em 6 aulas (aprox. 60 minutos) para aprender a criar serviços digitais com ChatGPT, Claude e Claude Code e descobrir como oferecê-los para empresas. R$ 47,90, pagamento único.">
+<meta name="theme-color" content="#04060d">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Renda com IA — Crie serviços digitais com inteligência artificial">
+<meta property="og:description" content="6 aulas diretas ao ponto para dar os primeiros passos com IA e transformar esse conhecimento em uma nova habilidade profissional.">
+<meta property="og:image" content="assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#04060d;
+  --bg-2:#070b16;
+  --card:#0b111f;
+  --card-2:#0e1627;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --text:#f3f6fb;
+  --muted:#9ca8bb;
+  --green:#2dff3c;
+  --green-2:#8dff2a;
+  --green-ink:#031a06;
+  --blue:#1f6dff;
+  --orange:#ff8a3c;
+  --radius:18px;
+  --wrap:1120px;
+  --head:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--body);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-family:var(--head);line-height:1.12;letter-spacing:-.02em;text-wrap:balance}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.green{color:var(--green)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Faixa superior ---------- */
+.topbar{
+  background:linear-gradient(90deg,#0b2a10,#0e3a14 50%,#0b2a10);
+  border-bottom:1px solid rgba(45,255,60,.25);
+  font:600 12.5px/1.3 var(--body);letter-spacing:.04em;text-transform:uppercase;
+  text-align:center;padding:9px 16px;color:#d9ffe0;
+}
+.topbar b{color:var(--green);font-weight:600}
+
+/* ---------- Header ---------- */
+.header{
+  position:sticky;top:0;z-index:40;
+  background:rgba(4,6,13,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:34px;height:auto}
+.brand span{font:900 17px/1 var(--head);letter-spacing:-.01em}
+.header .btn{display:none}
+
+/* ---------- Botões ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font:800 16px/1.15 var(--head);letter-spacing:.01em;text-transform:uppercase;text-decoration:none;text-align:center;
+  color:var(--green-ink);
+  background:linear-gradient(180deg,var(--green-2),var(--green) 55%,#12d92a);
+  padding:19px 26px;border-radius:14px;border:0;cursor:pointer;
+  box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 10px 34px -6px rgba(45,255,60,.55),0 2px 0 #0a8f1a;
+  transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;
+}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 0 0 1px rgba(255,255,255,.3) inset,0 16px 44px -6px rgba(45,255,60,.7),0 2px 0 #0a8f1a}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.btn svg{width:20px;height:20px;flex:none}
+.btn--lg{width:100%;font-size:17px;padding:22px 24px}
+.btn--sm{font-size:13px;padding:12px 18px;border-radius:10px;box-shadow:0 6px 20px -6px rgba(45,255,60,.6)}
+.btn--pulse{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 10px 34px -6px rgba(45,255,60,.55),0 2px 0 #0a8f1a,0 0 0 0 rgba(45,255,60,.45)}
+  50%{box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 10px 34px -6px rgba(45,255,60,.55),0 2px 0 #0a8f1a,0 0 0 14px rgba(45,255,60,0)}
+}
+.micro{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;
+  margin-top:14px;font-size:13px;color:var(--muted);
+}
+.micro span{display:inline-flex;align-items:center;gap:6px}
+.micro svg{width:15px;height:15px;color:var(--green)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:36px 0 56px;text-align:center;isolation:isolate}
+.hero::before{
+  content:"";position:absolute;inset:-120px 0 0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(60% 46% at 50% 0%,rgba(45,255,60,.20),transparent 70%),
+    radial-gradient(40% 40% at 0% 30%,rgba(31,109,255,.22),transparent 70%),
+    radial-gradient(40% 40% at 100% 55%,rgba(31,109,255,.16),transparent 70%);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent 75%);
+          mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent 75%);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font:600 12.5px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:#d9ffe0;
+  padding:9px 14px;border-radius:999px;
+  background:rgba(45,255,60,.08);border:1px solid rgba(45,255,60,.3);
+}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.hero h1{font-weight:900;font-size:clamp(30px,8.4vw,60px);margin:20px auto 0;max-width:17ch}
+.hero h1 .green{text-shadow:0 0 34px rgba(45,255,60,.45)}
+.hero .sub{margin:18px auto 0;max-width:620px;font-size:clamp(16px,4.3vw,19px);color:#c5cedb}
+.hero .sub b{color:#fff;font-weight:600}
+
+/* VSL */
+.vsl{margin:30px auto 0;max-width:880px;position:relative}
+.vsl__hint{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;
+  font:600 13px/1 var(--body);color:#d9ffe0;letter-spacing:.02em;
+}
+.vsl__hint svg{width:16px;height:16px;color:var(--green)}
+.vsl__frame{
+  position:relative;border-radius:20px;padding:2px;
+  background:linear-gradient(135deg,var(--green),rgba(31,109,255,.9) 50%,var(--green));
+  box-shadow:0 0 70px -14px rgba(45,255,60,.55),0 30px 80px -30px rgba(31,109,255,.6);
+}
+.vsl__player{
+  position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#02040a;
+}
+.vsl[data-ratio="9:16"]{max-width:400px}
+.vsl[data-ratio="9:16"] .vsl__player{aspect-ratio:9/16}
+.vsl__player iframe,.vsl__player video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vsl__poster{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  background:
+    radial-gradient(50% 60% at 50% 50%,rgba(45,255,60,.16),transparent 70%),
+    radial-gradient(40% 50% at 12% 90%,rgba(31,109,255,.3),transparent 70%),
+    #03060d;
+  padding:20px;
+}
+.vsl__play{
+  width:clamp(64px,16vw,92px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(180deg,var(--green-2),var(--green));color:var(--green-ink);
+  box-shadow:0 0 0 10px rgba(45,255,60,.14),0 0 60px rgba(45,255,60,.6);
+  animation:ring 2.2s ease-out infinite;
+}
+.vsl__play svg{width:38%;margin-left:8%}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(45,255,60,.5),0 0 60px rgba(45,255,60,.6)}100%{box-shadow:0 0 0 26px rgba(45,255,60,0),0 0 60px rgba(45,255,60,.6)}}
+.vsl__poster p{font:700 clamp(14px,3.8vw,18px)/1.3 var(--head);max-width:26ch}
+.hero__cta{margin:28px auto 0;max-width:520px}
+
+/* ---------- Números ---------- */
+.stats{border-block:1px solid var(--line);background:var(--bg-2)}
+.stats .wrap{display:grid;grid-template-columns:repeat(2,1fr)}
+.stat{padding:22px 10px;text-align:center;border-bottom:1px solid var(--line)}
+.stat:nth-child(odd){border-right:1px solid var(--line)}
+.stat:nth-last-child(-n+2){border-bottom:0}
+.stat b{display:block;font:900 28px/1 var(--head);color:var(--green);letter-spacing:-.02em}
+.stat span{display:block;margin-top:7px;font-size:13px;color:var(--muted)}
+
+/* ---------- Seções ---------- */
+section{position:relative}
+.sec{padding:64px 0}
+.sec--alt{background:var(--bg-2);border-block:1px solid var(--line)}
+.sec__head{text-align:center;max-width:720px;margin:0 auto 36px}
+.kicker{font:700 12.5px/1 var(--head);letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+.sec__head h2{font-weight:800;font-size:clamp(26px,6.6vw,42px);margin-top:14px}
+.sec__head p{margin-top:14px;color:#b9c3d2;font-size:clamp(16px,4vw,18px)}
+
+/* Pilares */
+.pillars{display:grid;gap:14px}
+.pillar{
+  background:linear-gradient(180deg,var(--card-2),var(--card));
+  border:1px solid var(--line);border-radius:var(--radius);padding:24px;
+}
+.pillar__ico{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;
+  background:rgba(45,255,60,.1);border:1px solid rgba(45,255,60,.3);color:var(--green);
+}
+.pillar__ico svg{width:22px;height:22px}
+.pillar h3{font-weight:700;font-size:19px}
+.pillar p{margin-top:8px;color:var(--muted);font-size:15.5px}
+
+/* Aulas */
+.lessons{display:grid;gap:12px;counter-reset:l}
+.lesson{
+  display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
+  transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+.lesson:hover{border-color:rgba(45,255,60,.45);transform:translateY(-2px);box-shadow:0 18px 40px -24px rgba(45,255,60,.5)}
+.lesson__n{
+  font:900 30px/1 var(--head);letter-spacing:-.04em;min-width:48px;
+  background:linear-gradient(180deg,var(--green-2),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.lesson small{display:block;font:600 11.5px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lesson h3{font-weight:700;font-size:18px;margin-top:7px}
+.lesson p{margin-top:7px;color:var(--muted);font-size:15px}
+
+/* Ferramentas */
+.tools{display:grid;gap:12px;margin-top:28px}
+.tool{
+  display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--line);
+}
+.tool__dot{width:12px;height:12px;border-radius:4px;flex:none;background:var(--green);box-shadow:0 0 16px var(--green)}
+.tool--b .tool__dot{background:var(--orange);box-shadow:0 0 16px var(--orange)}
+.tool--c .tool__dot{background:var(--blue);box-shadow:0 0 16px var(--blue)}
+.tool b{font:800 17px/1.2 var(--head)}
+.tool span{display:block;color:var(--muted);font-size:14.5px;margin-top:3px}
+
+/* Para quem */
+.who{display:grid;gap:12px}
+.who__item{
+  display:flex;gap:14px;align-items:flex-start;padding:20px;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--line);
+}
+.check{
+  flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;margin-top:1px;
+  background:var(--green);color:var(--green-ink);
+}
+.check svg{width:14px;height:14px}
+.who__item b{font:700 17px/1.25 var(--head);display:block}
+.who__item span{display:block;color:var(--muted);font-size:15px;margin-top:5px}
+.quote{
+  margin:32px auto 0;max-width:820px;text-align:center;padding:30px 22px;border-radius:22px;
+  background:radial-gradient(80% 120% at 50% 0%,rgba(45,255,60,.14),transparent 70%),var(--card);
+  border:1px solid rgba(45,255,60,.3);
+}
+.quote p{font:800 clamp(20px,5.4vw,30px)/1.25 var(--head);letter-spacing:-.02em;text-wrap:balance}
+
+/* Oferta */
+.offer{padding:72px 0;isolation:isolate}
+.offer::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(55% 50% at 50% 45%,rgba(45,255,60,.16),transparent 70%),radial-gradient(40% 40% at 100% 0%,rgba(31,109,255,.18),transparent 70%);
+}
+.offer__grid{display:grid;gap:26px;align-items:center}
+.offer__cover{position:relative;max-width:440px;margin:0 auto;width:100%}
+.offer__cover img{border-radius:22px;border:1px solid var(--line-2);box-shadow:0 40px 90px -40px rgba(45,255,60,.55),0 20px 60px -30px #000;aspect-ratio:1;object-fit:cover;width:100%;height:auto}
+.price-card{
+  position:relative;border-radius:24px;padding:2px;
+  background:linear-gradient(160deg,var(--green),rgba(45,255,60,.15) 40%,rgba(31,109,255,.5));
+  box-shadow:0 0 80px -20px rgba(45,255,60,.5);
+}
+.price-card__in{background:linear-gradient(180deg,#0c1424,#070b15);border-radius:22px;padding:28px 22px}
+.price-card h2{font-weight:800;font-size:clamp(22px,5.6vw,28px)}
+.incl{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:11px}
+.incl li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:#d5dce7}
+.incl .check{width:22px;height:22px}
+.incl .check svg{width:12px;height:12px}
+.price{margin:24px 0 22px;padding-top:22px;border-top:1px dashed var(--line-2);text-align:center}
+.price small{display:block;font:600 12.5px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.price__v{display:flex;align-items:flex-start;justify-content:center;gap:6px;margin-top:10px;font-family:var(--head);font-weight:900;color:var(--green);line-height:1;text-shadow:0 0 40px rgba(45,255,60,.45)}
+.price__v i{font-style:normal;font-size:24px;margin-top:10px}
+.price__v b{font-size:clamp(68px,20vw,92px);letter-spacing:-.04em}
+.price__v u{text-decoration:none;font-size:30px;margin-top:10px}
+.price em{display:block;font-style:normal;margin-top:8px;color:#d5dce7;font-size:15px}
+.guarantee{
+  display:flex;gap:14px;align-items:center;margin-top:20px;padding:16px;border-radius:14px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+}
+.guarantee svg{width:38px;height:38px;flex:none;color:var(--green)}
+.guarantee b{font:700 15px/1.25 var(--head);display:block}
+.guarantee span{font-size:13.5px;color:var(--muted);display:block;margin-top:3px}
+
+/* FAQ */
+.faq{max-width:780px;margin:0 auto;display:grid;gap:10px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.faq details[open]{border-color:rgba(45,255,60,.4)}
+.faq summary{
+  list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:19px 20px;font:700 16.5px/1.3 var(--head);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";flex:none;width:11px;height:11px;border-right:2.5px solid var(--green);border-bottom:2.5px solid var(--green);
+  transform:rotate(45deg);transition:transform .2s ease;margin-top:-5px;
+}
+.faq details[open] summary::after{transform:rotate(-135deg);margin-top:5px}
+.faq summary:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
+.faq p{padding:0 20px 20px;color:#b9c3d2;font-size:15.5px}
+
+/* CTA final */
+.final{text-align:center;padding:72px 0 80px;isolation:isolate}
+.final::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 50% 100%,rgba(45,255,60,.2),transparent 70%)}
+.final h2{font-weight:900;font-size:clamp(28px,7.4vw,48px);max-width:18ch;margin:0 auto}
+.final p{margin:16px auto 0;max-width:560px;color:#c5cedb;font-size:17px}
+.final .hero__cta{margin-top:30px}
+
+/* Footer */
+.footer{border-top:1px solid var(--line);background:#02040a;padding:36px 0 120px;text-align:center}
+.footer .brand{justify-content:center;margin-bottom:18px}
+.footer p{max-width:780px;margin:0 auto 12px;font-size:12.5px;line-height:1.6;color:#77839a}
+.footer p b{color:#a9b4c6;font-weight:600}
+
+/* Barra fixa mobile */
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:rgba(4,6,13,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid rgba(45,255,60,.3);
+  transform:translateY(110%);transition:transform .3s ease;
+}
+.sticky.on{transform:none}
+.sticky__p small{display:block;font-size:11.5px;color:var(--muted);line-height:1.2}
+.sticky__p b{font:900 21px/1.15 var(--head);color:var(--green)}
+.sticky .btn{padding:14px 20px;font-size:14px;border-radius:12px;flex:1;max-width:230px}
+
+/* Animação de entrada */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .btn--pulse,.vsl__play{animation:none}
+}
+
+/* ---------- Tablet ---------- */
+@media (min-width:700px){
+  .stats .wrap{grid-template-columns:repeat(4,1fr)}
+  .stat{border-bottom:0;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .pillars{grid-template-columns:repeat(3,1fr)}
+  .lessons{grid-template-columns:repeat(2,1fr)}
+  .tools{grid-template-columns:repeat(3,1fr)}
+  .who{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width:1000px){
+  .wrap{padding:0 32px}
+  .header .wrap{height:72px}
+  .header .btn{display:inline-flex}
+  .brand svg{width:38px}
+  .brand span{font-size:19px}
+  .hero{padding:56px 0 80px}
+  .hero h1{max-width:21ch}
+  .vsl{margin-top:40px}
+  .sec{padding:96px 0}
+  .sec__head{margin-bottom:52px}
+  .stat{padding:30px 10px}
+  .stat b{font-size:36px}
+  .pillar{padding:30px}
+  .lessons{grid-template-columns:repeat(3,1fr);gap:16px}
+  .lesson{grid-template-columns:1fr;padding:26px}
+  .lesson__n{font-size:44px}
+  .offer{padding:110px 0}
+  .offer__grid{grid-template-columns:1fr 1fr;gap:56px}
+  .offer__cover{max-width:none}
+  .price-card__in{padding:40px}
+  .final{padding:110px 0 120px}
+  .footer{padding-bottom:44px}
+  .sticky{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">Treinamento prático · <b>6 aulas</b> · aprox. <b>60 minutos</b></div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="#topo" aria-label="Renda com IA — início">
+      <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#2dff3c" stroke="#2dff3c" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
+      <span>RENDA COM <span class="green">IA</span></span>
+    </a>
+    <a class="btn btn--sm" data-checkout href="#oferta">Quero começar</a>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- ================= HERO + VSL ================= -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><i></i>Para quem está começando do zero</span>
+      <h1>Aprenda a criar serviços digitais com IA e <span class="green">comece a <span style="white-space:nowrap">oferecê-los</span> para empresas.</span></h1>
+      <p class="sub">Um treinamento <b>prático e direto ao ponto</b> para dar os primeiros passos com inteligência artificial e transformar esse conhecimento em uma nova habilidade profissional.</p>
+
+      <!--
+        VSL — para trocar o formato do vídeo use data-ratio="16:9" (horizontal) ou data-ratio="9:16" (vertical).
+        O vídeo é configurado no bloco CONFIG no final deste arquivo (VSL_EMBED_URL).
+        Se a sua plataforma (Vturb, Panda etc.) entrega um código de embed pronto,
+        cole-o dentro de <div class="vsl__player" id="vsl-player"> no lugar do .vsl__poster.
+      -->
+      <div class="vsl" data-ratio="16:9">
+        <div class="vsl__hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>
+          Assista ao vídeo com o som ligado
+        </div>
+        <div class="vsl__frame">
+          <div class="vsl__player" id="vsl-player">
+            <div class="vsl__poster">
+              <div class="vsl__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 6 3.5z"/></svg></div>
+              <p>Veja como funciona o Renda com IA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__cta">
+        <a class="btn btn--lg btn--pulse" data-checkout href="#oferta">
+          Quero começar agora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="micro">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>R$ 47,90 · pagamento único</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sem precisar saber programar</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NÚMEROS ================= -->
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><b>6</b><span>aulas objetivas</span></div>
+      <div class="stat"><b>~60 min</b><span>de conteúdo no total</span></div>
+      <div class="stat"><b>3</b><span>ferramentas de IA na prática</span></div>
+      <div class="stat"><b>R$ 47,90</b><span>pagamento único</span></div>
+    </div>
+  </div>
+
+  <!-- ================= O QUE É ================= -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec__head rv">
+        <div class="kicker">O treinamento</div>
+        <h2>Do primeiro contato com a IA ao seu <span class="green">primeiro serviço pronto para oferecer</span></h2>
+        <p>Em aproximadamente 60 minutos, você aprende a usar ChatGPT, Claude e Claude Code para desenvolver projetos digitais, enxergar oportunidades de mercado e entender como encontrar seus primeiros clientes.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar rv">
+          <div class="pillar__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg></div>
+          <h3>Desenvolver projetos digitais</h3>
+          <p>Use a IA como parceira de trabalho para tirar projetos do papel, mesmo sem experiência em programação.</p>
+        </div>
+        <div class="pillar rv">
+          <div class="pillar__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+          <h3>Identificar oportunidades</h3>
+          <p>Entenda o mercado de serviços com IA e quais tipos de serviço você pode começar a oferecer.</p>
+        </div>
+        <div class="pillar rv">
+          <div class="pillar__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Encontrar seus primeiros clientes</h3>
+          <p>Aprenda como chegar até empresas, apresentar o que você faz e conduzir a venda com clareza.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AULAS ================= -->
+  <section class="sec sec--alt" id="aulas">
+    <div class="wrap">
+      <div class="sec__head rv">
+        <div class="kicker">Conteúdo</div>
+        <h2>O que você vai aprender em <span class="green">6 aulas</span></h2>
+        <p>Um passo a passo enxuto, sem enrolação: do entendimento do mercado até a apresentação do seu serviço.</p>
+      </div>
+      <div class="lessons">
+        <article class="lesson rv"><div class="lesson__n">01</div><div><small>Aula 01</small><h3>O mercado de serviços com IA</h3><p>O cenário atual e onde estão as oportunidades para quem está começando.</p></div></article>
+        <article class="lesson rv"><div class="lesson__n">02</div><div><small>Aula 02</small><h3>Serviços que você pode vender</h3><p>Os tipos de serviços digitais que podem ser criados com IA e como escolher por onde começar.</p></div></article>
+        <article class="lesson rv"><div class="lesson__n">03</div><div><small>Aula 03</small><h3>Suas ferramentas de IA</h3><p>ChatGPT, Claude e Claude Code: para que serve cada uma e como usá-las a seu favor.</p></div></article>
+        <article class="lesson rv"><div class="lesson__n">04</div><div><small>Aula 04</small><h3>Criando seu primeiro projeto</h3><p>Mão na massa: desenvolva um projeto digital na prática, passo a passo.</p></div></article>
+        <article class="lesson rv"><div class="lesson__n">05</div><div><small>Aula 05</small><h3>Como encontrar clientes</h3><p>Como identificar empresas que podem se interessar pelo seu serviço e chegar até elas.</p></div></article>
+        <article class="lesson rv"><div class="lesson__n">06</div><div><small>Aula 06</small><h3>Como apresentar e vender</h3><p>Como estruturar sua apresentação e oferecer seu serviço com profissionalismo.</p></div></article>
+      </div>
+
+      <div class="tools">
+        <div class="tool rv"><i class="tool__dot"></i><div><b>ChatGPT</b><span>Ideias, textos e planejamento</span></div></div>
+        <div class="tool tool--b rv"><i class="tool__dot"></i><div><b>Claude</b><span>Análise, escrita e raciocínio</span></div></div>
+        <div class="tool tool--c rv"><i class="tool__dot"></i><div><b>Claude Code</b><span>Criação de projetos digitais</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARA QUEM ================= -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec__head rv">
+        <div class="kicker">Para quem é</div>
+        <h2>Feito para quem quer <span class="green">usar a IA na prática</span></h2>
+      </div>
+      <div class="who">
+        <div class="who__item rv"><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Iniciantes</b><span>Que querem dar os primeiros passos no universo da inteligência artificial.</span></div></div>
+        <div class="who__item rv"><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Profissionais</b><span>Que desejam aprender uma nova habilidade digital e se atualizar.</span></div></div>
+        <div class="who__item rv"><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Empreendedores</b><span>Que querem entender como aplicar IA em projetos e serviços.</span></div></div>
+        <div class="who__item rv"><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Quem busca renda extra</b><span>E quer explorar oportunidades oferecendo serviços digitais para empresas.</span></div></div>
+      </div>
+      <div class="quote rv">
+        <p>Você não precisa dominar tecnologia para começar. <span class="green">Precisa aprender a utilizá-la a seu favor.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OFERTA ================= -->
+  <section class="offer sec--alt" id="oferta">
+    <div class="wrap">
+      <div class="offer__grid">
+        <div class="offer__cover rv">
+          <img src="assets/capa.webp" width="1254" height="1254" loading="lazy" alt="Renda com IA — aprenda a criar serviços digitais com inteligência artificial e comece a faturar">
+        </div>
+        <div class="price-card rv">
+          <div class="price-card__in">
+            <div class="kicker">Inscrição</div>
+            <h2 style="margin-top:12px">Treinamento Renda com IA</h2>
+            <ul class="incl">
+              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>6 aulas práticas e diretas ao ponto</li>
+              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Aproximadamente 60 minutos de conteúdo</li>
+              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>ChatGPT, Claude e Claude Code na prática</li>
+              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Criação do seu primeiro projeto digital</li>
+              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Como encontrar clientes, apresentar e vender</li>
+              <li><i class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Para iniciantes: não exige experiência em programação</li>
+            </ul>
+            <div class="price">
+              <small>Investimento</small>
+              <div class="price__v" aria-label="R$ 47,90"><i>R$</i><b>47</b><u>,90</u></div>
+              <em>Pagamento único. Sem mensalidade.</em>
+            </div>
+            <a class="btn btn--lg btn--pulse" data-checkout href="#oferta">
+              Quero garantir meu acesso
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <div class="micro">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Compra segura</span>
+            </div>
+            <div class="guarantee">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.600 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
+              <div><b>7 dias de garantia</b><span>Se não fizer sentido para você, peça o reembolso em até 7 dias após a compra.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec__head rv">
+        <div class="kicker">Dúvidas</div>
+        <h2>Perguntas frequentes</h2>
+      </div>
+      <div class="faq">
+        <details class="rv"><summary>Preciso saber programar?</summary><p>Não. O treinamento foi pensado para iniciantes e não exige experiência prévia em programação. Você aprende a usar as ferramentas de IA a seu favor.</p></details>
+        <details class="rv"><summary>Quanto tempo dura o treinamento?</summary><p>São aproximadamente 60 minutos de conteúdo, divididos em 6 aulas objetivas. Dá para assistir tudo em uma única tarde.</p></details>
+        <details class="rv"><summary>Quais ferramentas vou aprender a usar?</summary><p>ChatGPT, Claude e Claude Code, aplicados ao desenvolvimento de projetos digitais e à criação de serviços.</p></details>
+        <details class="rv"><summary>O pagamento é único?</summary><p>Sim. O investimento é de R$ 47,90 em pagamento único, sem mensalidade.</p></details>
+        <details class="rv"><summary>O treinamento garante que vou ganhar dinheiro?</summary><p>Não. O Renda com IA é um treinamento educacional e não garante resultados financeiros. Seus resultados dependem da aplicação do conhecimento, da sua dedicação e das oportunidades de mercado.</p></details>
+        <details class="rv"><summary>E se eu não gostar?</summary><p>Você tem 7 dias após a compra para solicitar o reembolso.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA FINAL ================= -->
+  <section class="final sec--alt">
+    <div class="wrap rv">
+      <h2>Comece hoje a usar a IA <span class="green">a seu favor.</span></h2>
+      <p>6 aulas, cerca de 60 minutos e um caminho claro para criar e oferecer seus primeiros serviços digitais com inteligência artificial.</p>
+      <div class="hero__cta">
+        <a class="btn btn--lg btn--pulse" data-checkout href="#oferta">
+          Quero começar agora por R$ 47,90
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="micro"><span>Pagamento único · 7 dias de garantia</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <a class="brand" href="#topo" aria-label="Renda com IA">
+      <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#2dff3c" stroke="#2dff3c" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
+      <span>RENDA COM <span class="green">IA</span></span>
+    </a>
+    <p><b>Aviso:</b> o Renda com IA é um treinamento educacional e não garante resultados financeiros. Seus resultados dependem da aplicação do conhecimento, da dedicação e das oportunidades de mercado.</p>
+    <p>ChatGPT é marca da OpenAI. Claude e Claude Code são marcas da Anthropic. Este treinamento é independente e não possui vínculo, patrocínio ou endosso dessas empresas.</p>
+    <p>Este site não faz parte do Facebook, Instagram ou da Meta Platforms, Inc., nem é endossado por elas.</p>
+    <p>© <span id="ano">2026</span> Renda com IA. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- Barra fixa de compra (mobile) -->
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div class="sticky__p"><small>Pagamento único</small><b>R$ 47,90</b></div>
+  <a class="btn" data-checkout href="#oferta" tabindex="-1">Quero começar</a>
+</div>
+
+<script>
+/* ======================= CONFIG =======================
+   Preencha estes dois campos antes de publicar.          */
+var CONFIG = {
+  // Link do checkout (Hotmart, Kiwify, Kirvano, etc.)
+  CHECKOUT_URL: "",
+  // URL de EMBED da VSL. Exemplos:
+  //   YouTube: https://www.youtube.com/embed/ID_DO_VIDEO?rel=0
+  //   Vimeo:   https://player.vimeo.com/video/ID_DO_VIDEO
+  //   Panda:   https://player-vz-xxxx.tv.pandavideo.com.br/embed/?v=ID
+  VSL_EMBED_URL: ""
+};
+/* ====================================================== */
+
+(function () {
+  // Checkout: aplica o link em todos os botões e repassa UTMs/parâmetros da URL
+  if (CONFIG.CHECKOUT_URL) {
+    var url = CONFIG.CHECKOUT_URL;
+    var qs = location.search.replace(/^\?/, "");
+    if (qs) url += (url.indexOf("?") > -1 ? "&" : "?") + qs;
+    document.querySelectorAll("[data-checkout]").forEach(function (a) { a.href = url; });
+  }
+
+  // VSL
+  if (CONFIG.VSL_EMBED_URL) {
+    var f = document.createElement("iframe");
+    f.src = CONFIG.VSL_EMBED_URL;
+    f.title = "Vídeo de apresentação — Renda com IA";
+    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    var p = document.getElementById("vsl-player");
+    p.innerHTML = "";
+    p.appendChild(f);
+  }
+
+  document.getElementById("ano").textContent = new Date().getFullYear();
+
+  if (!("IntersectionObserver" in window)) {
+    document.querySelectorAll(".rv").forEach(function (e) { e.classList.add("in"); });
+    return;
+  }
+
+  // Animação de entrada
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".rv").forEach(function (e) { io.observe(e); });
+
+  // Barra fixa: aparece depois do botão do topo e some na seção de oferta
+  var sticky = document.getElementById("sticky"), pastHero = false, inOffer = false;
+  function upd() {
+    var on = pastHero && !inOffer;
+    sticky.classList.toggle("on", on);
+    sticky.setAttribute("aria-hidden", on ? "false" : "true");
+    sticky.querySelector("a").tabIndex = on ? 0 : -1;
+  }
+  new IntersectionObserver(function (es) {
+    pastHero = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; upd();
+  }).observe(document.querySelector(".hero .btn"));
+  new IntersectionObserver(function (es) { inOffer = es[0].isIntersecting; upd(); }, { threshold: 0.15 })
+    .observe(document.getElementById("oferta"));
+})();
+</script>
+</body>
+</html>
