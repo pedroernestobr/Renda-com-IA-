@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Renda com IA — Crie serviços com IA que empresas pagam para ter</title>
 <meta name="description" content="Em 6 aulas (cerca de 60 minutos), aprenda a usar ChatGPT, Claude e Claude Code para criar serviços digitais, encontrar seus primeiros clientes e apresentar seu trabalho. R$ 47,90, pagamento único.">
-<meta name="theme-color" content="#060806">
+<meta name="theme-color" content="#04060d">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Renda com IA — Crie serviços com IA que empresas pagam para ter">
@@ -20,18 +20,18 @@
 
 <style>
 :root{
-  --bg:#060806;
-  --bg-2:#0a0d09;
+  --bg:#04060d;
+  --bg-2:#070b16;
   --glass:rgba(255,255,255,.035);
   --glass-2:rgba(255,255,255,.06);
   --line:rgba(255,255,255,.08);
   --line-2:rgba(255,255,255,.14);
-  --text:#eef2ea;
-  --muted:#8e998b;
-  --soft:#c3cbbf;
-  --lime:#b6f23e;
-  --lime-2:#dcff7d;
-  --lime-ink:#101800;
+  --text:#f1f4fa;
+  --muted:#8f9bb0;
+  --soft:#c4ccd9;
+  --lime:#2dff3c;
+  --lime-2:#8dff6a;
+  --lime-ink:#021606;
   --wrap:1160px;
   --r:22px;
   --sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -48,9 +48,10 @@ body{
 body::before{
   content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:
-    radial-gradient(38% 30% at 6% 18%,rgba(120,170,40,.22),transparent 70%),
-    radial-gradient(34% 28% at 96% 40%,rgba(120,170,40,.16),transparent 70%),
-    radial-gradient(50% 40% at 50% 110%,rgba(150,210,50,.14),transparent 70%),
+    radial-gradient(38% 30% at 6% 18%,rgba(31,109,255,.26),transparent 70%),
+    radial-gradient(34% 28% at 96% 40%,rgba(31,109,255,.18),transparent 70%),
+    radial-gradient(50% 40% at 50% 110%,rgba(45,255,60,.14),transparent 70%),
+    radial-gradient(26% 22% at 100% 85%,rgba(255,138,60,.10),transparent 70%),
     var(--bg);
 }
 body::after{
@@ -80,10 +81,10 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
   font:600 16px/1.1 var(--sans);letter-spacing:-.01em;cursor:pointer;
   color:var(--lime-ink);background:linear-gradient(180deg,var(--lime-2),var(--lime));
   padding:17px 26px;border-radius:999px;border:0;
-  box-shadow:0 0 0 1px rgba(255,255,255,.35) inset,0 10px 40px -8px rgba(182,242,62,.65);
+  box-shadow:0 0 0 1px rgba(255,255,255,.35) inset,0 10px 40px -8px rgba(45,255,60,.65);
   transition:transform .18s ease,box-shadow .18s ease;
 }
-.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 16px 50px -8px rgba(182,242,62,.85)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 16px 50px -8px rgba(45,255,60,.85)}
 .btn:active{transform:translateY(1px)}
 .btn:focus-visible,.ghost:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .btn .ar{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--lime-ink);color:var(--lime);margin-right:-10px}
@@ -116,7 +117,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 }
 .pill b{font-weight:600;font-size:11.5px;letter-spacing:.04em;color:var(--lime-ink);background:var(--lime);padding:4px 9px;border-radius:999px}
 .hero h1{font-size:clamp(40px,11vw,88px);margin:24px auto 0;max-width:14ch}
-.hero h1 em.s{font-size:1.1em;line-height:.9;text-shadow:0 0 40px rgba(182,242,62,.35)}
+.hero h1 em.s{font-size:1.1em;line-height:.9;text-shadow:0 0 40px rgba(45,255,60,.35)}
 .hero .lead{margin:22px auto 0;max-width:600px;font-size:clamp(16.5px,4.3vw,19px);color:var(--soft);line-height:1.55}
 .hero .lead b{color:#fff;font-weight:600}
 .hero__cta{margin-top:30px}
@@ -125,21 +126,21 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .vsl{position:relative;margin:48px auto 0;max-width:920px}
 .vsl::before{ /* arco de luz */
   content:"";position:absolute;left:50%;top:38%;width:190%;aspect-ratio:1;transform:translateX(-50%);z-index:-1;border-radius:50%;
-  border-top:2px solid rgba(214,255,120,.85);
-  box-shadow:0 -24px 90px -10px rgba(182,242,62,.55),inset 0 30px 80px -30px rgba(182,242,62,.35);
+  border-top:2px solid rgba(130,255,140,.85);
+  box-shadow:0 -24px 90px -10px rgba(45,255,60,.5),0 -70px 160px -30px rgba(31,109,255,.55),inset 0 30px 80px -30px rgba(45,255,60,.3);
   -webkit-mask-image:linear-gradient(180deg,#000 0,#000 12%,transparent 30%);mask-image:linear-gradient(180deg,#000 0,#000 12%,transparent 30%);
 }
 .vsl__label{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;font-size:13.5px;color:var(--soft)}
 .vsl__label i{width:8px;height:8px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 10px #ff4d4d;animation:blink 1.4s ease-in-out infinite}
 @keyframes blink{50%{opacity:.25}}
 .vsl__frame{padding:8px;border-radius:28px}
-.vsl__player{position:relative;aspect-ratio:16/9;border-radius:21px;overflow:hidden;background:#030503}
+.vsl__player{position:relative;aspect-ratio:16/9;border-radius:21px;overflow:hidden;background:#02040a}
 .vsl[data-ratio="9:16"]{max-width:420px}
 .vsl[data-ratio="9:16"] .vsl__player{aspect-ratio:9/16}
 .vsl__player iframe,.vsl__player video{position:absolute;inset:0;width:100%;height:100%;border:0}
 .poster{
   position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:18px;
-  background:radial-gradient(60% 70% at 50% 55%,rgba(182,242,62,.16),transparent 70%),radial-gradient(40% 50% at 0% 100%,rgba(120,170,40,.25),transparent 70%),#050805;
+  background:radial-gradient(60% 70% at 50% 55%,rgba(45,255,60,.16),transparent 70%),radial-gradient(40% 50% at 0% 100%,rgba(31,109,255,.32),transparent 70%),#03060d;
 }
 .poster__play{
   width:clamp(64px,15vw,90px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
@@ -147,7 +148,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
   animation:ring 2.2s ease-out infinite;
 }
 .poster__play svg{width:36%;margin-left:8%}
-@keyframes ring{0%{box-shadow:0 0 0 0 rgba(182,242,62,.55),0 0 60px rgba(182,242,62,.5)}100%{box-shadow:0 0 0 28px rgba(182,242,62,0),0 0 60px rgba(182,242,62,.5)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(45,255,60,.55),0 0 60px rgba(45,255,60,.5)}100%{box-shadow:0 0 0 28px rgba(45,255,60,0),0 0 60px rgba(45,255,60,.5)}}
 .poster p{font-weight:500;font-size:clamp(14px,3.6vw,17px);color:var(--soft)}
 
 /* ---------- feature cards ---------- */
@@ -156,7 +157,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .fcard__h{display:flex;align-items:center;gap:12px}
 .ico{
   width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;color:var(--lime);
-  background:rgba(182,242,62,.06);border:1px solid rgba(182,242,62,.35);box-shadow:0 0 18px -6px rgba(182,242,62,.6);
+  background:rgba(45,255,60,.06);border:1px solid rgba(45,255,60,.35);box-shadow:0 0 18px -6px rgba(45,255,60,.6);
 }
 .ico svg{width:19px;height:19px}
 .fcard h3{font-size:18px;letter-spacing:-.02em;line-height:1.2}
@@ -169,8 +170,8 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .viz-tools svg.lines{width:100%;height:120px}
 .hub{
   width:64px;height:64px;border-radius:18px;display:grid;place-items:center;
-  background:linear-gradient(180deg,rgba(182,242,62,.25),rgba(182,242,62,.06));border:1px solid rgba(214,255,120,.6);
-  box-shadow:0 0 40px -4px rgba(182,242,62,.6);
+  background:linear-gradient(180deg,rgba(45,255,60,.25),rgba(45,255,60,.06));border:1px solid rgba(130,255,140,.6);
+  box-shadow:0 0 40px -4px rgba(45,255,60,.6);
 }
 .hub svg{width:30px}
 .mock{border-radius:14px;border:1px solid var(--line-2);background:rgba(0,0,0,.35);overflow:hidden}
@@ -178,14 +179,14 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .mock__top i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18)}
 .mock__body{padding:13px;display:grid;gap:8px}
 .bar{height:8px;border-radius:5px;background:rgba(255,255,255,.1)}
-.bar.l{background:linear-gradient(90deg,var(--lime),rgba(182,242,62,.2))}
+.bar.l{background:linear-gradient(90deg,var(--lime),rgba(45,255,60,.2))}
 .mock__badge{display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:11.5px;font-weight:600;color:var(--lime-ink);background:var(--lime);border-radius:999px;padding:4px 10px;width:max-content}
 .radar{position:relative;width:100%;max-width:220px;aspect-ratio:1;margin:0 auto -60px}
-.radar span{position:absolute;inset:0;margin:auto;border-radius:50%;border:1px solid rgba(182,242,62,.22)}
+.radar span{position:absolute;inset:0;margin:auto;border-radius:50%;border:1px solid rgba(45,255,60,.22)}
 .radar span:nth-child(2){inset:16%}
-.radar span:nth-child(3){inset:32%;border-color:rgba(182,242,62,.4)}
+.radar span:nth-child(3){inset:32%;border-color:rgba(45,255,60,.4)}
 .radar b{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
-.radar .c{position:absolute;inset:40%;border-radius:12px;display:grid;place-items:center;background:rgba(182,242,62,.12);border:1px solid rgba(214,255,120,.6);color:var(--lime)}
+.radar .c{position:absolute;inset:40%;border-radius:12px;display:grid;place-items:center;background:rgba(45,255,60,.12);border:1px solid rgba(130,255,140,.6);color:var(--lime)}
 .radar .c svg{width:50%}
 
 /* ---------- stats ---------- */
@@ -228,12 +229,12 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .bcard{padding:26px;min-height:300px;display:flex;flex-direction:column;overflow:hidden;position:relative}
 .bcard h3{font-size:26px;letter-spacing:-.03em;line-height:1.08}
 .bcard p{margin-top:12px;color:var(--muted);font-size:15px}
-.bcard--lime{background:linear-gradient(170deg,var(--lime-2),var(--lime) 60%,#9fdc2a);color:var(--lime-ink);border-color:transparent;box-shadow:0 30px 80px -30px rgba(182,242,62,.6)}
-.bcard--lime p{color:rgba(16,24,0,.72)}
+.bcard--lime{background:linear-gradient(170deg,var(--lime-2),var(--lime) 60%,#14d62e);color:var(--lime-ink);border-color:transparent;box-shadow:0 30px 80px -30px rgba(45,255,60,.6)}
+.bcard--lime p{color:rgba(2,22,6,.72)}
 .bcard__viz{margin-top:auto;padding-top:20px}
 .bars{display:flex;align-items:flex-end;gap:9px;height:110px}
-.bars i{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#fff 0 30%,rgba(16,24,0,.85) 30%)}
-.bars i:nth-child(2){height:60%;background:linear-gradient(180deg,rgba(255,255,255,.9) 0 45%,rgba(16,24,0,.85) 45%)}
+.bars i{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#fff 0 30%,rgba(2,22,6,.85) 30%)}
+.bars i:nth-child(2){height:60%;background:linear-gradient(180deg,rgba(255,255,255,.9) 0 45%,rgba(2,22,6,.85) 45%)}
 .bars i:nth-child(1){height:42%}.bars i:nth-child(3){height:30%}.bars i:nth-child(4){height:72%}.bars i:nth-child(5){height:100%}.bars i:nth-child(6){height:82%}
 .donut{width:120px;height:120px;margin:0 auto}
 .legend{display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:12px;color:var(--muted)}
@@ -251,7 +252,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
   position:relative;transition:background .25s ease;
 }
 .step::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s ease;pointer-events:none;
-  background:radial-gradient(40% 120% at 50% 50%,rgba(182,242,62,.10),transparent 70%)}
+  background:radial-gradient(40% 120% at 50% 50%,rgba(45,255,60,.10),transparent 70%)}
 .step:hover::before{opacity:1}
 .step__n{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:6px}
 .step h3{font-size:clamp(24px,6vw,34px);letter-spacing:-.03em}
@@ -269,12 +270,12 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 
 /* oferta */
 .offer{display:grid;gap:22px;align-items:stretch}
-.offer__img{padding:8px;border-radius:28px}
+.offer__img{padding:8px;border-radius:28px;align-self:center}
 .offer__img img{width:100%;height:auto;border-radius:21px;aspect-ratio:1;object-fit:cover}
 .price-card{padding:28px 22px;border-radius:28px;position:relative;overflow:hidden;
-  border:1px solid rgba(214,255,120,.4);box-shadow:0 0 0 1px rgba(182,242,62,.1),0 40px 100px -40px rgba(182,242,62,.55)}
+  border:1px solid rgba(130,255,140,.4);box-shadow:0 0 0 1px rgba(45,255,60,.1),0 40px 100px -40px rgba(45,255,60,.55)}
 .price-card::before{content:"";position:absolute;inset:-40% -20% auto;height:70%;pointer-events:none;
-  background:radial-gradient(50% 50% at 50% 50%,rgba(182,242,62,.22),transparent 70%)}
+  background:radial-gradient(50% 50% at 50% 50%,rgba(45,255,60,.22),transparent 70%)}
 .price-card h2{font-size:clamp(26px,6.4vw,34px)}
 .incl{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
 .incl li{display:flex;gap:12px;align-items:flex-start;color:var(--soft);font-size:15.5px}
@@ -284,7 +285,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .price small{font-size:13px;color:var(--muted)}
 .price__v{display:flex;align-items:flex-start;gap:6px;margin-top:6px;line-height:1;font-weight:600;letter-spacing:-.05em}
 .price__v i{font-style:normal;font-size:24px;margin-top:12px;color:var(--soft)}
-.price__v b{font-size:clamp(76px,20vw,104px);color:var(--lime);text-shadow:0 0 50px rgba(182,242,62,.4)}
+.price__v b{font-size:clamp(76px,20vw,104px);color:var(--lime);text-shadow:0 0 50px rgba(45,255,60,.4)}
 .price__v u{text-decoration:none;font-size:32px;margin-top:12px;color:var(--lime)}
 .price p{margin-top:6px;color:var(--soft);font-size:15px}
 .safe{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;font-size:13px;color:var(--muted)}
@@ -297,7 +298,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 /* faq */
 .faq{max-width:800px;margin:0 auto;display:grid;gap:10px}
 .faq details{border-radius:18px;overflow:hidden}
-.faq details[open]{border-color:rgba(214,255,120,.35)}
+.faq details[open]{border-color:rgba(130,255,140,.35)}
 .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;font-size:17px;font-weight:500;letter-spacing:-.01em}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:20px;font-weight:400;border:1px solid var(--line-2);color:var(--lime);transition:transform .25s ease}
@@ -307,7 +308,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 
 /* cta final */
 .final{margin-top:96px;padding:56px 22px;border-radius:32px;text-align:center;position:relative;overflow:hidden}
-.final::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 80% at 50% 120%,rgba(182,242,62,.3),transparent 70%),radial-gradient(30% 50% at 0% 0%,rgba(120,170,40,.18),transparent 70%)}
+.final::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 80% at 50% 120%,rgba(45,255,60,.3),transparent 70%),radial-gradient(30% 50% at 0% 0%,rgba(31,109,255,.22),transparent 70%)}
 .final h2{position:relative;font-size:clamp(34px,8.6vw,64px);max-width:16ch;margin:0 auto}
 .final p{position:relative;margin:18px auto 0;max-width:560px;color:var(--soft);font-size:17px}
 .final .hero__cta{position:relative}
@@ -316,15 +317,15 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .footer{margin-top:80px;border-top:1px solid var(--line);padding:40px 0 120px}
 .footer__top{display:flex;flex-direction:column;gap:18px;align-items:flex-start;margin-bottom:26px}
 .footer nav{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:14px;color:var(--soft)}
-.footer p{font-size:12.5px;line-height:1.6;color:#6f7a6c;margin-bottom:10px;max-width:880px}
-.footer p b{color:#a3ad9f;font-weight:500}
+.footer p{font-size:12.5px;line-height:1.6;color:#6c778c;margin-bottom:10px;max-width:880px}
+.footer p b{color:#a2acbf;font-weight:500}
 
 /* barra fixa mobile */
 .sticky{
   position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:50;
   display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 20px;border-radius:999px;
-  background:rgba(10,14,9,.82);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
-  border:1px solid rgba(214,255,120,.3);box-shadow:0 20px 50px -10px rgba(0,0,0,.8);
+  background:rgba(6,9,18,.82);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  border:1px solid rgba(130,255,140,.3);box-shadow:0 20px 50px -10px rgba(0,0,0,.8);
   transform:translateY(160%);transition:transform .35s ease;
 }
 .sticky.on{transform:none}
@@ -375,7 +376,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 <div class="nav wrap">
   <div class="nav__bar glass">
     <a class="logo" href="#topo" aria-label="Renda com IA — início">
-      <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#b6f23e" stroke="#b6f23e" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
+      <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#2dff3c" stroke="#2dff3c" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
       RENDA COM IA
     </a>
     <nav class="nav__links" aria-label="Seções">
@@ -430,15 +431,15 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
           <div class="fcard__viz viz-tools">
             <div class="chipcol">
               <span class="tchip"><i></i>ChatGPT</span>
-              <span class="tchip"><i style="background:#ff9a52"></i>Claude</span>
-              <span class="tchip"><i style="background:#8fd0ff"></i>Claude Code</span>
+              <span class="tchip"><i style="background:#ff8a3c"></i>Claude</span>
+              <span class="tchip"><i style="background:#3d8bff"></i>Claude Code</span>
             </div>
             <svg class="lines" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true">
-              <g fill="none" stroke="rgba(182,242,62,.6)" stroke-width="1.2" stroke-dasharray="3 4" vector-effect="non-scaling-stroke">
+              <g fill="none" stroke="rgba(45,255,60,.6)" stroke-width="1.2" stroke-dasharray="3 4" vector-effect="non-scaling-stroke">
                 <path d="M0 20 C50 20 50 60 100 60"/><path d="M0 60 L100 60"/><path d="M0 100 C50 100 50 60 100 60"/>
               </g>
             </svg>
-            <div class="hub"><svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#b6f23e" d="M106 133h74L88 321H16z"/></svg></div>
+            <div class="hub"><svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#2dff3c" d="M106 133h74L88 321H16z"/></svg></div>
           </div>
         </article>
 
@@ -525,9 +526,9 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
           <p>Entenda quais serviços digitais podem ser criados com IA e qual faz sentido para você.</p>
           <div class="bcard__viz">
             <svg viewBox="0 0 300 110" aria-hidden="true" style="width:100%">
-              <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b6f23e" stop-opacity=".35"/><stop offset="1" stop-color="#b6f23e" stop-opacity="0"/></linearGradient></defs>
+              <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2dff3c" stop-opacity=".35"/><stop offset="1" stop-color="#2dff3c" stop-opacity="0"/></linearGradient></defs>
               <path d="M0 95 L30 80 L50 88 L80 60 L100 72 L130 40 L150 55 L180 30 L200 46 L230 18 L255 34 L300 8 L300 110 L0 110Z" fill="url(#ga)"/>
-              <path d="M0 95 L30 80 L50 88 L80 60 L100 72 L130 40 L150 55 L180 30 L200 46 L230 18 L255 34 L300 8" fill="none" stroke="#b6f23e" stroke-width="2"/>
+              <path d="M0 95 L30 80 L50 88 L80 60 L100 72 L130 40 L150 55 L180 30 L200 46 L230 18 L255 34 L300 8" fill="none" stroke="#2dff3c" stroke-width="2"/>
             </svg>
           </div>
         </article>
@@ -535,7 +536,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
           <h3>Clareza para<br>apresentar e vender</h3>
           <p>Como encontrar empresas, estruturar sua apresentação e oferecer seu serviço com segurança.</p>
           <div class="bcard__viz">
-            <svg class="donut" viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="15.9" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#b6f23e" stroke-width="6" stroke-dasharray="75 25" stroke-dashoffset="25" stroke-linecap="round"/></svg>
+            <svg class="donut" viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="15.9" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#2dff3c" stroke-width="6" stroke-dasharray="75 25" stroke-dashoffset="25" stroke-linecap="round"/></svg>
             <div class="legend"><span><i></i>Encontrar</span><span><i class="o"></i>Apresentar</span></div>
           </div>
         </article>
@@ -654,7 +655,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
   <div class="wrap">
     <div class="footer__top">
       <a class="logo" href="#topo" aria-label="Renda com IA">
-        <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#b6f23e" stroke="#b6f23e" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
+        <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#2dff3c" stroke="#2dff3c" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
         RENDA COM IA
       </a>
       <nav aria-label="Rodapé"><a href="#aulas">Aulas</a><a href="#para-quem">Para quem é</a><a href="#oferta">Investimento</a><a href="#faq">Dúvidas</a></nav>
