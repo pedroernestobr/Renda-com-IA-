@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -35,7 +35,7 @@
   --wrap:1160px;
   --r:22px;
   --sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --serif:"Instrument Serif",Georgia,serif;
+  --display:"Plus Jakarta Sans","Inter Tight",system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -60,8 +60,8 @@ body::after{
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 h1,h2,h3,p{margin:0}
-h1,h2,h3{font-weight:500;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
-em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--lime)}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.035em;line-height:1.06;text-wrap:balance}
+em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing:-.04em;color:var(--lime)}
 .lime{color:var(--lime)}
 .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 18px}
 
@@ -116,7 +116,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 }
 .pill b{font-weight:600;font-size:11.5px;letter-spacing:.04em;color:var(--lime-ink);background:var(--lime);padding:4px 9px;border-radius:999px}
 .hero h1{font-size:clamp(40px,11vw,88px);margin:24px auto 0;max-width:14ch}
-.hero h1 em.s{font-size:1.1em;line-height:.9;text-shadow:0 0 40px rgba(182,242,62,.35)}
+.hero h1 em.s{text-shadow:0 0 40px rgba(182,242,62,.35)}
 .hero .lead{margin:22px auto 0;max-width:600px;font-size:clamp(16.5px,4.3vw,19px);color:var(--soft);line-height:1.55}
 .hero .lead b{color:#fff;font-weight:600}
 .hero__cta{margin-top:30px}
@@ -265,7 +265,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .wcard span{display:block;color:var(--muted);font-size:15px;margin-top:4px}
 .ok{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--lime-ink)}
 .ok svg{width:14px;height:14px}
-.statement{margin-top:40px;text-align:center;font-size:clamp(26px,6.4vw,44px);line-height:1.12;letter-spacing:-.035em;font-weight:500;max-width:22ch;margin-inline:auto;text-wrap:balance}
+.statement{font-family:var(--display);margin-top:40px;text-align:center;font-size:clamp(26px,6.4vw,44px);line-height:1.12;letter-spacing:-.035em;font-weight:700;max-width:22ch;margin-inline:auto;text-wrap:balance}
 
 /* oferta */
 .offer{display:grid;gap:22px;align-items:stretch}
@@ -331,6 +331,52 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .sticky small{display:block;font-size:11px;color:var(--muted);line-height:1.2}
 .sticky b{font-size:20px;font-weight:600;letter-spacing:-.03em;color:var(--lime);line-height:1.2}
 .sticky .btn{padding:13px 18px;font-size:14.5px}
+
+
+/* ---------- reel das aulas ---------- */
+.reel{position:relative;margin:8px 0 72px;overflow:hidden;padding:30px 0 40px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.reel::before{content:"";position:absolute;left:0;right:0;top:50%;height:60%;transform:translateY(-50%);z-index:-1;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(182,242,62,.16),transparent 70%)}
+.reel__track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.reel:hover .reel__track,.reel:focus-within .reel__track{animation-play-state:paused}
+.reel__set{display:flex;gap:20px;padding-right:20px}
+@keyframes marq{to{transform:translateX(-50%)}}
+.rc{flex:none;width:clamp(230px,64vw,320px);aspect-ratio:1122/1402;border-radius:22px;overflow:hidden;position:relative;margin:0;
+  border:1px solid rgba(214,255,120,.22);background:#050805;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.9),0 0 0 1px rgba(182,242,62,.06);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease}
+.rc:hover{transform:translateY(-10px) scale(1.03);border-color:rgba(214,255,120,.7);
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 60px -10px rgba(182,242,62,.55)}
+.rc img{width:100%;height:100%;object-fit:cover}
+.rc::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.10) 50%,transparent 60%);background-size:250% 100%;background-position:120% 0;transition:background-position .8s ease}
+.rc:hover::after{background-position:-20% 0}
+/* capa da aula 01 feita em HTML, no mesmo estilo das capas */
+.rc:has(.a1){container-type:inline-size}
+.a1{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:14cqw 8cqw 0;
+  background:radial-gradient(70% 40% at 50% 78%,rgba(182,242,62,.22),transparent 70%),#040604}
+.a1::before,.a1::after{content:"";position:absolute;border-radius:50%;border-top:2px solid rgba(214,255,120,.9);filter:drop-shadow(0 0 8px rgba(182,242,62,.9));pointer-events:none}
+.a1::before{width:150cqw;height:150cqw;left:-95cqw;top:-20cqw;transform:rotate(-35deg)}
+.a1::after{width:140cqw;height:140cqw;right:-90cqw;bottom:-120cqw;transform:rotate(30deg)}
+.a1__pill{font:800 7.4cqw/1 var(--display);letter-spacing:-.03em;color:var(--lime-ink);background:var(--lime);padding:3.4cqw 7cqw;border-radius:999px;box-shadow:0 0 30px -6px rgba(182,242,62,.8)}
+.a1 h3{margin-top:7cqw;font-size:11cqw;line-height:1.02;letter-spacing:-.045em;font-weight:800;color:#f4f6f1}
+.a1 h3 span{color:var(--lime)}
+.a1__tiles{position:relative;margin-top:auto;margin-bottom:14cqw;width:86cqw;height:46cqw}
+.a1__t{position:absolute;display:grid;place-items:center;border-radius:6cqw;
+  background:linear-gradient(160deg,rgba(182,242,62,.22),rgba(10,16,6,.9) 45%);border:2px solid rgba(214,255,120,.85);
+  box-shadow:0 0 30px -4px rgba(182,242,62,.75),inset 0 0 20px rgba(182,242,62,.2);color:var(--lime)}
+.a1__t svg{width:48%}
+.a1__t--s{width:30cqw;height:30cqw;top:9cqw}
+.a1__t--l{left:0;transform:rotate(-6deg)}
+.a1__t--r{right:0;transform:rotate(6deg)}
+.a1__t--c{width:44cqw;height:44cqw;left:21cqw;top:0;z-index:1;transform:rotate(-3deg);color:#fff}
+@media (prefers-reduced-motion:reduce){
+  .reel{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .reel__track{animation:none}
+  .reel__set[aria-hidden]{display:none}
+}
+@media (min-width:1000px){ .reel{margin-bottom:96px} }
 
 /* reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -553,6 +599,43 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
         </div>
         <p>Um passo a passo enxuto, do entendimento do mercado até a apresentação do seu serviço para empresas.</p>
       </div>
+    <div class="reel rv" aria-label="Capas das aulas">
+      <div class="reel__track">
+        <div class="reel__set">
+          <figure class="rc"><div class="a1" role="img" aria-label="Aula 01: O mercado de serviços com IA">
+            <span class="a1__pill">AULA 01</span>
+            <h3>O Mercado de<br><span>Serviços com IA</span></h3>
+            <div class="a1__tiles" aria-hidden="true">
+              <div class="a1__t a1__t--s a1__t--l"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="13" width="4" height="8" rx="1"/><rect x="10" y="9" width="4" height="12" rx="1"/><rect x="17" y="4" width="4" height="17" rx="1"/></svg></div>
+              <div class="a1__t a1__t--c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+              <div class="a1__t a1__t--s a1__t--r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></div>
+            </div>
+          </div></figure>
+          <figure class="rc"><img src="assets/aula-02.webp" width="720" height="900" loading="lazy" decoding="async" alt="Aula 02: As ferramentas essenciais"></figure>
+          <figure class="rc"><img src="assets/aula-03.webp" width="720" height="900" loading="lazy" decoding="async" alt="Aula 03: Do zero ao primeiro projeto"></figure>
+          <figure class="rc"><img src="assets/aula-04.webp" width="720" height="900" loading="lazy" decoding="async" alt="Aula 04: Como vender serviços de IA"></figure>
+          <figure class="rc"><img src="assets/aula-05.webp" width="720" height="900" loading="lazy" decoding="async" alt="Aula 05: Automação e escala de receita"></figure>
+          <figure class="rc"><img src="assets/aula-06.webp" width="720" height="900" loading="lazy" decoding="async" alt="Aula 06: Seu negócio com IA na prática"></figure>
+        </div>
+        <div class="reel__set" aria-hidden="true">
+          <figure class="rc"><div class="a1">
+            <span class="a1__pill">AULA 01</span>
+            <h3>O Mercado de<br><span>Serviços com IA</span></h3>
+            <div class="a1__tiles" aria-hidden="true">
+              <div class="a1__t a1__t--s a1__t--l"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="13" width="4" height="8" rx="1"/><rect x="10" y="9" width="4" height="12" rx="1"/><rect x="17" y="4" width="4" height="17" rx="1"/></svg></div>
+              <div class="a1__t a1__t--c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+              <div class="a1__t a1__t--s a1__t--r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></div>
+            </div>
+          </div></figure>
+          <figure class="rc"><img src="assets/aula-02.webp" width="720" height="900" loading="lazy" decoding="async" alt=""></figure>
+          <figure class="rc"><img src="assets/aula-03.webp" width="720" height="900" loading="lazy" decoding="async" alt=""></figure>
+          <figure class="rc"><img src="assets/aula-04.webp" width="720" height="900" loading="lazy" decoding="async" alt=""></figure>
+          <figure class="rc"><img src="assets/aula-05.webp" width="720" height="900" loading="lazy" decoding="async" alt=""></figure>
+          <figure class="rc"><img src="assets/aula-06.webp" width="720" height="900" loading="lazy" decoding="async" alt=""></figure>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
       <div class="steps">
         <div class="step rv"><span class="step__n">01</span><h3>O mercado de serviços com IA</h3><p>O cenário atual e onde estão as oportunidades para quem está começando.</p></div>
         <div class="step rv"><span class="step__n">02</span><h3>Serviços que você pode vender</h3><p>Os tipos de serviços digitais criados com IA e como escolher por onde começar.</p></div>
