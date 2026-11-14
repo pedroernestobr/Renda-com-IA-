@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Renda com IA — Crie serviços com IA que empresas pagam para ter</title>
+<title>Renda com IA · Crie serviços com IA que empresas pagam para ter</title>
 <meta name="description" content="Em 6 aulas (cerca de 60 minutos), aprenda a usar ChatGPT, Claude e Claude Code para criar serviços digitais, encontrar seus primeiros clientes e apresentar seu trabalho. R$ 47,90, pagamento único.">
 <meta name="theme-color" content="#060806">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Renda com IA — Crie serviços com IA que empresas pagam para ter">
+<meta property="og:title" content="Renda com IA · Crie serviços com IA que empresas pagam para ter">
 <meta property="og:description" content="6 aulas práticas para criar serviços digitais com inteligência artificial, mesmo sem saber programar.">
 <meta property="og:image" content="assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -241,7 +241,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 .legend i{width:8px;height:8px;border-radius:50%;background:var(--lime)}
 .legend i.o{background:rgba(255,255,255,.2)}
 
-/* aulas — linhas numeradas */
+/* aulas: linhas numeradas */
 .steps-head{display:grid;gap:18px;margin-bottom:28px}
 .steps-head h2{font-size:clamp(32px,8vw,56px)}
 .steps-head p{color:var(--soft);max-width:460px}
@@ -358,6 +358,58 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 }
 @media (min-width:1000px){ .reel{margin-bottom:96px} }
 
+/* ---------- imagens das estátuas ---------- */
+.hero-art{position:relative;max-width:520px;margin:0 auto;width:100%}
+.hero-art__glow{position:absolute;inset:12% 6% 4%;border-radius:50%;z-index:-1;
+  background:radial-gradient(50% 50% at 50% 45%,rgba(182,242,62,.35),transparent 70%);filter:blur(10px)}
+.hero-art img{width:100%;height:auto;animation:bob 6s ease-in-out infinite;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.float{position:absolute;border-radius:16px;padding:12px 14px;font-size:13px;box-shadow:0 20px 40px -20px rgba(0,0,0,.9)}
+.float--a{left:0;top:12%;display:flex;align-items:center;gap:10px}
+.float--a .ok{width:24px;height:24px}.float--a .ok svg{width:12px;height:12px}
+.float--a b{display:block;font-size:14px}.float--a span{color:var(--muted);line-height:1.25}
+.float--b{right:0;bottom:6%;max-width:250px}
+.float--b small{font-size:11.5px;color:var(--muted)}
+.float--b .prompt{margin-top:4px;font-size:13.5px}
+.art-frame{margin:0;padding:8px;border-radius:28px;overflow:hidden;position:relative}
+.art-frame img{width:100%;height:100%;object-fit:cover;border-radius:21px;display:block}
+.art-frame figcaption{position:absolute;left:20px;right:20px;bottom:20px;padding:14px 16px;border-radius:16px;font-size:14.5px;color:var(--soft);
+  background:rgba(6,8,6,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--line-2)}
+.art-frame figcaption a{color:var(--lime);font-weight:600}
+.who-grid{display:grid;gap:14px}
+.who-grid .art-frame img{aspect-ratio:4/3;object-position:50% 20%}
+.who-grid .who{grid-template-columns:1fr}
+.faq-grid{display:grid;gap:24px}
+.art-frame--faq{display:none}
+.offer__art{display:block;border-radius:26px;overflow:hidden;border:1px solid rgba(214,255,120,.3);order:2;
+  box-shadow:0 40px 90px -40px rgba(182,242,62,.55);transition:transform .3s ease,box-shadow .3s ease}
+.offer__art:hover{transform:translateY(-4px);box-shadow:0 50px 100px -40px rgba(182,242,62,.75)}
+.offer__art img{width:100%;height:auto}
+.final{text-align:center}
+.final__art{position:absolute;right:0;top:0;height:100%;width:auto;max-width:none;opacity:.32;pointer-events:none;
+  -webkit-mask-image:linear-gradient(270deg,#000 30%,transparent 95%);mask-image:linear-gradient(270deg,#000 30%,transparent 95%)}
+.final__txt{position:relative}
+@media (prefers-reduced-motion:reduce){.hero-art img{animation:none}}
+@media (min-width:720px){
+  .who-grid .who{grid-template-columns:1fr 1fr}
+}
+@media (min-width:1000px){
+  .who-grid{grid-template-columns:.85fr 1.15fr;align-items:stretch;gap:18px}
+  .who-grid .art-frame img{aspect-ratio:auto;height:100%}
+  .who-grid .who{grid-template-columns:1fr;align-content:center}
+  .offer{max-width:none;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+  .offer__art{order:0}
+  .faq-grid{grid-template-columns:.8fr 1.2fr;gap:28px;align-items:start}
+  .faq-grid .faq{margin:0;max-width:none}
+  .art-frame--faq{display:block;position:sticky;top:100px}
+  .art-frame--faq img{aspect-ratio:4/5}
+  .final{text-align:left}
+  .final__art{opacity:.9}
+  .final__txt{max-width:560px}
+  .final__txt h2,.final__txt p{margin-left:0}
+  .final .checks{justify-content:flex-start}
+}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -399,7 +451,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 <!-- ================= NAV ================= -->
 <div class="nav wrap">
   <div class="nav__bar glass">
-    <a class="logo" href="#topo" aria-label="Renda com IA — início">
+    <a class="logo" href="#topo" aria-label="Renda com IA, início">
       <svg viewBox="0 0 415 350" aria-hidden="true"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#b6f23e" stroke="#b6f23e" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
       RENDA COM IA
     </a>
@@ -419,7 +471,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 
       <h1>Crie serviços com IA que <em class="s">empresas pagam</em> para ter.</h1>
 
-      <p class="lead">Em <b>6 aulas e cerca de 60 minutos</b>, aprenda a usar ChatGPT, Claude e Claude Code para criar projetos digitais, encontrar seus primeiros clientes e apresentar seu serviço — <b>mesmo sem saber programar.</b></p>
+      <p class="lead">Em <b>6 aulas e cerca de 60 minutos</b>, aprenda a usar ChatGPT, Claude e Claude Code para criar projetos digitais, encontrar seus primeiros clientes e apresentar seu serviço, <b>mesmo sem saber programar.</b></p>
 
       <!--
         VSL: troque data-ratio para "9:16" se o vídeo for vertical.
@@ -515,19 +567,11 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
         <p class="split__p">O Renda com IA é um treinamento prático e direto ao ponto para você dar os primeiros passos com inteligência artificial e transformar esse conhecimento em uma nova habilidade profissional.</p>
         <a class="btn" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero aprender <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
-      <div class="panel glass rv" aria-hidden="true">
-        <div class="chips">
-          <span class="chip">Sites</span><span class="chip on">Landing pages</span><span class="chip">Automações</span>
-          <span class="chip">Conteúdo</span><span class="chip">Atendimento</span><span class="chip">Apresentações</span>
-        </div>
-        <div class="panel__box">
-          <small>Claude Code</small>
-          <div class="prompt">Crie uma landing page para uma clínica odontológica…</div>
-        </div>
-        <div class="panel__row">
-          <div class="mini"><b><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>CRIAR</b><span>Projeto pronto com ajuda da IA.</span></div>
-          <div class="mini"><b><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>OFERECER</b><span>Apresentado para empresas.</span></div>
-        </div>
+      <div class="hero-art rv">
+        <div class="hero-art__glow" aria-hidden="true"></div>
+        <img src="assets/estatua-ferramentas.webp" width="900" height="985" loading="lazy" decoding="async" alt="Estátua clássica segurando os ícones do ChatGPT e do Claude">
+        <div class="float float--a glass" aria-hidden="true"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><span><b>Criar</b>projetos com IA</span></div>
+        <div class="float float--b glass" aria-hidden="true"><small>Claude Code</small><div class="prompt">Crie uma landing page para uma clínica…</div></div>
       </div>
     </div>
   </section>
@@ -617,11 +661,14 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
         <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>Para quem é</span>
         <h2>Feito para quem quer <em class="s">usar a IA na prática</em></h2>
       </div>
+      <div class="who-grid">
+        <figure class="art-frame glass rv"><img src="assets/estatua-braco.webp" width="760" height="950" loading="lazy" decoding="async" alt="Estátua clássica com óculos de realidade aumentada estendendo a mão"></figure>
       <div class="who">
         <div class="wcard glass rv"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Iniciantes</b><span>Que querem dar os primeiros passos no universo da inteligência artificial.</span></div></div>
         <div class="wcard glass rv"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Profissionais</b><span>Que desejam aprender uma nova habilidade digital e se atualizar.</span></div></div>
         <div class="wcard glass rv"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Empreendedores</b><span>Que querem aplicar IA em projetos e serviços.</span></div></div>
         <div class="wcard glass rv"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><div><b>Quem busca renda extra</b><span>E quer explorar oportunidades oferecendo serviços digitais para empresas.</span></div></div>
+      </div>
       </div>
       <p class="statement rv">Você não precisa dominar tecnologia. <em class="s">Precisa aprender a usá-la a seu favor.</em></p>
     </div>
@@ -635,6 +682,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
         <h2>Menos que um lanche. <em class="s">Uma habilidade para a vida.</em></h2>
       </div>
       <div class="offer">
+        <a class="offer__art rv" data-checkout href="https://pay.kiwify.com.br/7J8GaNI" aria-label="Finalizar compra do Renda com IA"><img src="assets/oferta-arte.webp" width="760" height="832" loading="lazy" decoding="async" alt="Renda com IA: aprenda a criar serviços digitais com inteligência artificial. Finalizar compra."></a>
         <div class="price-card glass rv">
           <span class="tag" style="position:relative">Acesso ao treinamento completo</span>
           <h2 style="margin-top:16px;position:relative">Renda com IA</h2>
@@ -669,6 +717,8 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
         <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>Dúvidas</span>
         <h2>Perguntas frequentes</h2>
       </div>
+      <div class="faq-grid">
+      <figure class="art-frame art-frame--faq glass rv"><img src="assets/estatua-visor.webp" width="760" height="950" loading="lazy" decoding="async" alt="Estátua clássica usando óculos de realidade aumentada"><figcaption>Ainda com dúvida? <a href="https://pay.kiwify.com.br/7J8GaNI" data-checkout>Você tem 7 dias de garantia.</a></figcaption></figure>
       <div class="faq">
         <details class="glass rv"><summary>Preciso saber programar?</summary><p>Não. O treinamento foi pensado para iniciantes e não exige experiência prévia em programação. Você aprende a usar as ferramentas de IA a seu favor.</p></details>
         <details class="glass rv"><summary>Quanto tempo dura o treinamento?</summary><p>São cerca de 60 minutos de conteúdo, divididos em 6 aulas objetivas. Dá para assistir tudo em uma única tarde.</p></details>
@@ -677,17 +727,21 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
         <details class="glass rv"><summary>O treinamento garante que vou ganhar dinheiro?</summary><p>Não. O Renda com IA é um treinamento educacional e não garante resultados financeiros. Seus resultados dependem da aplicação do conhecimento, da sua dedicação e das oportunidades de mercado.</p></details>
         <details class="glass rv"><summary>E se eu não gostar?</summary><p>Você tem 7 dias após a compra para solicitar o reembolso.</p></details>
       </div>
+      </div>
     </div>
   </section>
 
   <!-- ================= CTA FINAL ================= -->
   <div class="wrap">
     <section class="final glass rv">
+      <img class="final__art" src="assets/estatua-dinheiro.webp" width="760" height="950" loading="lazy" decoding="async" alt="">
+      <div class="final__txt">
       <h2>Comece hoje a usar a IA <em class="s">a seu favor.</em></h2>
       <p>6 aulas, cerca de 60 minutos e um caminho claro para criar e oferecer seus primeiros serviços digitais com inteligência artificial.</p>
       <div class="hero__cta">
         <a class="btn btn--xl" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero começar agora <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         <div class="checks"><span>R$ 47,90 · pagamento único · 7 dias de garantia</span></div>
+      </div>
       </div>
     </section>
   </div>
@@ -733,7 +787,7 @@ var CONFIG = {
   if (CONFIG.VSL_EMBED_URL) {
     var f = document.createElement("iframe");
     f.src = CONFIG.VSL_EMBED_URL;
-    f.title = "Vídeo de apresentação — Renda com IA";
+    f.title = "Vídeo de apresentação do Renda com IA";
     f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
     f.allowFullscreen = true;
     var p = document.getElementById("vsl-player"); p.innerHTML = ""; p.appendChild(f);
