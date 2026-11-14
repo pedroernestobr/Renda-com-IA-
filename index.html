@@ -454,6 +454,34 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 @media (min-width:720px){ .swipe{display:none} }
 @media (min-width:1000px){ .hero{padding-top:30px} .hero h1{max-width:20ch} }
 
+/* ---------- player estilo VTurb ---------- */
+.vsl__player video{object-fit:cover;background:#030503;cursor:pointer}
+.vp-unmute{position:absolute;inset:0;z-index:3;display:grid;place-items:center;border:0;padding:0;cursor:pointer;
+  background:rgba(3,5,3,.18)}
+.vp-unmute[hidden]{display:none}
+.vp-unmute__box{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 26px;border-radius:18px;
+  background:linear-gradient(180deg,var(--lime-2),var(--lime));color:var(--lime-ink);
+  box-shadow:0 0 0 6px rgba(182,242,62,.22),0 20px 50px -10px rgba(0,0,0,.7);animation:vpPulse 1.6s ease-in-out infinite}
+.vp-unmute__box b{font:800 clamp(15px,3.6vw,20px)/1.1 var(--display);letter-spacing:-.02em}
+.vp-unmute__box svg{width:clamp(34px,8vw,48px);height:auto}
+.vp-unmute__box span{font:700 clamp(13px,3.2vw,16px)/1 var(--sans)}
+@keyframes vpPulse{50%{transform:scale(1.05);box-shadow:0 0 0 12px rgba(182,242,62,.12),0 20px 50px -10px rgba(0,0,0,.7)}}
+.vp-panel{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:16px;text-align:center;
+  background:rgba(4,6,4,.82);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.vp-panel[hidden]{display:none}
+.vp-panel p{font:800 clamp(16px,4vw,24px)/1.2 var(--display);letter-spacing:-.02em;color:#fff;max-width:22ch}
+.vp-panel__row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.vp-panel .btn{padding:14px 22px;font-size:15px}
+.vp-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:999px;cursor:pointer;
+  font:700 14.5px/1 var(--sans);color:#fff;background:rgba(255,255,255,.08);border:1px solid var(--line-2)}
+.vp-btn svg{width:16px;height:16px}
+.vp-btn--main{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
+.vp-btn:focus-visible,.vp-unmute:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.vp-bar{position:absolute;left:0;right:0;bottom:0;height:6px;z-index:2;background:rgba(255,255,255,.12);pointer-events:none}
+.vp-bar i{display:block;height:100%;width:0;background:var(--lime);box-shadow:0 0 12px rgba(182,242,62,.9);transition:width .25s linear}
+@media (prefers-reduced-motion:reduce){.vp-unmute__box{animation:none}}
+@media (max-width:719px){.vp-unmute__box{padding:12px 18px;gap:6px}}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -516,17 +544,40 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 
       <!--
         VSL: troque data-ratio para "9:16" se o vídeo for vertical.
-        Cole a URL de embed em CONFIG.VSL_EMBED_URL (final do arquivo) ou
-        substitua o .poster pelo código de embed do seu player (Vturb, Panda etc.).
+        O vídeo vem de assets/vsl.mp4, num player próprio no estilo VTurb (autoplay sem som,
+        convite para ouvir, barra de progresso e retomada). Para usar um player externo,
+        cole a URL de embed em CONFIG.VSL_EMBED_URL (final do arquivo).
       -->
       <div class="vsl" data-ratio="16:9">
         <div class="vsl__label"><i></i>Assista ao vídeo com o som ligado</div>
         <div class="vsl__frame glass">
           <div class="vsl__player" id="vsl-player">
-            <div class="poster">
-              <div class="poster__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 6 3.5z"/></svg></div>
-              <p>Veja como funciona o Renda com IA</p>
+            <video id="vsl-video" src="assets/vsl.mp4" poster="assets/vsl-poster.jpg" playsinline muted autoplay preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate"></video>
+            <!-- autoplay sem som: convite para ativar o áudio -->
+            <button class="vp-unmute" id="vp-unmute" type="button" aria-label="Seu vídeo já começou. Clique para ouvir.">
+              <span class="vp-unmute__box">
+                <b>Seu vídeo já começou</b>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4zM23 9l-6 6M17 9l6 6"/></svg>
+                <span>Clique para ouvir</span>
+              </span>
+            </button>
+            <!-- pausa / retomada -->
+            <div class="vp-panel" id="vp-pause" hidden>
+              <p>Você já começou a assistir este vídeo</p>
+              <div class="vp-panel__row">
+                <button type="button" class="vp-btn vp-btn--main" data-vp="continue"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Continuar assistindo</button>
+                <button type="button" class="vp-btn" data-vp="restart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>Assistir do início</button>
+              </div>
             </div>
+            <!-- fim do vídeo -->
+            <div class="vp-panel" id="vp-end" hidden>
+              <p>Garanta seu acesso ao Renda com IA</p>
+              <div class="vp-panel__row">
+                <a class="btn" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero aprender por R$ 47,90</a>
+                <button type="button" class="vp-btn" data-vp="restart">Assistir de novo</button>
+              </div>
+            </div>
+            <div class="vp-bar" aria-hidden="true"><i id="vp-fill"></i></div>
           </div>
         </div>
       </div>
@@ -847,6 +898,55 @@ var CONFIG = {
     f.allowFullscreen = true;
     var p = document.getElementById("vsl-player"); p.innerHTML = ""; p.appendChild(f);
   }
+
+
+  // ---------- Player estilo VTurb ----------
+  (function () {
+    var v = document.getElementById("vsl-video");
+    if (!v || CONFIG.VSL_EMBED_URL) return;
+    var unmute = document.getElementById("vp-unmute"), pause = document.getElementById("vp-pause"),
+        end = document.getElementById("vp-end"), fill = document.getElementById("vp-fill");
+    var KEY = "rci-vsl-t", started = false;
+    function store(t) { try { localStorage.setItem(KEY, String(t)); } catch (e) {} }
+    function saved() { try { return parseFloat(localStorage.getItem(KEY)) || 0; } catch (e) { return 0; } }
+    function show(el, on) { el.hidden = !on; }
+    function playSafe() { var p = v.play(); if (p && p.catch) p.catch(function () { show(unmute, true); }); }
+
+    // barra de progresso que anda mais rápido no começo (como a do VTurb)
+    v.addEventListener("timeupdate", function () {
+      if (!v.duration) return;
+      var p = v.currentTime / v.duration;
+      fill.style.width = (Math.pow(p, 0.55) * 100).toFixed(2) + "%";
+      if (started && v.currentTime > 2 && v.currentTime < v.duration - 3) store(v.currentTime);
+    });
+
+    // autoplay sem som; se o navegador bloquear, o convite aparece mesmo assim
+    show(unmute, true);
+    playSafe();
+
+    function startWithSound(from) {
+      started = true;
+      show(unmute, false); show(pause, false); show(end, false);
+      v.muted = false; v.currentTime = from || 0; playSafe();
+    }
+    unmute.addEventListener("click", function () {
+      var t = saved();
+      if (t > 5) { v.pause(); started = true; show(unmute, false); show(pause, true); return; }
+      startWithSound(0);
+    });
+    // clique no vídeo pausa e oferece continuar
+    v.addEventListener("click", function () {
+      if (!started) { unmute.click(); return; }
+      if (!v.paused) { v.pause(); store(v.currentTime); show(pause, true); }
+    });
+    document.querySelectorAll("[data-vp]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (b.dataset.vp === "continue") { var t = v.muted ? saved() : v.currentTime; startWithSound(t); }
+        else { store(0); startWithSound(0); }
+      });
+    });
+    v.addEventListener("ended", function () { store(0); if (started) show(end, true); else { v.currentTime = 0; playSafe(); } });
+  })();
 
   document.getElementById("ano").textContent = new Date().getFullYear();
 

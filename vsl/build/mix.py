@@ -7,7 +7,9 @@ import os, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DUR = 103.5
-MUSIC = False  # trilha desligada a pedido; True para voltar
+MUSIC = True
+MUSIC_FILE = os.path.join(HERE, "sfx", "trilha-elevenlabs.mp3")  # ElevenLabs Music, faixa original
+MUSIC_VOL = 0.13  # trilha baixa, abaixo da voz
 VOICE = os.path.join(HERE, "voz", "take1_fix.wav")
 SFX = os.path.join(HERE, "sfx")
 OUT = os.path.join(HERE, "..", "renda-com-ia-vsl.mp4" if os.path.exists(VOICE) else "renda-com-ia-vsl-sem-voz.mp4")
@@ -42,7 +44,7 @@ def main():
     inputs, filters, labels = [], [], []
     # trilha em loop (ou silêncio, quando MUSIC = False)
     if MUSIC:
-        inputs += ["-stream_loop", "-1", "-i", os.path.join(SFX, "music.wav")]
+        inputs += ["-stream_loop", "-1", "-i", MUSIC_FILE]
     else:
         inputs += ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
     have_voice = os.path.exists(VOICE)
@@ -54,10 +56,10 @@ def main():
         ms = int(t * 1000)
         filters.append(f"[{idx}:a]volume={vol*0.30:.3f},adelay={ms}|{ms}[s{i}]")
         labels.append(f"[s{i}]"); idx += 1
-    filters.append(f"[0:a]atrim=0:{DUR},volume=0.30,afade=t=in:d=0.6,afade=t=out:st={DUR-2.5}:d=2.5[mus]")
+    filters.append(f"[0:a]atrim=0:{DUR},aresample=48000,volume={MUSIC_VOL},afade=t=in:d=0.6,afade=t=out:st={DUR-2.5}:d=2.5[mus]")
     if have_voice:
         filters.append(f"[{vidx}:a]aresample=48000,pan=stereo|c0=c0|c1=c0,highpass=f=70,acompressor=threshold=-18dB:ratio=3:attack=5:release=120,volume=1.35,asplit=2[vo][vosc]")
-        filters.append("[mus][vosc]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=350[musd]")
+        filters.append("[mus][vosc]sidechaincompress=threshold=0.02:ratio=6:attack=30:release=500[musd]")
         filters.append(f"{''.join(labels)}amix=inputs={len(labels)}:normalize=0[fx]")
         filters.append("[vo][musd][fx]amix=inputs=3:normalize=0,alimiter=limit=0.89,apad[aout]")
     else:
