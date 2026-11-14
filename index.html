@@ -109,27 +109,22 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 .nav .btn .ar{width:22px;height:22px;margin-right:-6px}
 
 /* ---------- hero ---------- */
-.hero{position:relative;text-align:center;padding:56px 0 0;overflow-x:clip}
-.pill{
-  display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;font-size:13px;color:var(--soft);
-  border:1px solid var(--line-2);background:rgba(255,255,255,.04);
-}
-.pill b{font-weight:600;font-size:11.5px;letter-spacing:.04em;color:var(--lime-ink);background:var(--lime);padding:4px 9px;border-radius:999px}
-.hero h1{font-size:clamp(40px,11vw,88px);margin:24px auto 0;max-width:14ch}
+.hero{position:relative;text-align:center;padding:22px 0 0;overflow-x:clip}
+.hero h1{font-size:clamp(29px,7.9vw,60px);line-height:1.05;margin:0 auto;max-width:16ch}
 .hero h1 em.s{text-shadow:0 0 40px rgba(182,242,62,.35)}
-.hero .lead{margin:22px auto 0;max-width:600px;font-size:clamp(16.5px,4.3vw,19px);color:var(--soft);line-height:1.55}
+.hero .lead{margin:26px auto 0;max-width:600px;font-size:clamp(16.5px,4.3vw,19px);color:var(--soft);line-height:1.55}
 .hero .lead b{color:#fff;font-weight:600}
-.hero__cta{margin-top:30px}
+.hero__cta{margin-top:22px}
 
 /* VSL */
-.vsl{position:relative;margin:48px auto 0;max-width:920px}
+.vsl{position:relative;margin:16px auto 0;max-width:820px}
 .vsl::before{ /* arco de luz */
   content:"";position:absolute;left:50%;top:38%;width:190%;aspect-ratio:1;transform:translateX(-50%);z-index:-1;border-radius:50%;
   border-top:2px solid rgba(214,255,120,.85);
   box-shadow:0 -24px 90px -10px rgba(182,242,62,.55),inset 0 30px 80px -30px rgba(182,242,62,.35);
   -webkit-mask-image:linear-gradient(180deg,#000 0,#000 12%,transparent 30%);mask-image:linear-gradient(180deg,#000 0,#000 12%,transparent 30%);
 }
-.vsl__label{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;font-size:13.5px;color:var(--soft)}
+.vsl__label{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;font-size:13.5px;color:var(--soft)}
 .vsl__label i{width:8px;height:8px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 10px #ff4d4d;animation:blink 1.4s ease-in-out infinite}
 @keyframes blink{50%{opacity:.25}}
 .vsl__frame{padding:8px;border-radius:28px}
@@ -410,6 +405,53 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
   .final .checks{justify-content:flex-start}
 }
 
+/* ---------- mobile ---------- */
+@media (max-width:719px){
+  .wrap{padding:0 16px}
+  .nav{top:8px;margin-top:8px}
+  .nav__bar{padding:6px 6px 6px 14px}
+  .logo{font-size:13px}.logo svg{width:21px}
+  .nav .btn{padding:10px 14px;font-size:13.5px}
+  .vsl__frame{padding:5px;border-radius:20px}
+  .vsl__player{border-radius:16px}
+  .btn--xl{width:100%;font-size:16.5px;padding:19px 22px}
+  .checks{gap:6px 14px;font-size:12.5px}
+  .sec{padding-top:72px}
+  .head{margin-bottom:26px}
+  .head h2,.split h2,.steps-head h2{font-size:clamp(28px,8vw,36px)}
+  /* cards em carrossel com arraste lateral */
+  .features,.bento{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-left:-16px;margin-right:-16px;padding:4px 16px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .features::-webkit-scrollbar,.bento::-webkit-scrollbar{display:none}
+  .features{margin-top:40px}
+  .fcard,.bcard{flex:0 0 84%;scroll-snap-align:center;min-height:300px}
+  .swipe{display:flex;justify-content:center;gap:6px;margin-top:6px}
+  .swipe i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.22);transition:all .25s ease}
+  .swipe i.on{width:18px;border-radius:4px;background:var(--lime)}
+  .stats{margin-top:36px}
+  .stat{padding:16px 6px}
+  .split{gap:18px}
+  .split__p{font-size:16px}
+  .split .btn{width:100%}
+  .hero-art{max-width:330px}
+  .float{padding:9px 11px;font-size:12px;border-radius:13px}
+  .float--b{max-width:190px}
+  .float--b .prompt{font-size:12.5px}
+  .bcard{padding:22px}
+  .bcard h3{font-size:23px}
+  .reel{margin-bottom:48px;padding:20px 0 28px}
+  .step{padding:20px 2px}
+  .who-grid .art-frame img{aspect-ratio:16/10}
+  .wcard{padding:18px}
+  .statement{margin-top:32px}
+  .price-card{padding:24px 18px}
+  .faq summary{padding:18px;font-size:16px}
+  .faq p{padding:0 18px 18px}
+  .final{margin-top:72px;padding:44px 18px}
+  .footer{margin-top:56px}
+}
+@media (min-width:720px){ .swipe{display:none} }
+@media (min-width:1000px){ .hero{padding-top:30px} .hero h1{max-width:20ch} }
+
 /* reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -433,7 +475,6 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 /* ---------- desktop ---------- */
 @media (min-width:1000px){
   .nav__links{display:flex}
-  .hero{padding-top:80px}
   .sec{padding-top:140px}
   .fcard{padding:26px;min-height:360px}
   .split{grid-template-columns:1.05fr 1fr;gap:56px}
@@ -467,11 +508,8 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="wrap">
-      <span class="pill"><b>NOVO</b>Treinamento prático em 6 aulas</span>
-
       <h1>Crie serviços com IA que <em class="s">empresas pagam</em> para ter.</h1>
 
-      <p class="lead">Em <b>6 aulas e cerca de 60 minutos</b>, aprenda a usar ChatGPT, Claude e Claude Code para criar projetos digitais, encontrar seus primeiros clientes e apresentar seu serviço, <b>mesmo sem saber programar.</b></p>
 
       <!--
         VSL: troque data-ratio para "9:16" se o vídeo for vertical.
@@ -479,7 +517,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
         substitua o .poster pelo código de embed do seu player (Vturb, Panda etc.).
       -->
       <div class="vsl" data-ratio="16:9">
-        <div class="vsl__label"><i></i>Assista ao vídeo · ative o som</div>
+        <div class="vsl__label"><i></i>Assista ao vídeo com o som ligado</div>
         <div class="vsl__frame glass">
           <div class="vsl__player" id="vsl-player">
             <div class="poster">
@@ -498,9 +536,10 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>7 dias de garantia</span>
         </div>
       </div>
+      <p class="lead">Em <b>6 aulas e cerca de 60 minutos</b>, aprenda a usar ChatGPT, Claude e Claude Code para criar projetos digitais, encontrar seus primeiros clientes e apresentar seu serviço, <b>mesmo sem saber programar.</b></p>
 
       <!-- cards de benefício -->
-      <div class="features">
+      <div class="features" id="features">
         <article class="fcard glass rv">
           <div class="fcard__h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Domine as ferramentas</h3></div>
           <p>ChatGPT, Claude e Claude Code trabalhando juntos como sua equipe de criação.</p>
@@ -549,6 +588,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
         </article>
       </div>
 
+      <div class="swipe" data-for="features" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       <div class="stats glass rv">
         <div class="stat"><b>6</b><span>aulas objetivas</span></div>
         <div class="stat"><b>60 min</b><span>de conteúdo direto</span></div>
@@ -583,7 +623,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
         <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>O que muda para você</span>
         <h2>Uma habilidade nova, <em class="s">pronta para usar</em></h2>
       </div>
-      <div class="bento">
+      <div class="bento" id="bento">
         <article class="bcard glass bcard--lime rv">
           <h3>Do zero ao<br>primeiro projeto</h3>
           <p>Você sai do treinamento sabendo usar a IA para criar algo concreto, não só teoria.</p>
@@ -609,6 +649,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
           </div>
         </article>
       </div>
+      <div class="swipe" data-for="bento" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
     </div>
   </section>
 
@@ -779,6 +820,23 @@ var CONFIG = {
 };
 /* ====================================================== */
 (function () {
+  // Sempre abrir no topo, com a VSL à vista (exceto quando o link aponta para uma seção)
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (!location.hash) window.scrollTo(0, 0);
+
+  // Indicadores dos carrosséis no celular
+  document.querySelectorAll(".swipe").forEach(function (d) {
+    var box = document.getElementById(d.dataset.for), dots = d.querySelectorAll("i");
+    if (!box) return;
+    box.addEventListener("scroll", function () {
+      var kids = box.children, mid = box.scrollLeft + box.clientWidth / 2, best = 0, bd = 1e9;
+      for (var k = 0; k < kids.length; k++) {
+        var c = kids[k].offsetLeft + kids[k].offsetWidth / 2, dd = Math.abs(c - mid);
+        if (dd < bd) { bd = dd; best = k; }
+      }
+      dots.forEach(function (x, j) { x.classList.toggle("on", j === best); });
+    }, { passive: true });
+  });
   // Aplica o checkout e repassa UTMs / parâmetros da URL (src, sck, utm_*)
   var url = CONFIG.CHECKOUT_URL, qs = location.search.replace(/^\?/, "");
   if (qs) url += (url.indexOf("?") > -1 ? "&" : "?") + qs;
