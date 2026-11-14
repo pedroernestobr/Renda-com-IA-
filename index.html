@@ -114,10 +114,11 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 .hero h1 em.s{text-shadow:0 0 40px rgba(182,242,62,.35)}
 .hero .lead{margin:26px auto 0;max-width:600px;font-size:clamp(16.5px,4.3vw,19px);color:var(--soft);line-height:1.55}
 .hero .lead b{color:#fff;font-weight:600}
+.hero .sub{margin:12px auto 0;max-width:520px;font-size:clamp(15.5px,4.2vw,19px);color:var(--soft);line-height:1.45}
 .hero__cta{margin-top:22px}
 
 /* VSL */
-.vsl{position:relative;margin:16px auto 0;max-width:820px}
+.vsl{position:relative;margin:16px auto 0;max-width:760px}
 .vsl::before{ /* arco de luz */
   content:"";position:absolute;left:50%;top:38%;width:190%;aspect-ratio:1;transform:translateX(-50%);z-index:-1;border-radius:50%;
   border-top:2px solid rgba(214,255,120,.85);
@@ -408,7 +409,8 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 /* ---------- mobile ---------- */
 @media (max-width:719px){
   .wrap{padding:0 16px}
-  .nav{top:8px;margin-top:8px}
+  .nav{display:none}
+  .hero{padding-top:30px}
   .nav__bar{padding:6px 6px 6px 14px}
   .logo{font-size:13px}.logo svg{width:21px}
   .nav .btn{padding:10px 14px;font-size:13.5px}
@@ -509,6 +511,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
   <section class="hero">
     <div class="wrap">
       <h1>Crie serviços com IA que <em class="s">empresas pagam</em> para ter.</h1>
+      <p class="sub">6 aulas práticas para começar do zero, sem programar.</p>
 
 
       <!--
@@ -530,13 +533,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 
       <div class="hero__cta">
         <a class="btn btn--xl" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero começar por R$ 47,90 <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-        <div class="checks">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Pagamento único</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Sem precisar programar</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>7 dias de garantia</span>
-        </div>
       </div>
-      <p class="lead">Em <b>6 aulas e cerca de 60 minutos</b>, aprenda a usar ChatGPT, Claude e Claude Code para criar projetos digitais, encontrar seus primeiros clientes e apresentar seu serviço, <b>mesmo sem saber programar.</b></p>
 
       <!-- cards de benefício -->
       <div class="features" id="features">
