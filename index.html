@@ -114,8 +114,8 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 .hero h1 em.s{text-shadow:0 0 40px rgba(182,242,62,.35)}
 .hero .lead{margin:26px auto 0;max-width:600px;font-size:clamp(16.5px,4.3vw,19px);color:var(--soft);line-height:1.55}
 .hero .lead b{color:#fff;font-weight:600}
-.hero .sub{margin:12px auto 0;max-width:520px;font-size:clamp(15.5px,4.2vw,19px);color:var(--soft);line-height:1.45}
-.hero__cta{margin-top:22px}
+.hero .sub{margin:16px auto 0;max-width:520px;font-size:clamp(15.5px,4.2vw,19px);color:var(--soft);line-height:1.45}
+.hero__cta{margin-top:18px}
 
 /* VSL */
 .vsl{position:relative;margin:16px auto 0;max-width:760px}
@@ -414,8 +414,10 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
   .nav__bar{padding:6px 6px 6px 14px}
   .logo{font-size:13px}.logo svg{width:21px}
   .nav .btn{padding:10px 14px;font-size:13.5px}
-  .vsl__frame{padding:5px;border-radius:20px}
-  .vsl__player{border-radius:16px}
+  .vsl{margin-left:-16px;margin-right:-16px}
+  .vsl__label{margin-bottom:8px}
+  .vsl__frame{padding:0;border-radius:0;border-left:0;border-right:0}
+  .vsl__player{border-radius:0}
   .btn--xl{width:100%;font-size:16.5px;padding:19px 22px}
   .checks{gap:6px 14px;font-size:12.5px}
   .sec{padding-top:72px}
@@ -539,7 +541,6 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
   <section class="hero">
     <div class="wrap">
       <h1>Crie serviços com IA que <em class="s">empresas pagam</em> para ter.</h1>
-      <p class="sub">6 aulas práticas para começar do zero, sem programar.</p>
 
 
       <!--
@@ -548,7 +549,7 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
         convite para ouvir, barra de progresso e retomada). Para usar um player externo,
         cole a URL de embed em CONFIG.VSL_EMBED_URL (final do arquivo).
       -->
-      <div class="vsl" data-ratio="16:9">
+      <div class="vsl" id="vsl" data-ratio="16:9">
         <div class="vsl__label"><i></i>Assista ao vídeo com o som ligado</div>
         <div class="vsl__frame glass">
           <div class="vsl__player" id="vsl-player">
@@ -581,6 +582,8 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
           </div>
         </div>
       </div>
+
+      <p class="sub">6 aulas práticas para começar do zero, sem programar.</p>
 
       <div class="hero__cta">
         <a class="btn btn--xl" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero começar por R$ 47,90 <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
@@ -870,7 +873,24 @@ var CONFIG = {
 (function () {
   // Sempre abrir no topo, com a VSL à vista (exceto quando o link aponta para uma seção)
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  if (!location.hash) window.scrollTo(0, 0);
+  // Abrir já com a VSL no topo da tela (o link #vsl faz o mesmo)
+  function toVSL() {
+    var el = document.getElementById("vsl");
+    if (!el) return;
+    var nav = document.querySelector(".nav"), off = 8;
+    if (nav && getComputedStyle(nav).display !== "none") {
+      // no computador, só rola se o vídeo não couber inteiro na tela
+      if (el.getBoundingClientRect().bottom + window.pageYOffset <= window.innerHeight) return;
+      off = nav.getBoundingClientRect().height + 20;
+    }
+    var y = el.getBoundingClientRect().top + window.pageYOffset - off;
+    window.scrollTo({ top: Math.max(0, y), behavior: "instant" });
+  }
+  if (!location.hash || location.hash === "#vsl") {
+    toVSL();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(toVSL);
+    window.addEventListener("load", function () { if (window.pageYOffset < 400) toVSL(); });
+  }
 
   // Indicadores dos carrosséis no celular
   document.querySelectorAll(".swipe").forEach(function (d) {
