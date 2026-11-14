@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>VSL Renda com IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060806; --lime:#b6f23e; --lime2:#dcff7d; --ink:#101800; --text:#eef2ea; --muted:#8e998b; --soft:#c3cbbf;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
+  --sans:"Inter Tight",system-ui,sans-serif; --display:"Plus Jakarta Sans","Inter Tight",sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg)}
+body{font-family:var(--sans);color:var(--text);-webkit-font-smoothing:antialiased}
+#stage{position:absolute;inset:0;overflow:hidden;background:var(--bg)}
+.atmo{position:absolute;inset:-10%;background:
+  radial-gradient(38% 40% at 8% 20%,rgba(120,170,40,.20),transparent 70%),
+  radial-gradient(34% 36% at 95% 70%,rgba(120,170,40,.16),transparent 70%),
+  radial-gradient(60% 50% at 50% 120%,rgba(150,210,50,.14),transparent 70%)}
+.grain{position:absolute;inset:0;opacity:.08;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.scan{position:absolute;inset:0;pointer-events:none;opacity:.07;background:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 4px)}
+.vign{position:absolute;inset:0;pointer-events:none;background:radial-gradient(80% 80% at 50% 50%,transparent 55%,rgba(0,0,0,.65))}
+.arc{position:absolute;border-radius:50%;border-top:3px solid rgba(214,255,120,.85);filter:drop-shadow(0 0 14px rgba(182,242,62,.9));pointer-events:none}
+.sc{position:absolute;inset:0;display:none}
+.k{will-change:transform,opacity}
+.abs{position:absolute}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.h{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:.98}
+.lime{color:var(--lime)}
+.glow{text-shadow:0 0 50px rgba(182,242,62,.45)}
+.pill{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.05);font:600 34px/1 var(--sans);color:var(--soft)}
+.pill b{color:var(--ink);background:var(--lime);border-radius:999px;padding:8px 16px;font-size:26px}
+.glass{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 40px 80px -40px rgba(0,0,0,.9)}
+.statue{position:absolute;top:0;height:1080px;object-fit:cover}
+.fadeL{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 35%);mask-image:linear-gradient(90deg,transparent 0,#000 35%)}
+.fadeR{-webkit-mask-image:linear-gradient(270deg,transparent 0,#000 35%);mask-image:linear-gradient(270deg,transparent 0,#000 35%)}
+.flash{position:absolute;inset:0;background:#f4ffe0;opacity:0;pointer-events:none;mix-blend-mode:screen}
+.blackout{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+/* legendas */
+#cap{position:absolute;left:0;right:0;bottom:64px;display:flex;justify-content:center;pointer-events:none;z-index:20}
+#cap div{font:700 40px/1.2 var(--display);letter-spacing:-.02em;padding:14px 26px;border-radius:18px;background:rgba(4,6,4,.72);border:1px solid var(--line);max-width:1500px;text-align:center}
+#cap span{color:rgba(238,242,234,.55)}
+#cap span.on{color:#fff}
+#cap span.now{color:var(--lime)}
+/* cards de negócios */
+.biz{width:470px;padding:40px;display:flex;flex-direction:column;gap:22px}
+.biz .ico{width:110px;height:110px;border-radius:28px;display:grid;place-items:center;color:var(--lime);background:rgba(182,242,62,.07);border:1px solid rgba(182,242,62,.4);box-shadow:0 0 30px -8px rgba(182,242,62,.7)}
+.biz .ico svg{width:58px;height:58px}
+.biz h3{font:800 48px/1.05 var(--display);letter-spacing:-.03em}
+.biz .st{display:flex;align-items:center;gap:14px;font:700 28px/1.2 var(--sans);color:var(--soft)}
+.x{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#ff4d4d;color:#fff;font:800 28px/1 var(--sans);box-shadow:0 0 24px rgba(255,77,77,.6)}
+.ok{flex:none;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--ink)}
+.ok svg{width:28px;height:28px}
+.blurmenu{height:120px;border-radius:16px;background:repeating-linear-gradient(0deg,rgba(255,220,150,.35) 0 10px,transparent 10px 24px),linear-gradient(135deg,#5b3a1a,#2a1a0a);filter:blur(7px)}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(182,242,62,.55) 2px,transparent 2.5px);background-size:34px 34px;-webkit-mask-image:radial-gradient(50% 55% at 50% 50%,#000 30%,transparent 75%);mask-image:radial-gradient(50% 55% at 50% 50%,#000 30%,transparent 75%)}
+/* terminal */
+.term{width:1180px;height:640px;border-radius:26px;overflow:hidden;background:#070a07;border:1px solid var(--line2);box-shadow:0 60px 120px -40px #000,0 0 80px -30px rgba(182,242,62,.4)}
+.term__top{display:flex;align-items:center;gap:12px;padding:18px 24px;border-bottom:1px solid var(--line);font:500 22px/1 var(--mono);color:var(--muted)}
+.term__top i{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.18)}
+.term__body{padding:34px 40px;font:500 30px/1.7 var(--mono);color:var(--soft)}
+.term__body .p{color:var(--lime)}
+.cursor{display:inline-block;width:16px;height:34px;background:var(--lime);vertical-align:-6px;margin-left:4px}
+.tl{opacity:0}
+.tl b{color:var(--lime);font-weight:700}
+.speed{position:absolute;right:26px;top:14px;font:700 22px/1 var(--mono);color:var(--ink);background:var(--lime);padding:8px 12px;border-radius:10px}
+.tagsim{font:500 20px/1 var(--sans);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+/* navegador */
+.brow{width:1040px;height:700px;border-radius:24px;overflow:hidden;background:#111;border:1px solid var(--line2);box-shadow:0 60px 120px -40px #000,0 0 90px -30px rgba(182,242,62,.45)}
+.brow__bar{display:flex;align-items:center;gap:16px;padding:16px 20px;background:#16191a;border-bottom:1px solid var(--line)}
+.brow__bar i{width:13px;height:13px;border-radius:50%;background:rgba(255,255,255,.2)}
+.url{flex:1;padding:10px 18px;border-radius:999px;background:#0b0d0e;font:500 22px/1 var(--mono);color:var(--soft)}
+.url b{color:var(--lime);font-weight:500}
+.brow__view{position:relative;height:620px;overflow:hidden}
+.site{position:absolute;left:0;right:0;top:0}
+.site__hero{height:520px;padding:70px 64px;background:radial-gradient(60% 80% at 80% 40%,rgba(255,140,40,.35),transparent 70%),linear-gradient(160deg,#2a1406,#120802);color:#fff4e6}
+.site__hero small{font:700 20px/1 var(--sans);letter-spacing:.2em;color:#ffb35c}
+.site__hero h4{margin-top:20px;font:800 84px/.95 var(--display);letter-spacing:-.04em}
+.site__hero p{margin-top:20px;font:500 28px/1.3 var(--sans);color:#ffd9b0;max-width:520px}
+.site__hero .bt{display:inline-block;margin-top:34px;padding:20px 34px;border-radius:999px;background:#ff8a2a;color:#1d0c00;font:800 26px/1 var(--sans)}
+.burger{position:absolute;right:70px;top:110px;width:330px;height:330px}
+.site__menu{padding:44px 64px 60px;background:#1a0d05;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.site__menu div{height:240px;border-radius:20px;background:#2a170a;border:1px solid rgba(255,180,100,.18);padding:22px;color:#ffe2c2;font:700 26px/1.2 var(--sans)}
+.site__menu div i{display:block;width:90px;height:90px;border-radius:50%;margin-bottom:18px;background:radial-gradient(circle at 35% 35%,#ffb35c,#b4521a)}
+.site__menu div span{display:block;margin-top:8px;color:#ff9a3c}
+.chk{display:flex;align-items:center;gap:22px;font:800 52px/1 var(--display);letter-spacing:-.03em}
+/* logo */
+.logo{display:flex;align-items:center;gap:34px}
+.logo svg{width:250px}
+.logo .wm{font:800 132px/.9 var(--display);letter-spacing:-.04em;text-align:left}
+/* chips de oferta */
+.big-chip{display:flex;align-items:center;gap:26px;padding:26px 44px;border-radius:999px;font:800 64px/1 var(--display);letter-spacing:-.03em}
+/* aulas */
+.les{display:flex;align-items:center;gap:22px;padding:18px 26px;border-radius:22px;font:700 36px/1.1 var(--display);letter-spacing:-.02em;width:760px}
+.les em{font-style:normal;font:600 24px/1 var(--mono);color:var(--muted);width:56px}
+.les .ok{width:44px;height:44px;margin-left:auto;opacity:0}
+.les .ok svg{width:22px;height:22px}
+.cover{position:absolute;width:310px;border-radius:22px;border:1px solid rgba(214,255,120,.3);box-shadow:0 40px 70px -30px #000,0 0 40px -12px rgba(182,242,62,.5)}
+/* preço */
+.price{font:800 300px/.85 var(--display);letter-spacing:-.06em;color:var(--lime);text-shadow:0 0 80px rgba(182,242,62,.5)}
+.price small{font-size:110px;vertical-align:top;margin-right:16px;color:var(--soft)}
+.price sup{font-size:130px;vertical-align:top}
+.mono{font:700 64px/1.2 var(--mono)}
+/* timeline */
+.track{position:absolute;left:220px;right:220px;top:640px;height:10px;border-radius:6px;background:rgba(255,255,255,.08)}
+.track__fill{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:linear-gradient(90deg,rgba(182,242,62,.2),var(--lime));box-shadow:0 0 20px rgba(182,242,62,.7)}
+.mk{position:absolute;top:-62px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;font:700 28px/1 var(--sans)}
+.mk i{width:26px;height:26px;border-radius:50%}
+/* calendário */
+.cal{width:300px;height:330px;border-radius:30px;overflow:hidden;text-align:center}
+.cal__top{background:var(--lime);color:var(--ink);font:800 34px/1 var(--display);padding:22px}
+.cal__n{font:800 150px/1.4 var(--display);letter-spacing:-.05em}
+/* CTA */
+.cta{display:inline-flex;align-items:center;gap:26px;padding:40px 70px;border-radius:999px;background:linear-gradient(180deg,var(--lime2),var(--lime));color:var(--ink);font:800 64px/1 var(--display);letter-spacing:-.03em;box-shadow:0 0 0 2px rgba(255,255,255,.35) inset,0 30px 90px -20px rgba(182,242,62,.8)}
+.cta .ar{width:74px;height:74px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center}
+.cta .ar svg{width:38px}
+.disc{position:absolute;left:120px;right:120px;bottom:40px;font:500 22px/1.45 var(--sans);color:var(--muted);text-align:center;opacity:0}
+.foot{position:absolute;left:0;right:0;bottom:22px;text-align:center;font:500 20px/1 var(--sans);color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="atmo" id="atmo"></div>
+  <div class="arc" id="arc1" style="width:2400px;height:2400px;left:-1500px;top:-300px;transform:rotate(-30deg)"></div>
+  <div class="arc" id="arc2" style="width:2200px;height:2200px;right:-1500px;top:500px;transform:rotate(35deg)"></div>
+
+  <!-- ========== S1 HOOK ========== -->
+  <section class="sc" data-in="0" data-out="12.4">
+    <img class="statue k gl kb fadeL" src="../../assets/estatua-visor.webp" style="right:-40px;width:1100px" data-in="0" data-out="7.25" data-fx="fade" data-d=".15">
+    <img class="statue k gl kb fadeL" src="../../assets/estatua-braco.webp" style="right:-60px;width:1100px" data-in="7.2" data-out="12.4" data-fx="fade" data-d=".2">
+    <div class="abs" style="left:130px;top:250px;width:1000px">
+      <div class="k h gl" style="font-size:150px" data-in="0" data-out="2.05" data-fx="slam">ESTA VOZ</div>
+      <div class="k h gl" style="font-size:150px;margin-top:10px" data-in=".96" data-out="2.05" data-fx="glitch">NÃO É <span class="lime glow">HUMANA.</span></div>
+    </div>
+    <div class="abs" style="left:130px;top:250px;width:1000px">
+      <div class="k h gl" style="font-size:140px" data-in="2.08" data-out="4.0" data-fx="slam">ESTAS IMAGENS</div>
+      <div class="k h gl lime glow" style="font-size:124px;margin-top:10px" data-in="3.0" data-out="4.0" data-fx="glitch">TAMBÉM NÃO.</div>
+    </div>
+    <div class="abs" style="left:130px;top:200px;width:1000px">
+      <div class="k" data-in="4.08" data-out="7.2" data-fx="up"><span class="pill"><b>100%</b>feito com</span></div>
+      <div class="k h lime glow" style="font-size:420px;line-height:.9;margin-top:10px" data-in="5.6" data-out="7.2" data-fx="slam">IA</div>
+    </div>
+    <div class="abs" style="left:130px;top:170px;width:980px">
+      <div class="k h" style="font-size:300px;line-height:.85" data-in="7.6" data-out="12.4" data-fx="slam"><span id="cnt60" class="lime glow">60</span></div>
+      <div class="k h" style="font-size:96px" data-in="8.08" data-out="12.4" data-fx="up">MINUTOS</div>
+      <div class="k" style="font:600 50px/1.25 var(--sans);color:var(--soft);margin-top:30px" data-in="9.0" data-out="12.4" data-fx="up">para aprender a fazer o mesmo</div>
+      <div class="k h" style="font-size:76px;margin-top:16px" data-in="10.5" data-out="12.4" data-fx="up">e oferecer para <span class="lime glow">empresas.</span></div>
+    </div>
+  </section>
+
+  <!-- ========== S2 OPORTUNIDADE ========== -->
+  <section class="sc" data-in="12.4" data-out="33.8">
+    <div class="center"><div class="k h" style="font-size:200px" data-in="12.45" data-out="13.3" data-fx="slam">REPARA.</div></div>
+
+    <div class="abs k" style="left:0;right:0;top:120px;text-align:center" data-in="13.35" data-out="21.25" data-fx="up">
+      <span class="pill">a realidade da sua rua</span>
+    </div>
+    <div class="abs" style="left:150px;top:260px;display:flex;gap:40px">
+      <div class="biz glass k" data-in="13.4" data-out="21.25" data-fx="up">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9M3 9h18M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0M5 12v8h14v-8M10 20v-5h4v5"/></svg></div>
+        <h3>Padaria</h3>
+        <div class="st k" data-in="14.8" data-out="21.25" data-fx="pop"><span class="x">✕</span>Sem site</div>
+      </div>
+      <div class="biz glass k" data-in="15.8" data-out="21.25" data-fx="up">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a8 6 0 0 1 16 0zM3 14h18M4 17h16a0 0 0 0 1 0 0 3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/></svg></div>
+        <h3>Hamburgueria</h3>
+        <div class="blurmenu"></div>
+        <div class="st k" data-in="17.7" data-out="21.25" data-fx="pop"><span class="x">✕</span>Cardápio em foto borrada</div>
+      </div>
+      <div class="biz glass k" data-in="18.6" data-out="21.25" data-fx="up">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></div>
+        <h3>Salão</h3>
+        <div class="st k" data-in="20.4" data-out="21.25" data-fx="pop"><span class="x">✕</span>Sem página de links</div>
+      </div>
+    </div>
+
+    <div class="k" style="position:absolute;inset:0" data-in="21.3" data-out="27.8" data-fx="fade">
+      <div class="dots" id="dots"></div>
+      <div class="center">
+        <div class="k" data-in="21.4" data-out="27.8" data-fx="up"><span class="pill">pesquisa Sebrae + FGV</span></div>
+        <div class="k h lime glow" style="font-size:260px;margin-top:30px" data-in="23.5" data-out="27.8" data-fx="slam"><span id="cnt53">5,3</span> MI</div>
+        <div class="k h" style="font-size:78px;margin-top:20px" data-in="25.4" data-out="27.8" data-fx="up">de pequenos negócios</div>
+        <div class="k h" style="font-size:78px;margin-top:6px" data-in="26.45" data-out="27.8" data-fx="up">fora do <span class="lime">digital.</span></div>
+      </div>
+      <div class="foot">Fonte: levantamento Sebrae/FGV, divulgado em dezembro de 2022.</div>
+    </div>
+
+    <img class="statue k kb fadeL gl" src="../../assets/estatua-visor.webp" style="right:-80px;width:1000px" data-in="27.85" data-out="33.8" data-fx="fade">
+    <div class="abs" style="left:130px;top:250px;width:1050px">
+      <div class="k h" style="font-size:96px" data-in="27.9" data-out="31.4" data-fx="up">Todo mundo já ouviu falar de IA.</div>
+      <div class="k h lime glow" style="font-size:120px;margin-top:30px" data-in="29.84" data-out="31.4" data-fx="slam">Pouca gente sabe usar.</div>
+    </div>
+    <div class="abs" style="left:130px;top:300px;width:1050px">
+      <div class="k h" style="font-size:110px" data-in="31.44" data-out="33.8" data-fx="up">Esse espaço é a sua</div>
+      <div class="k h lime glow" style="font-size:150px;margin-top:10px" data-in="32.76" data-out="33.8" data-fx="slam">oportunidade.</div>
+    </div>
+  </section>
+
+  <!-- ========== S3 DEMONSTRAÇÃO ========== -->
+  <section class="sc" data-in="33.8" data-out="48.75">
+    <div class="center"><div class="k h" style="font-size:190px" data-in="33.84" data-out="34.75" data-fx="slam">AGORA <span class="lime">OLHA.</span></div></div>
+    <div class="abs k" style="left:130px;top:130px" data-in="34.8" data-out="43.7" data-fx="up">
+      <div class="h" style="font-size:64px">Você pede em <span class="lime">português</span></div>
+    </div>
+    <div class="abs k" style="left:130px;top:250px" data-in="34.85" data-out="43.7" data-fx="up">
+      <div class="term">
+        <div class="term__top" style="position:relative"><i></i><i></i><i></i>&nbsp;&nbsp;Claude Code · ~/hamburgueria<span class="speed k" data-in="39.4" data-out="43.7" data-fx="pop">▶▶ 8x</span></div>
+        <div class="term__body">
+          <div><span class="p">&gt;</span> <span id="typed"></span><span class="cursor" id="cur"></span></div>
+          <div class="tl" data-at="39.5" style="margin-top:22px;color:var(--muted)">● Lendo o pedido…</div>
+          <div class="tl" data-at="40.3"><b>✓</b> Escrevendo o código</div>
+          <div class="tl" data-at="41.5"><b>✓</b> Montando a página</div>
+          <div class="tl" data-at="42.6"><b>✓</b> Organizando os arquivos</div>
+        </div>
+      </div>
+    </div>
+    <div class="abs k tagsim" style="right:70px;top:60px" data-in="34.9" data-out="48.75" data-fx="fade">Simulação ilustrativa</div>
+
+    <div class="abs k" style="left:100px;top:150px" data-in="43.7" data-out="48.75" data-fx="up">
+      <div class="brow">
+        <div class="brow__bar"><i></i><i></i><i></i><div class="url">https://<b>hamburgueria-exemplo.site</b></div></div>
+        <div class="brow__view"><div class="site" id="site">
+          <div class="site__hero" style="position:relative">
+            <small>SMASH BURGER ARTESANAL</small>
+            <h4>Burger<br>da Esquina</h4>
+            <p>Pão brioche, blend da casa e entrega no seu bairro.</p>
+            <span class="bt">Pedir pelo WhatsApp</span>
+            <svg class="burger" viewBox="0 0 100 100"><ellipse cx="50" cy="38" rx="40" ry="22" fill="#e89a3c"/><rect x="10" y="50" width="80" height="8" rx="4" fill="#5fb94a"/><rect x="8" y="57" width="84" height="12" rx="6" fill="#6b2f12"/><rect x="12" y="68" width="76" height="6" rx="3" fill="#f2c94c"/><path d="M12 76h76a0 0 0 0 1 0 0 8 8 0 0 1-8 8H20a8 8 0 0 1-8-8z" fill="#d98a35"/><circle cx="38" cy="30" r="1.6" fill="#fff3d6"/><circle cx="55" cy="26" r="1.6" fill="#fff3d6"/><circle cx="64" cy="34" r="1.6" fill="#fff3d6"/></svg>
+          </div>
+          <div class="site__menu">
+            <div><i></i>Clássico<span>R$ 29</span></div>
+            <div><i></i>Bacon duplo<span>R$ 36</span></div>
+            <div><i></i>Veggie<span>R$ 31</span></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+    <div class="abs" style="left:1230px;top:260px;display:flex;flex-direction:column;gap:44px">
+      <div class="chk k" data-in="43.76" data-out="48.75" data-fx="left"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Página pronta</div>
+      <div class="chk k" data-in="44.8" data-out="48.75" data-fx="left"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>No ar</div>
+      <div class="chk k" data-in="45.44" data-out="48.75" data-fx="left"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Com link</div>
+      <div class="k" style="margin-top:30px" data-in="46.24" data-out="48.75" data-fx="slam">
+        <div class="h lime glow" style="font-size:150px">ZERO</div>
+        <div class="h" style="font-size:44px;margin-top:10px">linhas de código<br>escritas por você</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== S4 OFERTA ========== -->
+  <section class="sc" data-in="48.75" data-out="66.3">
+    <div class="center">
+      <div class="k logo" data-in="49.3" data-out="50.85" data-fx="slam">
+        <svg viewBox="0 0 415 350"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#b6f23e" stroke="#b6f23e" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg>
+        <div class="wm">RENDA<br>COM <span class="lime glow">IA</span></div>
+      </div>
+    </div>
+    <div class="center" style="gap:34px">
+      <div class="k big-chip glass" data-in="50.88" data-out="55.6" data-fx="pop"><span class="lime">6</span> aulas práticas</div>
+      <div class="k big-chip glass" data-in="52.2" data-out="55.6" data-fx="pop">cerca de <span class="lime">60 min</span></div>
+      <div class="k big-chip" style="background:var(--lime);color:var(--ink)" data-in="53.8" data-out="55.6" data-fx="pop">do zero, sem programar</div>
+    </div>
+    <div class="abs" style="left:120px;top:150px;display:flex;flex-direction:column;gap:14px">
+      <div class="k h" style="font-size:60px;margin-bottom:16px" data-in="55.68" data-out="66.3" data-fx="up">O que você vai aprender</div>
+      <div class="les glass k" data-in="55.9" data-out="66.3" data-fx="left" data-chk="56.53"><em>01</em>O mercado de serviços com IA<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+      <div class="les glass k" data-in="56.0" data-out="66.3" data-fx="left" data-chk="57.72"><em>02</em>Serviços que você pode vender<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+      <div class="les glass k" data-in="56.1" data-out="66.3" data-fx="left" data-chk="59.89"><em>03</em>Suas ferramentas de IA<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+      <div class="les glass k" data-in="56.2" data-out="66.3" data-fx="left" data-chk="61.2"><em>04</em>Criando seu primeiro projeto<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+      <div class="les glass k" data-in="56.3" data-out="66.3" data-fx="left" data-chk="62.92"><em>05</em>Como encontrar clientes<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+      <div class="les glass k" data-in="56.4" data-out="66.3" data-fx="left" data-chk="64.16"><em>06</em>Como apresentar e vender<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+    </div>
+    <div id="deck" class="abs" style="left:1000px;top:0;width:920px;height:1080px">
+      <img class="cover k" src="../../assets/aula-06.webp" data-in="56.0" data-out="66.3" data-fx="fade" data-deck="5">
+      <img class="cover k" src="../../assets/aula-05.webp" data-in="56.0" data-out="66.3" data-fx="fade" data-deck="4">
+      <img class="cover k" src="../../assets/aula-04.webp" data-in="56.0" data-out="66.3" data-fx="fade" data-deck="3">
+      <img class="cover k" src="../../assets/aula-03.webp" data-in="56.0" data-out="66.3" data-fx="fade" data-deck="2">
+      <img class="cover k" src="../../assets/aula-02.webp" data-in="56.0" data-out="66.3" data-fx="fade" data-deck="1">
+      <img class="cover k" src="../../assets/aula-01.webp" data-in="56.0" data-out="66.3" data-fx="fade" data-deck="0">
+    </div>
+  </section>
+
+  <!-- ========== S5 PREÇO ========== -->
+  <section class="sc" data-in="66.3" data-out="77.4">
+    <div class="center"><div class="k h" style="font-size:170px" data-in="66.4" data-out="67.25" data-fx="slam">QUANTO <span class="lime">CUSTA?</span></div></div>
+    <div class="center">
+      <div class="k price" data-in="67.44" data-out="70.1" data-fx="slam"><small>R$</small>47<sup>,90</sup></div>
+      <div class="k" style="margin-top:50px" data-in="68.96" data-out="70.1" data-fx="up"><span class="pill" style="font-size:44px;padding:20px 40px"><b style="font-size:32px">ÚNICO</b>pagamento único, sem mensalidade</span></div>
+    </div>
+    <div class="center">
+      <div class="k mono" style="color:var(--soft)" data-in="70.16" data-out="72.75" data-fx="up">R$ 47,90 ÷ 60 min</div>
+      <div class="k h" style="font-size:110px;margin-top:40px" data-in="70.6" data-out="72.75" data-fx="slam">menos de <span class="lime glow">R$ 0,80</span></div>
+      <div class="k h" style="font-size:60px;margin-top:18px;color:var(--soft)" data-in="71.04" data-out="72.75" data-fx="up">por minuto de aula</div>
+    </div>
+    <div class="abs" style="left:150px;right:150px;top:240px;display:flex;gap:60px">
+      <div class="glass k" style="flex:1;padding:60px;height:560px" data-in="72.8" data-out="77.4" data-fx="up">
+        <svg id="bag" viewBox="0 0 24 24" fill="none" stroke="#c3cbbf" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="width:170px"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <div class="h" style="font-size:84px;margin-top:40px">Menos que um lanche</div>
+        <div style="font:600 36px/1.3 var(--sans);color:var(--muted);margin-top:18px">e acaba rapidinho</div>
+      </div>
+      <div class="glass k" style="flex:1;padding:60px;height:560px;border-color:rgba(214,255,120,.45);box-shadow:0 0 90px -30px rgba(182,242,62,.7)" data-in="74.4" data-out="77.4" data-fx="up">
+        <span class="ok" style="width:170px;height:170px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:90px;height:90px"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <div class="h" style="font-size:84px;margin-top:40px">A habilidade <span class="lime">fica com você</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== S6 URGÊNCIA ========== -->
+  <section class="sc" data-in="77.4" data-out="90.65">
+    <img class="statue k kb fadeL" src="../../assets/estatua-visor.webp" style="right:-120px;width:1000px;opacity:.5" data-in="77.4" data-out="81.1" data-fx="fade">
+    <div class="abs" style="left:130px;top:300px;width:1100px">
+      <div class="k h" style="font-size:120px" data-in="77.44" data-out="79.38" data-fx="slam">Agora, a parte<br>que <span class="lime glow">pesa.</span></div>
+    </div>
+    <div class="abs" style="left:130px;top:340px;width:1100px">
+      <div class="k h" style="font-size:130px" data-in="79.4" data-out="81.1" data-fx="slam">A ferramenta<br><span class="lime glow">já existe.</span></div>
+    </div>
+    <div class="k" style="position:absolute;inset:0" data-in="81.15" data-out="87.25" data-fx="fade">
+      <div class="abs" style="left:0;right:0;top:170px;text-align:center">
+        <div class="k h" style="font-size:96px" data-in="81.16" data-out="83.9" data-fx="up">A diferença é quem aprende <span class="lime">primeiro.</span></div>
+        <div class="k h" style="font-size:96px;margin-top:-96px" data-in="83.95" data-out="87.25" data-fx="up">Quem chega primeiro, <span class="lime">apresenta primeiro.</span></div>
+      </div>
+      <div class="track"><div class="track__fill" id="fill"></div>
+        <div class="mk" id="mkMarket" style="color:var(--lime)"><i style="background:var(--lime);box-shadow:0 0 20px var(--lime)"></i></div>
+        <div class="mk" style="left:12%;top:30px;flex-direction:column-reverse;color:#fff"><i style="background:#fff"></i>você, parado</div>
+      </div>
+      <div class="abs" style="left:0;right:0;top:760px;text-align:center;font:600 34px/1 var(--sans);color:var(--muted)">o mercado anda, com ou sem você</div>
+    </div>
+    <div class="abs" style="left:150px;top:260px;display:flex;align-items:center;gap:80px">
+      <div class="cal glass k" data-in="87.28" data-out="90.65" data-fx="pop"><div class="cal__top">SEMANA</div><div class="cal__n" id="week">1</div></div>
+      <div>
+        <div class="k h" style="font-size:96px" data-in="87.44" data-out="90.65" data-fx="up">Cada semana adiada</div>
+        <div class="k h" style="font-size:96px;margin-top:10px" data-in="88.6" data-out="90.65" data-fx="up">é uma semana <span class="lime">a menos</span><br>de prática.</div>
+        <div class="k" style="margin-top:36px;font:700 34px/1 var(--mono);color:var(--muted)" data-in="89.0" data-out="90.65" data-fx="up">semanas de prática: <span style="color:#ff6b6b">0</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== S7 CTA + TELA FINAL ========== -->
+  <section class="sc" data-in="90.65" data-out="999">
+    <div class="center" style="padding-bottom:120px">
+      <div class="k h" style="font-size:96px" data-in="90.68" data-out="97.6" data-fx="up">Toque no botão <span class="lime">abaixo</span></div>
+      <div class="k h" style="font-size:110px" data-in="97.65" data-out="999" data-fx="slam">O primeiro passo é <span class="lime glow">agora.</span></div>
+      <div class="k" style="margin-top:56px" data-in="91.04" data-out="999" data-fx="pop"><div class="cta" id="cta">Quero aprender por R$ 47,90 <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></div>
+      <svg id="down" class="k" data-in="91.2" data-out="999" data-fx="fade" viewBox="0 0 24 24" fill="none" stroke="#b6f23e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:90px;margin-top:40px"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+    </div>
+    <div class="abs k" style="left:0;right:0;top:110px;display:flex;justify-content:center" data-in="99.5" data-out="999" data-fx="up">
+      <div class="logo" style="gap:22px"><svg viewBox="0 0 415 350" style="width:96px"><path fill="#fff" d="M62 2h238c72 0 113 58 113 128 0 66-47 117-110 122l69 96H265l-85-120 28-56h82c24 0 40-20 40-42 0-24-16-44-40-44H120z"/><path fill="#b6f23e" stroke="#b6f23e" stroke-width="18" stroke-linejoin="round" d="M106 133h74L88 321H16z"/></svg><div class="wm" style="font-size:52px">RENDA COM <span class="lime">IA</span></div></div>
+    </div>
+    <div class="disc" id="disc">Resultados dependem da aplicação de cada pessoa. Não há garantia de faturamento, emprego ou renda. Treinamento independente, sem afiliação ou endosso da Anthropic ou da OpenAI. Claude e ChatGPT são marcas de seus respectivos titulares.</div>
+  </section>
+
+  <div class="scan"></div>
+  <div class="grain"></div>
+  <div class="vign"></div>
+  <div id="cap"><div id="capin"></div></div>
+  <div class="blackout" id="blackout"></div>
+  <div class="flash" id="flash"></div>
+</div>
+
+<script src="words.js"></script>
+<script>
+const DUR = 103.5;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=x=>1-Math.pow(1-x,3);
+const eBack=x=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const rnd=(n)=>{const s=Math.sin(n*12.9898)*43758.5453;return s-Math.floor(s)};
+
+// momentos de impacto (tremor + flash) e glitch
+const HITS=[0,.96,3.0,5.6,7.6,12.45,23.5,29.84,32.76,33.84,46.24,49.3,67.44,70.6,77.44,79.4,90.68,97.65];
+const FLASH=[0,5.6,12.45,23.5,49.3,67.44,97.65];
+const GLITCH=[0,.96,2.08,3.0,4.0,7.2,12.4,27.85,33.8,48.75,77.4];
+const BLACK=[[67.25,67.44]];
+
+const scenes=[...document.querySelectorAll('.sc')];
+const ks=[...document.querySelectorAll('.k')];
+const tls=[...document.querySelectorAll('.tl')];
+const les=[...document.querySelectorAll('[data-chk]')];
+const covers=[...document.querySelectorAll('[data-deck]')];
+
+// legendas: agrupar palavras em frases curtas
+const chunks=[];{let cur=[];for(const w of WORDS){cur.push(w);const end=/[.,:?]$/.test(w[2]);if(cur.length>=6||(end&&cur.length>=2)||/[.?]$/.test(w[2])){chunks.push(cur);cur=[]}}if(cur.length)chunks.push(cur);}
+
+function fx(el,t){
+  const a=+el.dataset.in, b=+(el.dataset.out||999), d=+(el.dataset.d||.38), kind=el.dataset.fx||'fade';
+  if(t<a-0.001||t>b){el.style.opacity=0;el.style.visibility='hidden';return}
+  el.style.visibility='visible';
+  const p=seg(t,a,a+d), q=seg(t,b-.18,b);
+  let o=eOut(p)*(1-q), tr='', f='';
+  if(kind==='up') tr=`translateY(${(1-eOut(p))*70 - q*30}px)`;
+  else if(kind==='left') tr=`translateX(${(1-eOut(p))*-120}px)`;
+  else if(kind==='pop') tr=`scale(${.55+.45*eBack(p)})`;
+  else if(kind==='slam'){const s=1.9-0.9*eOut(seg(t,a,a+.22));tr=`scale(${s - q*.08})`;o=clamp(seg(t,a,a+.08))*(1-q);f=`blur(${(1-seg(t,a,a+.18))*14}px)`}
+  else if(kind==='glitch'){const g=1-seg(t,a,a+.35);tr=`translateX(${(rnd(Math.floor(t*30))-.5)*80*g}px)`;o=(p>0?1:0)*(1-q);f=g>0?`drop-shadow(${10*g}px 0 0 rgba(255,0,90,.8)) drop-shadow(${-10*g}px 0 0 rgba(0,255,210,.8))`:''}
+  el.style.opacity=o; el.style.transform=tr; if(kind==='slam'||kind==='glitch') el.style.filter=f;
+}
+
+function render(t){
+  // cenas
+  for(const s of scenes){const a=+s.dataset.in,b=+s.dataset.out;s.style.display=(t>=a&&t<b)?'block':'none'}
+  for(const el of ks) fx(el,t);
+  // Ken Burns nas estátuas
+  document.querySelectorAll('.kb').forEach(el=>{const a=+el.dataset.in,b=+el.dataset.out;const p=seg(t,a,b);el.style.transform=`scale(${1.04+.10*p}) translateX(${-30*p}px)`});
+  // glitch global
+  let g=0; for(const x of GLITCH){if(t>=x&&t<x+.3) g=Math.max(g,1-(t-x)/.3)}
+  document.querySelectorAll('.gl').forEach(el=>{
+    if(el.dataset.fx==='glitch'&&t<+el.dataset.in+.4) return;
+    if(g>0){const off=(rnd(Math.floor(t*30)+3)-.5)*60*g;el.style.filter=`drop-shadow(${12*g}px 0 0 rgba(255,0,90,.75)) drop-shadow(${-12*g}px 0 0 rgba(0,255,210,.75))`;el.style.translate=`${off}px 0`}
+    else{if(el.dataset.fx!=='slam')el.style.filter='';el.style.translate='0 0'}
+  });
+  // tremor
+  let sh=0; for(const h of HITS){if(t>=h&&t<h+.5) sh=Math.max(sh,Math.exp(-(t-h)*9))}
+  const st=document.getElementById('stage');
+  st.style.transform=sh>0.01?`translate(${(rnd(t*97)-.5)*26*sh}px,${(rnd(t*61)-.5)*26*sh}px)`:'';
+  // flash e blackout
+  let fl=0; for(const h of FLASH){if(t>=h&&t<h+.35) fl=Math.max(fl,.55*(1-(t-h)/.35))}
+  document.getElementById('flash').style.opacity=fl;
+  let bo=0; for(const [a,b] of BLACK){if(t>=a&&t<b) bo=1}
+  if(t<.12) bo=1-t/.12;
+  if(t>DUR-.6) bo=seg(t,DUR-.6,DUR);
+  document.getElementById('blackout').style.opacity=bo;
+  // atmosfera respirando + arcos
+  document.getElementById('atmo').style.opacity=.75+.25*Math.sin(t*1.3);
+  document.getElementById('arc1').style.transform=`rotate(${-30+Math.sin(t*.25)*6}deg)`;
+  document.getElementById('arc2').style.transform=`rotate(${35+Math.cos(t*.2)*6}deg)`;
+  // contadores
+  const c60=document.getElementById('cnt60'); c60.textContent=Math.round(60*eOut(seg(t,7.6,8.5)));
+  const c53=document.getElementById('cnt53'); c53.textContent=(5.3*eOut(seg(t,23.5,25.0))).toFixed(1).replace('.',',');
+  document.getElementById('dots').style.opacity=.35+.65*eOut(seg(t,21.4,25.5));
+  // digitação no terminal
+  const prompt='crie uma landing page para uma hamburgueria';
+  const n=Math.floor(prompt.length*seg(t,36.88,38.9));
+  document.getElementById('typed').textContent=prompt.slice(0,n);
+  document.getElementById('cur').style.opacity=(Math.floor(t*2.5)%2===0||n<prompt.length)?1:0;
+  for(const l of tls){const a=+l.dataset.at;l.style.opacity=eOut(seg(t,a,a+.2));l.style.transform=`translateX(${(1-eOut(seg(t,a,a+.25)))*-30}px)`}
+  // rolagem da página da hamburgueria
+  document.getElementById('site').style.transform=`translateY(${-170*eOut(seg(t,44.6,47.6))}px)`;
+  // aulas: checks
+  for(const el of les){const c=+el.dataset.chk,ok=el.querySelector('.ok');const p=seg(t,c,c+.25);ok.style.opacity=p;ok.style.transform=`scale(${.4+.6*eBack(p)})`;el.style.borderColor=p>0?`rgba(214,255,120,${.5*p})`:'';el.style.background=p>0?`linear-gradient(90deg,rgba(182,242,62,${.14*p}),rgba(255,255,255,.02))`:''}
+  // baralho de capas em leque
+  for(const c of covers){const i=+c.dataset.deck;const p=eOut(seg(t,56+i*.12,56.9+i*.12));const sway=Math.sin(t*.8+i)*1.5;
+    const ang=(i-2.5)*10*p+sway, x=280+(i-2.5)*120*p, y=300+Math.abs(i-2.5)*22*p - (1-p)*200;
+    c.style.left=x+'px';c.style.top=y+'px';c.style.transform=`rotate(${ang}deg)`;c.style.zIndex=10-Math.abs(Math.round((i-2.5)))}
+  // linha do tempo (urgência)
+  const fp=eOut(seg(t,81.2,87.2))*86+4;
+  document.getElementById('fill').style.width=fp+'%';
+  document.getElementById('mkMarket').style.left=fp+'%';
+  // semanas
+  document.getElementById('week').textContent=Math.max(1,Math.floor(seg(t,87.4,90.5)*8)+1);
+  // bolsa de delivery some
+  document.getElementById('bag').style.opacity=1-seg(t,76.0,76.8);
+  // CTA pulsando + seta
+  const cta=document.getElementById('cta'); cta.style.transform=`scale(${1+.04*Math.max(0,Math.sin((t-91)*5))})`;
+  document.getElementById('down').style.transform=`translateY(${Math.abs(Math.sin(t*4))*20}px)`;
+  document.getElementById('disc').style.opacity=eOut(seg(t,95.1,95.6));
+  // legendas
+  const cap=document.getElementById('capin'), box=document.getElementById('cap');
+  let cur=null; for(const c of chunks){if(t>=c[0][0]-.05&&t<=c[c.length-1][1]+.25){cur=c}}
+  if(cur&&t<99.5){box.style.display='flex';box.style.bottom=t>95?'170px':'64px';
+    cap.innerHTML=cur.map(w=>`<span class="${t>=w[0]&&t<w[1]+.05?'now':(t>=w[0]?'on':'')}">${w[2]}</span>`).join(' ')}
+  else box.style.display='none';
+}
+window.render=render; window.DUR=DUR;
+render(+(new URLSearchParams(location.search).get('t')||0));
+</script>
+</body>
+</html>
