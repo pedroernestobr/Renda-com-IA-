@@ -536,7 +536,8 @@ html.opening footer{animation-delay:.36s}
 (function () {
   var HOLD = 5000;
   try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
-  if (location.hash && location.hash !== "#vsl") return;      // links para seções abrem direto na seção
+  // Ao abrir a página, ignora qualquer "#" do endereço (ex.: /#oferta): sempre começa pelo topo
+  if (location.hash) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} }
   var root = document.documentElement, done = false;
   root.classList.add("boot");
   window.scrollTo(0, 0);
