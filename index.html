@@ -517,32 +517,38 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 }
 </style>
 <style>
-/* Enquanto a página "assenta", só o topo existe: o navegador do celular não tem para onde restaurar a posição antiga. */
-html.boot{scroll-behavior:auto!important}
+/* Primeiros 5 segundos: só a headline, a VSL e o botão. A página não rola e o resto fica escondido. */
+html.boot,html.boot body{overflow:hidden!important;height:100%;scroll-behavior:auto!important}
+html.boot .hero .features,html.boot .hero .swipe,html.boot .hero .stats,
 html.boot main>:not(.hero),html.boot footer,html.boot .sticky{display:none!important}
+/* Depois dos 5 segundos o restante abre com uma animação fluida */
+@keyframes openUp{from{opacity:0;transform:translateY(56px) scale(.985);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+html.opening .hero .features,html.opening .hero .swipe,html.opening .hero .stats,
+html.opening main>:not(.hero),html.opening footer{animation:openUp 1s cubic-bezier(.16,.84,.24,1) both}
+html.opening .hero .swipe{animation-delay:.08s}
+html.opening .hero .stats{animation-delay:.16s}
+html.opening main>:not(.hero){animation-delay:.28s}
+html.opening footer{animation-delay:.36s}
+@media (prefers-reduced-motion:reduce){html.opening *{animation:none!important}}
 </style>
 <script>
-/* Sempre abrir no topo, com a headline e a VSL à vista. */
+/* Abre sempre no topo e segura a primeira tela (headline + VSL) por 5 segundos. */
 (function () {
+  var HOLD = 5000;
   try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
-  if (location.hash && location.hash !== "#vsl") return;      // links para seções continuam funcionando
-  var root = document.documentElement, touched = false, released = false, holdUntil = Infinity;
+  if (location.hash && location.hash !== "#vsl") return;      // links para seções abrem direto na seção
+  var root = document.documentElement, done = false;
   root.classList.add("boot");
-  function top() { if (!touched && Date.now() < holdUntil && window.pageYOffset !== 0) window.scrollTo(0, 0); }
-  function release() {
-    if (released) return; released = true;
-    top(); root.classList.remove("boot"); top();
-    // segura o topo por mais alguns segundos, até a pessoa tocar ou rolar
-    holdUntil = Date.now() + 6000;
-    (function loop() { top(); if (!touched && Date.now() < holdUntil) requestAnimationFrame(loop); })();
+  window.scrollTo(0, 0);
+  function open() {
+    if (done) return; done = true;
+    root.classList.remove("boot");
+    window.scrollTo(0, 0);
+    root.classList.add("opening");
+    setTimeout(function () { root.classList.remove("opening"); }, 1800);
   }
-  ["touchstart", "wheel", "keydown", "mousedown"].forEach(function (ev) {
-    window.addEventListener(ev, function () { touched = true; release(); }, { passive: true });
-  });
-  window.addEventListener("scroll", top, { passive: true });
-  window.addEventListener("pageshow", function (e) { if (e.persisted) { released = false; touched = false; holdUntil = Infinity; root.classList.add("boot"); setTimeout(release, 600); } });
-  window.addEventListener("load", function () { setTimeout(release, 900); });
-  setTimeout(release, 2500);                                    // rede de segurança
+  setTimeout(open, HOLD);
+  window.addEventListener("pageshow", function (e) { if (e.persisted) { window.scrollTo(0, 0); } });
 })();
 </script>
 </head>
