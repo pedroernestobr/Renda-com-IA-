@@ -516,6 +516,28 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
   .sticky{display:none}
 }
 </style>
+<script>
+/* Sempre abrir no topo, com a headline e a VSL à vista.
+   Celulares (Safari/Chrome no iPhone) restauram a última posição depois do carregamento,
+   então seguramos o topo nos primeiros instantes, até a pessoa tocar ou rolar. */
+(function () {
+  try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
+  if (location.hash && location.hash !== "#vsl") return;
+  var hold = true, touched = false, until = 0;
+  function stop() { hold = false; touched = true; }
+  ["touchstart", "wheel", "keydown", "mousedown"].forEach(function (ev) { window.addEventListener(ev, stop, { passive: true }); });
+  function top() {
+    if (!hold) return;
+    if (window.pageYOffset !== 0) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    if (Date.now() < until) requestAnimationFrame(top);
+  }
+  function start() { if (touched) return; hold = true; until = Date.now() + 3000; top(); }
+  start();
+  window.addEventListener("DOMContentLoaded", start);
+  window.addEventListener("load", start);
+  window.addEventListener("pageshow", start);
+})();
+</script>
 </head>
 <body>
 
@@ -869,12 +891,6 @@ var CONFIG = {
 /* ====================================================== */
 (function () {
   // Sempre abrir no topo, com a VSL à vista (exceto quando o link aponta para uma seção)
-  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  if (!location.hash || location.hash === "#vsl") {
-    window.scrollTo(0, 0);
-    window.addEventListener("load", function () { window.scrollTo(0, 0); });
-    window.addEventListener("pageshow", function (e) { if (e.persisted) window.scrollTo(0, 0); });
-  }
 
   // Indicadores dos carrosséis no celular
   document.querySelectorAll(".swipe").forEach(function (d) {
