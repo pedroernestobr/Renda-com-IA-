@@ -482,6 +482,16 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 @media (prefers-reduced-motion:reduce){.vp-unmute__box{animation:none}}
 @media (max-width:719px){.vp-unmute__box{padding:12px 18px;gap:6px}}
 
+/* selo de escassez acima do botão */
+.scarcity{display:inline-flex;align-items:center;gap:9px;margin:0 auto 14px;padding:8px 16px;border-radius:999px;
+  font:700 13.5px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:#ffd9a8;
+  background:rgba(255,138,60,.10);border:1px solid rgba(255,138,60,.45)}
+.scarcity i{width:9px;height:9px;border-radius:50%;background:#ff8a3c;box-shadow:0 0 12px #ff8a3c;animation:blink 1.2s ease-in-out infinite}
+.hero__cta{display:flex;flex-direction:column;align-items:center}
+.hero__cta .btn{align-self:stretch}
+@media (min-width:720px){.hero__cta .btn{align-self:center}}
+@media (prefers-reduced-motion:reduce){.scarcity i{animation:none}}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -517,11 +527,16 @@ em.s{font-family:var(--display);font-style:normal;font-weight:800;letter-spacing
 }
 </style>
 <style>
-/* Primeiros 5 segundos: só a headline, a VSL e o botão. A página não rola e o resto fica escondido. */
+/* Só a headline e a VSL aparecem no começo. Botão e página ficam escondidos até a narração falar o valor. */
 html.boot,html.boot body{overflow:hidden!important;height:100%;scroll-behavior:auto!important}
+html.nocta .hero__cta,html.nocta .nav{display:none!important}
 html.boot .hero .features,html.boot .hero .swipe,html.boot .hero .stats,
 html.boot main>:not(.hero),html.boot footer,html.boot .sticky{display:none!important}
-/* Depois dos 5 segundos o restante abre com uma animação fluida */
+/* o botão entra com um "pop" e a página abre logo depois, com animação suave */
+@keyframes ctaIn{0%{opacity:0;transform:translateY(26px) scale(.9)}60%{opacity:1;transform:translateY(-4px) scale(1.03)}100%{opacity:1;transform:none}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+html.ctain .hero__cta{animation:ctaIn .75s cubic-bezier(.2,.9,.3,1.15) both}
+html.ctain .nav{animation:fadeDown .6s ease both}
 @keyframes openUp{from{opacity:0;transform:translateY(56px) scale(.985);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
 html.opening .hero .features,html.opening .hero .swipe,html.opening .hero .stats,
 html.opening main>:not(.hero),html.opening footer{animation:openUp 1s cubic-bezier(.16,.84,.24,1) both}
@@ -529,27 +544,32 @@ html.opening .hero .swipe{animation-delay:.08s}
 html.opening .hero .stats{animation-delay:.16s}
 html.opening main>:not(.hero){animation-delay:.28s}
 html.opening footer{animation-delay:.36s}
-@media (prefers-reduced-motion:reduce){html.opening *{animation:none!important}}
+@media (prefers-reduced-motion:reduce){html.opening *,html.ctain *{animation:none!important}}
 </style>
 <script>
-/* Abre sempre no topo e segura a primeira tela (headline + VSL) por 5 segundos. */
+/* Abre sempre no topo, só com a headline e a VSL.
+   window.RCI_REVEAL.button() mostra o botão; window.RCI_REVEAL.page() abre o resto da página. */
 (function () {
-  var HOLD = 5000;
   try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
-  // Ao abrir a página, ignora qualquer "#" do endereço (ex.: /#oferta): sempre começa pelo topo
+  // ignora qualquer "#" do endereço (ex.: /#oferta): sempre começa pelo topo
   if (location.hash) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} }
-  var root = document.documentElement, done = false;
-  root.classList.add("boot");
+  var root = document.documentElement, b = false, p = false;
+  root.classList.add("boot", "nocta");
   window.scrollTo(0, 0);
-  function open() {
-    if (done) return; done = true;
-    root.classList.remove("boot");
-    window.scrollTo(0, 0);
-    root.classList.add("opening");
-    setTimeout(function () { root.classList.remove("opening"); }, 1800);
-  }
-  setTimeout(open, HOLD);
-  window.addEventListener("pageshow", function (e) { if (e.persisted) { window.scrollTo(0, 0); } });
+  window.RCI_REVEAL = {
+    button: function () {
+      if (b) return; b = true;
+      root.classList.remove("nocta"); root.classList.add("ctain");
+      setTimeout(function () { root.classList.remove("ctain"); }, 1200);
+    },
+    page: function () {
+      if (p) return; p = true; window.RCI_REVEAL.button();
+      root.classList.remove("boot"); root.classList.add("opening");
+      setTimeout(function () { root.classList.remove("opening"); }, 1800);
+    }
+  };
+  // rede de segurança: se o vídeo nunca chegar ao valor (travou, bloqueado), libera tudo depois de 3 minutos
+  setTimeout(function () { window.RCI_REVEAL.button(); setTimeout(window.RCI_REVEAL.page, 800); }, 180000);
 })();
 </script>
 </head>
@@ -619,6 +639,7 @@ html.opening footer{animation-delay:.36s}
 
 
       <div class="hero__cta">
+        <div class="scarcity" id="scarcity"><i></i><span>Vagas limitadas</span></div>
         <a class="btn btn--xl" data-checkout href="https://pay.kiwify.com.br/7J8GaNI">Quero começar por R$ 47,90 <span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
 
@@ -900,7 +921,15 @@ var CONFIG = {
   // Link do checkout (já aplicado em todos os botões)
   CHECKOUT_URL: "https://pay.kiwify.com.br/7J8GaNI",
   // URL de EMBED da VSL (YouTube: https://www.youtube.com/embed/ID?rel=0 · Vimeo · Panda etc.)
-  VSL_EMBED_URL: ""
+  VSL_EMBED_URL: "",
+  // Quando o botão e a página aparecem (em segundos do vídeo). A narração diz
+  // "...garanta seu acesso por quarenta e sete e noventa" até ~95,0 s.
+  REVEAL_AT: 95.0,        // momento em que o valor termina de ser falado
+  BUTTON_DELAY: 1.0,      // pausa antes de o botão aparecer
+  PAGE_DELAY: 1.8,        // depois do botão, quanto espera para abrir o resto da página
+  // Selo de escassez acima do botão. Deixe "" para não mostrar.
+  // Use só se a limitação for real (veja a observação do Claude no chat).
+  SCARCITY_TEXT: "Vagas limitadas"
 };
 /* ====================================================== */
 (function () {
@@ -980,6 +1009,24 @@ var CONFIG = {
       });
     });
     v.addEventListener("ended", function () { store(0); if (started) show(end, true); else { v.currentTime = 0; playSafe(); } });
+  })();
+
+  // ---------- Botão e página só depois do valor ----------
+  (function () {
+    var R = window.RCI_REVEAL; if (!R) return;
+    var sc = document.getElementById("scarcity");
+    if (sc) { if (CONFIG.SCARCITY_TEXT) sc.querySelector("span").textContent = CONFIG.SCARCITY_TEXT; else sc.remove(); }
+    var fired = false;
+    function go() {
+      if (fired) return; fired = true;
+      setTimeout(function () { R.button(); setTimeout(R.page, CONFIG.PAGE_DELAY * 1000); }, CONFIG.BUTTON_DELAY * 1000);
+    }
+    window.RCI_GO = go;
+    var v = document.getElementById("vsl-video");
+    if (CONFIG.VSL_EMBED_URL || !v) { setTimeout(go, (CONFIG.REVEAL_AT + 1) * 1000); return; }  // player externo: por tempo
+    v.addEventListener("timeupdate", function () { if (v.currentTime >= CONFIG.REVEAL_AT) go(); });
+    v.addEventListener("ended", go);
+    v.addEventListener("error", go);   // se o vídeo não carregar, não prende a pessoa
   })();
 
   document.getElementById("ano").textContent = new Date().getFullYear();
