@@ -4,3 +4,6 @@ vsl/build/mix.wav
 vsl/build/voz/
 vsl/build/render.log
 vsl/*.mp4
+curso/voz/
+curso/out/
+curso/video/
